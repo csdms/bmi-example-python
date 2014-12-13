@@ -76,9 +76,9 @@ class BmiPoisson(Bmi):
         val = self.get_value_ptr(var_name)
         val[:] = src
 
-    def set_value_at_indices(self, var_name, indices, src):
+    def set_value_at_indices(self, var_name, src, indices):
         val = self.get_value_ptr(var_name)
-        val[indices] = src
+        val.flat[indices] = src
 
     def get_component_name(self):
         return self._name
@@ -96,12 +96,12 @@ class BmiPoisson(Bmi):
         if var_name in self._values:
             return self._model.spacing
 
-    def get_grid_origin (self, var_name):
+    def get_grid_origin(self, var_name):
         if var_name in self._values:
             return self._model.origin
 
     def get_grid_type(self, var_name):
-        if self._values.has_key (var_name):
+        if self._values.has_key(var_name):
             return BmiGridType.UNIFORM
         else:
             return BmiGridType.UNKNOWN
