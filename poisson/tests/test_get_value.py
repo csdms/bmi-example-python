@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from nose.tools import assert_true, assert_is, assert_is_not
+from nose.tools import assert_equal, assert_true, assert_is, assert_is_not
 from numpy.testing import assert_array_less, assert_array_almost_equal
 import numpy as np
 
@@ -40,3 +40,29 @@ def test_get_value_reference():
         model.update()
 
     assert_is(z0, model.get_value_ptr('land_surface__elevation'))
+
+
+def test_get_value_at_indices():
+    model = BmiPoisson()
+    model.initialize()
+
+    z0 = model.get_value_ptr('land_surface__elevation')
+    z1 = model.get_value_at_indices('land_surface__elevation', [0, 2, 4])
+
+    assert_array_almost_equal(z0.take((0, 2, 4)), z1)
+
+
+def test_value_size():
+    model = BmiPoisson()
+    model.initialize()
+
+    z = model.get_value_ptr('land_surface__elevation')
+    assert_equal(model.get_var_size('land_surface__elevation'), z.size)
+
+
+def test_value_nbytes():
+    model = BmiPoisson()
+    model.initialize()
+
+    z = model.get_value_ptr('land_surface__elevation')
+    assert_equal(model.get_var_nbytes('land_surface__elevation'), z.nbytes)
