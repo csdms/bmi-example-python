@@ -110,7 +110,7 @@ class BmiPoisson(Bmi):
         return 0.
 
     def get_end_time (self):
-        return np.finfo ('d').max
+        return np.finfo('d').max
 
     def get_current_time (self):
         return self._model.time

@@ -59,3 +59,4 @@ def test_grid_type():
     model.initialize()
     assert_equal(model.get_grid_type('land_surface__elevation'),
                  BmiGridType.UNIFORM)
+    assert_equal(model.get_grid_type('invalid-name'), BmiGridType.UNKNOWN)

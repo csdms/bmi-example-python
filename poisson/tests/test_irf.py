@@ -1,9 +1,31 @@
 #!/usr/bin/env python
-from nose.tools import assert_equal
+from nose.tools import assert_equal, assert_is
 from numpy.testing import assert_almost_equal, assert_array_less
 import numpy as np
 
 from poisson import BmiPoisson
+
+
+def test_component_name():
+    model = BmiPoisson()
+
+    name = model.get_component_name()
+    assert_equal(name, '2D Poisson Solver')
+    assert_is(model.get_component_name(), name)
+
+
+def test_start_time():
+    model = BmiPoisson()
+    model.initialize()
+
+    assert_almost_equal(model.get_start_time(), 0.0)
+
+
+def test_end_time():
+    model = BmiPoisson()
+    model.initialize()
+
+    assert_almost_equal(model.get_end_time(), np.finfo('d').max)
 
 
 def test_initialize_defaults():
