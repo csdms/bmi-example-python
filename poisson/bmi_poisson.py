@@ -70,7 +70,7 @@ class BmiPoisson(Bmi):
         return self.get_value_ptr(var_name).copy()
 
     def get_value_at_indices(self, var_name, indices):
-        return self.get_value_ptr(var_name)[indices]
+        return self.get_value_ptr(var_name).take(indices)
 
     def set_value(self, var_name, src):
         val = self.get_value_ptr(var_name)
