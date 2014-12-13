@@ -89,11 +89,11 @@ class BmiPoisson(Bmi):
 
     def get_grid_spacing(self, var_name):
         if var_name in self._values:
-            return self._model._spacing
+            return self._model.spacing
 
     def get_grid_origin (self, var_name):
         if var_name in self._values:
-            return self._model._origin
+            return self._model.origin
 
     def get_grid_type(self, var_name):
         if self._values.has_key (var_name):

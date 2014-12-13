@@ -61,6 +61,14 @@ class Poisson(object):
     def dt(self, dt):
         self._dt = dt
 
+    @property
+    def spacing(self):
+        return self._spacing
+
+    @property
+    def origin(self):
+        return self._origin
+
     @classmethod
     def from_file(clazz, filename):
         with open(filename, 'r') as fp:
