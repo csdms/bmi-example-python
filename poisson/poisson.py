@@ -25,10 +25,9 @@ class Poisson(object):
     1.0
 
     >>> poisson = Poisson(shape=(5, 5))
-    >>> poisson.z = np.zeros((3, 3), dtype=float)
+    >>> poisson.z = np.zeros_like(poisson.z)
     >>> poisson.z[2, 2] = 1.
     >>> poisson.advance_in_time()
-    >>> poisson.z
     """
     def __init__(self, shape=(10, 20), spacing=(1., 1.), origin=(0., 0.),
                 dt=1., end_time=10.):
