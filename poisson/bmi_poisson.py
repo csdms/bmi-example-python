@@ -101,7 +101,7 @@ class BmiPoisson(Bmi):
             return self._model.origin
 
     def get_grid_type(self, var_name):
-        if self._values.has_key(var_name):
+        if var_name in self._values:
             return BmiGridType.UNIFORM
         else:
             return BmiGridType.UNKNOWN
