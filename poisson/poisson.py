@@ -1,5 +1,6 @@
 import numpy as np
 from scipy import ndimage, random
+import yaml
 
 
 def solve_2d(z, spacing, out=None):
@@ -30,7 +31,7 @@ class Poisson(object):
     >>> poisson.advance_in_time()
     """
     def __init__(self, shape=(10, 20), spacing=(1., 1.), origin=(0., 0.),
-                dt=1., end_time=10.):
+                 dt=1.):
         self._shape = shape
         self._spacing = spacing
         self._origin = origin
@@ -51,6 +52,14 @@ class Poisson(object):
     @z.setter
     def z(self, new_z):
         self._z[:] = new_z
+
+    @property
+    def dt(self):
+        return self._dt
+
+    @dt.setter
+    def dt(self, dt):
+        self._dt = dt
 
     @classmethod
     def from_file(clazz, filename):
