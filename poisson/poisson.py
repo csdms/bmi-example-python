@@ -70,9 +70,8 @@ class Poisson(object):
         return self._origin
 
     @classmethod
-    def from_file(clazz, filename):
-        with open(filename, 'r') as fp:
-            config = yaml.load(fp)
+    def from_file_like(clazz, file_like):
+        config = yaml.load(file_like)
         return clazz(**config)
 
     def advance_in_time(self):
