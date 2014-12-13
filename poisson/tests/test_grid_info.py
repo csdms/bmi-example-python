@@ -50,3 +50,12 @@ def test_grid_var_type():
     model = BmiPoisson()
     model.initialize()
     assert_equal(model.get_var_type('land_surface__elevation'), 'float64')
+
+
+def test_grid_type():
+    from bmi import BmiGridType
+
+    model = BmiPoisson()
+    model.initialize()
+    assert_equal(model.get_grid_type('land_surface__elevation'),
+                 BmiGridType.UNIFORM)
