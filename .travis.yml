@@ -20,4 +20,4 @@ script:
   - nosetests --with-doctest --with-coverage --cover-package=poisson
 
 after_success:
-  coverall
+  coveralls
