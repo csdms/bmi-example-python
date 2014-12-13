@@ -1,6 +1,5 @@
 #! /usr/bin/env python
 import numpy as np
-from scipy import ndimage
 
 from bmi import Bmi, BmiGridType
 from .poisson import Poisson
@@ -30,9 +29,9 @@ class BmiPoisson(Bmi):
 
     def update_frac(self, time_frac):
         dt = self.get_time_step()
-        self._model._dt = time_frac * dt
+        self._model.dt = time_frac * dt
         self.update()
-        self._model._dt = dt
+        self._model.dt = dt
 
     def update_until(self, then):
         n_steps = (then - self.get_current_time()) / self.get_time_step()
@@ -89,10 +88,12 @@ class BmiPoisson(Bmi):
         return self.get_value_ptr(var_name).shape
 
     def get_grid_spacing(self, var_name):
-        return self._model._spacing
+        if var_name in self._values:
+            return self._model._spacing
 
     def get_grid_origin (self, var_name):
-        return self._model._origin
+        if var_name in self._values:
+            return self._model._origin
 
     def get_grid_type(self, var_name):
         if self._values.has_key (var_name):
@@ -110,4 +111,4 @@ class BmiPoisson(Bmi):
         return self._model.time
 
     def get_time_step (self):
-        return self._model._dt
+        return self._model.dt

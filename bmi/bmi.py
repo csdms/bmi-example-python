@@ -9,7 +9,7 @@ class BmiGridType(object):
 
 
 class Bmi(object):
-    def initialize(self, file):
+    def initialize(self, filename):
         pass
 
     def update(self):
