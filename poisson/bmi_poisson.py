@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+import types
 import numpy as np
 
 from bmi import Bmi, BmiGridType
@@ -15,11 +16,15 @@ class BmiPoisson(Bmi):
         self._model = None
         self._values = {}
 
-    def initialize(self, filename=None):
-        if filename is not None:
-            self._model = Poisson.from_file(filename)
-        else:
+    def initialize(self, config_file=None):
+        if config_file is None:
             self._model = Poisson()
+        elif isinstance(config_file, types.StringTypes):
+            with open(config_file, 'r') as fp:
+                self._model = Poisson.from_file_like(fp.read())
+        else:
+            self._model = Poisson.from_file_like(config_file)
+
         self._values = {
             'land_surface__elevation': self._model.z,
         }
