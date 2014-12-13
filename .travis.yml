@@ -8,6 +8,7 @@ os:
 
 install:
   - echo "Build on $TRAVIS_OS_NAME for Python $TRAVIS_PYTHON_VERSION"
+  - pip install -r requirements.txt
   - pip install coveralls
   - python setup.py install
 
