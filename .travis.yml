@@ -8,7 +8,9 @@ os:
 
 install:
   - echo "Build on $TRAVIS_OS_NAME for Python $TRAVIS_PYTHON_VERSION"
-  - pip install -r requirements.txt
+  - bash .travis/install_python.sh
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - source activate test-env
   - pip install coveralls
   - python setup.py install
 
