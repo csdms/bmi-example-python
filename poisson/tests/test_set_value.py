@@ -20,3 +20,16 @@ def test_set_value():
     assert_is(new_z, z0)
     assert_is_not(new_z, z1)
     assert_array_almost_equal(new_z, z1)
+
+
+def test_set_value_at_indices():
+    model = BmiPoisson()
+    model.initialize()
+
+    z0 = model.get_value_ptr('land_surface__elevation')
+
+    model.set_value_at_indices('land_surface__elevation', [-1, -1, -1],
+                               [0, 2, 4])
+
+    new_z = model.get_value_ptr('land_surface__elevation')
+    assert_array_almost_equal(new_z.take((0, 2, 4)), -1.)
