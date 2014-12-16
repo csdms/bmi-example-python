@@ -69,9 +69,10 @@ def test_update():
     model = BmiPoisson()
     model.initialize()
 
-    for time in xrange(10):
+    for inc in xrange(10):
         model.update()
-        assert_almost_equal(model.get_current_time(), time + 1.)
+        assert_almost_equal(model.get_current_time(),
+                            (inc + 1) * model.get_time_step())
 
 
 def test_update_until():
