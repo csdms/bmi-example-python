@@ -66,16 +66,22 @@ class Poisson(object):
     >>> poisson.z = np.zeros_like(poisson.z)
     >>> poisson.z[2, 2] = 1.
     >>> poisson.advance_in_time()
+
+    >>> poisson = Poisson(alpha=.5)
+    >>> poisson.dt
+    0.5
+    >>> poisson = Poisson(alpha=.5, spacing=(2., 3.))
+    >>> poisson.dt
+    2.0
     """
     def __init__(self, shape=(10, 20), spacing=(1., 1.), origin=(0., 0.),
-                 alpha=1., dt=None):
+                 alpha=1.):
         self._shape = shape
         self._spacing = spacing
         self._origin = origin
         self._time = 0.
-
-        self._alpha = 1.
-        self._dt = dt or min(spacing) ** 2 / 4. / self._alpha
+        self._alpha = alpha
+        self._dt = min(spacing) ** 2 / (4. * self._alpha)
 
         self._z = random.random(self._shape)
         self._z_temp = np.empty_like(self._z)
