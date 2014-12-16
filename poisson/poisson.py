@@ -29,8 +29,10 @@ def solve_2d(temp, spacing, out=None, alpha=1., dt=1.):
     >>> from poisson import solve_2d
     >>> z0 = np.zeros((3, 3))
     >>> z0[1:-1, 1:-1] = 1.
-    >>> z0
-    >>> solve_2d(z0, (1., 1.))
+    >>> solve_2d(z0, (1., 1.), alpha=.125)
+    array([[ 0. ,  0. ,  0. ],
+           [ 0. ,  0.5,  0. ],
+           [ 0. ,  0. ,  0. ]])
     """
     dy2, dx2 = spacing[0] ** 2, spacing[1] ** 2
     stencil = np.array([[0., dy2, 0.],
@@ -38,10 +40,12 @@ def solve_2d(temp, spacing, out=None, alpha=1., dt=1.):
                         [0., dy2, 0.]]) * alpha * dt / (dx2 * dy2)
 
     if out is None:
-        out = np.empty_like(z)
+        out = np.empty_like(temp)
 
-    ndimage.convolve(z, stencil, output=out)
-    return np.add(z, out, out=out)
+    ndimage.convolve(temp, stencil, output=out)
+    out[(0, -1), :] = 0.
+    out[:, (0, -1)] = 0.
+    return np.add(temp, out, out=out)
 
 
 class Poisson(object):
@@ -52,9 +56,11 @@ class Poisson(object):
     >>> poisson = Poisson()
     >>> poisson.time
     0.0
+    >>> poisson.dt
+    0.25
     >>> poisson.advance_in_time()
     >>> poisson.time
-    1.0
+    0.25
 
     >>> poisson = Poisson(shape=(5, 5))
     >>> poisson.z = np.zeros_like(poisson.z)
