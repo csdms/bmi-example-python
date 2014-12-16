@@ -122,9 +122,6 @@ class Poisson(object):
     def advance_in_time(self):
         solve_2d(self._z, self._spacing, out=self._z_temp, alpha=self._alpha,
                  dt=self._dt)
-
-        self._z[:] = self._z_temp
-        self._z[:, (0, -1)] = 0.
-        self._z[(0, -1), :] = 0.
+        np.copyto(self._z, self._z_temp)
 
         self._time += self._dt
