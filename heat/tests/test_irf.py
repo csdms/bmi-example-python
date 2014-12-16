@@ -3,38 +3,38 @@ from nose.tools import assert_equal, assert_is
 from numpy.testing import assert_almost_equal, assert_array_less
 import numpy as np
 
-from poisson import BmiPoisson
+from heat import BmiHeat
 
 
 def test_component_name():
-    model = BmiPoisson()
+    model = BmiHeat()
 
     name = model.get_component_name()
-    assert_equal(name, '2D Poisson Solver')
+    assert_equal(name, 'The 2D Heat Equation')
     assert_is(model.get_component_name(), name)
 
 
 def test_start_time():
-    model = BmiPoisson()
+    model = BmiHeat()
     model.initialize()
 
     assert_almost_equal(model.get_start_time(), 0.0)
 
 
 def test_end_time():
-    model = BmiPoisson()
+    model = BmiHeat()
     model.initialize()
 
     assert_almost_equal(model.get_end_time(), np.finfo('d').max)
 
 
 def test_initialize_defaults():
-    model = BmiPoisson()
+    model = BmiHeat()
     model.initialize()
 
     assert_almost_equal(model.get_current_time(), 0.)
-    assert_array_less(model.get_value('land_surface__elevation'), 1.)
-    assert_array_less(0., model.get_value('land_surface__elevation'))
+    assert_array_less(model.get_value('plate_surface__temperature'), 1.)
+    assert_array_less(0., model.get_value('plate_surface__temperature'))
 
 
 def test_initialize_from_file_like():
@@ -42,10 +42,10 @@ def test_initialize_from_file_like():
     import yaml
 
     config = StringIO(yaml.dump({'shape': (7, 5)}))
-    model = BmiPoisson()
+    model = BmiHeat()
     model.initialize(config)
 
-    assert_equal(model.get_grid_shape('land_surface__elevation'), (7, 5))
+    assert_equal(model.get_grid_shape('plate_surface__temperature'), (7, 5))
 
 
 def test_initialize_from_file():
@@ -57,16 +57,16 @@ def test_initialize_from_file():
         fp.write(yaml.dump({'shape': (7, 5)}))
         name = fp.name
 
-    model = BmiPoisson()
+    model = BmiHeat()
     model.initialize(name)
 
     os.remove(name)
 
-    assert_equal(model.get_grid_shape('land_surface__elevation'), (7, 5))
+    assert_equal(model.get_grid_shape('plate_surface__temperature'), (7, 5))
 
 
 def test_update():
-    model = BmiPoisson()
+    model = BmiHeat()
     model.initialize()
 
     for inc in xrange(10):
@@ -76,7 +76,7 @@ def test_update():
 
 
 def test_update_until():
-    model = BmiPoisson()
+    model = BmiHeat()
     model.initialize()
 
     model.update_until(10.1)
@@ -84,7 +84,7 @@ def test_update_until():
 
 
 def test_finalize():
-    model = BmiPoisson()
+    model = BmiHeat()
     model.initialize()
     model.update()
     model.finalize()

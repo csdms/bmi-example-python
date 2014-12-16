@@ -26,7 +26,7 @@ def solve_2d(temp, spacing, out=None, alpha=1., dt=1.):
 
     Examples
     --------
-    >>> from poisson import solve_2d
+    >>> from heat import solve_2d
     >>> z0 = np.zeros((3, 3))
     >>> z0[1:-1, 1:-1] = 1.
     >>> solve_2d(z0, (1., 1.), alpha=.125)
@@ -48,30 +48,30 @@ def solve_2d(temp, spacing, out=None, alpha=1., dt=1.):
     return np.add(temp, out, out=out)
 
 
-class Poisson(object):
-    """Solve the Poisson equation on a grid.
+class Heat(object):
+    """Solve the Heat equation on a grid.
 
     Examples
     --------
-    >>> poisson = Poisson()
-    >>> poisson.time
+    >>> heat = Heat()
+    >>> heat.time
     0.0
-    >>> poisson.dt
+    >>> heat.dt
     0.25
-    >>> poisson.advance_in_time()
-    >>> poisson.time
+    >>> heat.advance_in_time()
+    >>> heat.time
     0.25
 
-    >>> poisson = Poisson(shape=(5, 5))
-    >>> poisson.z = np.zeros_like(poisson.z)
-    >>> poisson.z[2, 2] = 1.
-    >>> poisson.advance_in_time()
+    >>> heat = Heat(shape=(5, 5))
+    >>> heat.z = np.zeros_like(heat.z)
+    >>> heat.z[2, 2] = 1.
+    >>> heat.advance_in_time()
 
-    >>> poisson = Poisson(alpha=.5)
-    >>> poisson.dt
+    >>> heat = Heat(alpha=.5)
+    >>> heat.dt
     0.5
-    >>> poisson = Poisson(alpha=.5, spacing=(2., 3.))
-    >>> poisson.dt
+    >>> heat = Heat(alpha=.5, spacing=(2., 3.))
+    >>> heat.dt
     2.0
     """
     def __init__(self, shape=(10, 20), spacing=(1., 1.), origin=(0., 0.),

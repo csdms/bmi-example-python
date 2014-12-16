@@ -3,14 +3,14 @@ import types
 import numpy as np
 
 from bmi import Bmi, BmiGridType
-from .poisson import Poisson
+from .heat import Heat
 
 
-class BmiPoisson(Bmi):
-    _name = '2D Poisson Solver'
-    _input_var_names = ['land_surface__elevation']
-    _output_var_names = ['land_surface__elevation']
-    _var_units = {'land_surface__elevation': 'meter'}
+class BmiHeat(Bmi):
+    _name = 'The 2D Heat Equation'
+    _input_var_names = ['plate_surface__temperature']
+    _output_var_names = ['plate_surface__temperature']
+    _var_units = {'plate_surface__temperature': 'K'}
 
     def __init__(self):
         self._model = None
@@ -18,15 +18,15 @@ class BmiPoisson(Bmi):
 
     def initialize(self, config_file=None):
         if config_file is None:
-            self._model = Poisson()
+            self._model = Heat()
         elif isinstance(config_file, types.StringTypes):
             with open(config_file, 'r') as fp:
-                self._model = Poisson.from_file_like(fp.read())
+                self._model = Heat.from_file_like(fp.read())
         else:
-            self._model = Poisson.from_file_like(config_file)
+            self._model = Heat.from_file_like(config_file)
 
         self._values = {
-            'land_surface__elevation': self._model.z,
+            'plate_surface__temperature': self._model.z,
         }
 
     def update(self):

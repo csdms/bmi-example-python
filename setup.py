@@ -4,7 +4,7 @@ use_setuptools()
 from setuptools import setup, find_packages
 
 
-setup(name='bmi-poisson',
+setup(name='bmi-heat',
       version='0.1.0',
       author='Eric Hutton',
       author_email='eric.hutton@colorado.edu',
