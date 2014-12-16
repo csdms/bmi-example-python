@@ -3,14 +3,45 @@ from scipy import ndimage, random
 import yaml
 
 
-def solve_2d(z, spacing, out=None):
-    dy, dx = spacing
-    denom = 2. * (dx ** 2 + dy ** 2)
-    stencil = np.array([[0., dy ** 2, 0.],
-                        [dx ** 2, 0., dx ** 2],
-                        [0., dy ** 2, 0.]]) / denom
+def solve_2d(temp, spacing, out=None, alpha=1., dt=1.):
+    """Solve the 2D Heat Equation on a uniform mesh.
 
-    return ndimage.convolve(z, stencil, output=out)
+    Parameters
+    ----------
+    temp : ndarray
+        Temperature.
+    spacing : array_like
+        Grid spacing in the row and column directions.
+    out : ndarray (optional)
+        Output array.
+    alpha : float (optional)
+        Thermal diffusivity.
+    dt : float (optional)
+        Time step.
+
+    Returns
+    -------
+    result : ndarray
+        The temperatures after time *dt*.
+
+    Examples
+    --------
+    >>> from poisson import solve_2d
+    >>> z0 = np.zeros((3, 3))
+    >>> z0[1:-1, 1:-1] = 1.
+    >>> z0
+    >>> solve_2d(z0, (1., 1.))
+    """
+    dy2, dx2 = spacing[0] ** 2, spacing[1] ** 2
+    stencil = np.array([[0., dy2, 0.],
+                        [dx2, -2. * (dx2 + dy2), dx2],
+                        [0., dy2, 0.]]) * alpha * dt / (dx2 * dy2)
+
+    if out is None:
+        out = np.empty_like(z)
+
+    ndimage.convolve(z, stencil, output=out)
+    return np.add(z, out, out=out)
 
 
 class Poisson(object):
@@ -31,12 +62,14 @@ class Poisson(object):
     >>> poisson.advance_in_time()
     """
     def __init__(self, shape=(10, 20), spacing=(1., 1.), origin=(0., 0.),
-                 dt=1.):
+                 alpha=1., dt=None):
         self._shape = shape
         self._spacing = spacing
         self._origin = origin
-        self._dt = dt
         self._time = 0.
+
+        self._alpha = 1.
+        self._dt = dt or min(spacing) ** 2 / 4. / self._alpha
 
         self._z = random.random(self._shape)
         self._z_temp = np.empty_like(self._z)
@@ -75,8 +108,11 @@ class Poisson(object):
         return clazz(**config)
 
     def advance_in_time(self):
-        solve_2d(self._z, self._spacing, out=self._z_temp)
+        solve_2d(self._z, self._spacing, out=self._z_temp, alpha=self._alpha,
+                 dt=self._dt)
+
         self._z[:] = self._z_temp
         self._z[:, (0, -1)] = 0.
         self._z[(0, -1), :] = 0.
+
         self._time += self._dt
