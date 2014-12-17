@@ -11,13 +11,20 @@ if [[ "$TRAVIS_PYTHON_VERSION" == 2.* ]]; then
 else
       wget http://repo.continuum.io/miniconda/Miniconda3-3.4.2-$OS.sh -O miniconda.sh;
 fi
+echo "Install miniconda"
 bash miniconda.sh -b -p $HOME/miniconda
 export PATH="$HOME/miniconda/bin:$PATH"
+echo "Using this conda: $(which conda)"
 hash -r
 conda config --set always_yes yes --set changeps1 no
-conda update conda
+echo "Update conda"
+conda update -q conda
+echo "conda info"
 conda info -a
-cat requirements.txt | grep -v numpydoc | xargs conda create -n test-env python=$TRAVIS_PYTHON_VERSION
+echo "Install packages"
+cat requirements.txt | xargs conda create -q -n test-env python=$TRAVIS_PYTHON_VERSION
+echo "Activate environment"
 source activate test-env
+echo "Using this python: $(which python)"
 conda install coverage
 conda install sphinx
