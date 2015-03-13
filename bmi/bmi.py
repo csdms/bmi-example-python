@@ -15,11 +15,44 @@ class Bmi(object):
 
     def initialize(self, filename):
         """Performs startup tasks for the model.
+
+        Initialize() performs all tasks that take place before
+        entering the model's time loop, including opening files and
+        initializing the model state. Models should be refactored, if
+        necessary, to read their inputs from a text-based
+        configuration file, specified by `filename`. CSDMS does not
+        impose any constraint on how configuration files are formatted
+        (although YAML is recommended). A "template" of a model's
+        configuration file with placeholder values is used by the BMI.
+
+        Parameters
+        ----------
+        filename : str, optional
+          The path to the model configuration file.
+
+        Returns
+        -------
+        int
+          Non-zero value indicates error code, or zero on success.
+
         """
         pass
 
     def update(self):
         """Advances model state by one time step.
+
+        Update() performs all tasks that take place within one pass
+        through the model's time loop. This typically includes
+        incrementing all of the model's state variables. If the
+        model's state variables don't change in time, then they can be
+        computed by the ***initialize()*** method and this method can
+        return with no action.
+
+        Returns
+        -------
+        int
+          Non-zero value indicates error code, or zero on success.
+
         """
         pass
 
@@ -35,6 +68,16 @@ class Bmi(object):
 
     def finalize(self):
         """Performs tear-down tasks for the model.
+
+        Finalize() performs all tasks that take place after exiting
+        the model's time loop. This typically includes deallocating
+        memory, closing files and printing reports.
+
+        Returns
+        -------
+        int
+          Non-zero value indicates error code, or zero on success.
+
         """
         pass
 
