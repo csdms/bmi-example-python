@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+5#! /usr/bin/env python
 import types
 import numpy as np
 
@@ -49,35 +49,35 @@ class BmiHeat(Bmi):
         self._model = None
 
     def get_var_type (self, var_name):
-        return str(self.get_value_ptr(var_name).dtype)
+        return str(self.get_value_ref(var_name).dtype)
 
     def get_var_units(self, var_name):
         return self._var_units[var_name]
 
     def get_var_nbytes(self, var_name):
-        return self.get_value_ptr(var_name).nbytes
+        return self.get_value_ref(var_name).nbytes
 
     def get_grid_rank(self, var_name):
-        return self.get_value_ptr(var_name).ndim
+        return self.get_value_ref(var_name).ndim
 
     def get_grid_size(self, var_name):
-        return self.get_value_ptr(var_name).size
+        return self.get_value_ref(var_name).size
 
-    def get_value_ptr(self, var_name):
+    def get_value_ref(self, var_name):
         return self._values[var_name]
 
     def get_value(self, var_name):
-        return self.get_value_ptr(var_name).copy()
+        return self.get_value_ref(var_name).copy()
 
     def get_value_at_indices(self, var_name, indices):
-        return self.get_value_ptr(var_name).take(indices)
+        return self.get_value_ref(var_name).take(indices)
 
     def set_value(self, var_name, src):
-        val = self.get_value_ptr(var_name)
+        val = self.get_value_ref(var_name)
         val[:] = src
 
     def set_value_at_indices(self, var_name, src, indices):
-        val = self.get_value_ptr(var_name)
+        val = self.get_value_ref(var_name)
         val.flat[indices] = src
 
     def get_component_name(self):
@@ -90,7 +90,7 @@ class BmiHeat(Bmi):
         return self._output_var_names
 
     def get_grid_shape (self, var_name):
-        return self.get_value_ptr(var_name).shape
+        return self.get_value_ref(var_name).shape
 
     def get_grid_spacing(self, var_name):
         if var_name in self._values:
