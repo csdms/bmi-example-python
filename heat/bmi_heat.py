@@ -16,14 +16,14 @@ class BmiHeat(Bmi):
         self._model = None
         self._values = {}
 
-    def initialize(self, config_file=None):
-        if config_file is None:
+    def initialize(self, filename=None):
+        if filename is None:
             self._model = Heat()
-        elif isinstance(config_file, types.StringTypes):
-            with open(config_file, 'r') as fp:
+        elif isinstance(filename, types.StringTypes):
+            with open(filename, 'r') as fp:
                 self._model = Heat.from_file_like(fp.read())
         else:
-            self._model = Heat.from_file_like(config_file)
+            self._model = Heat.from_file_like(filename)
 
         self._values = {
             'plate_surface__temperature': self._model.z,
