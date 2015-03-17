@@ -186,41 +186,6 @@ class Bmi(object):
         """
         pass
 
-    def get_var_rank(self, long_var_name):
-        """Returns the number of dimensions of the given variable.
-
-        Scalars have a rank of 0, vectors a rank of 1, planar grids
-        and meshes a rank of 2, and 3D grids and meshes a rank of 3.
-
-        Parameters
-        ----------
-        long_var_name : str
-          An input or output variable name, a CSDMS Standard Name.
-
-        Returns
-        -------
-        int
-          The variable rank.
-
-        """
-        pass
-
-    def get_var_size(self, long_var_name):
-        """Returns the number of elements in the given variable.
-
-        Parameters
-        ----------
-        long_var_name : str
-          An input or output variable name, a CSDMS Standard Name.
-
-        Returns
-        -------
-        int
-          The count of elements in the variable.
-
-        """
-        pass
-
     def get_var_nbytes(self, long_var_name):
         """Returns the size, in bytes, of the given variable.
 
@@ -233,6 +198,61 @@ class Bmi(object):
         -------
         int
           The size of the variable, counted in bytes.
+
+        """
+        pass
+
+    def get_var_grid(self, long_var_name):
+        """Returns the identifier of the grid associated with a given
+        variable.
+
+        Parameters
+        ----------
+        long_var_name : str
+          An input or output variable name, a CSDMS Standard Name.
+
+        Returns
+        -------
+        int
+          The grid identifier.
+
+        """
+        pass
+
+    def get_grid_rank(self, long_var_name):
+        """Returns the number of dimensions of the grid associated with a
+        given variable.
+
+        Scalars have a rank of 0, vectors a rank of 1, planar grids
+        and meshes a rank of 2, and volumetric grids and meshes a rank
+        of 3.
+
+        Parameters
+        ----------
+        long_var_name : str
+          An input or output variable name, a CSDMS Standard Name.
+
+        Returns
+        -------
+        int
+          The grid rank.
+
+        """
+        pass
+
+    def get_grid_size(self, long_var_name):
+        """Returns the number of elements in the grid associated with a given
+        variable.
+
+        Parameters
+        ----------
+        long_var_name : str
+          An input or output variable name, a CSDMS Standard Name.
+
+        Returns
+        -------
+        int
+          The grid node count.
 
         """
         pass
