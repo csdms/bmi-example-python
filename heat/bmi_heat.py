@@ -8,13 +8,14 @@ from .heat import Heat
 
 class BmiHeat(Bmi):
     _name = 'The 2D Heat Equation'
-    _input_var_names = ['plate_surface__temperature']
-    _output_var_names = ['plate_surface__temperature']
-    _var_units = {'plate_surface__temperature': 'K'}
+    _input_var_names = ('plate_surface__temperature',)
+    _output_var_names = ('plate_surface__temperature',)
+    _var_units = None
 
     def __init__(self):
         self._model = None
         self._values = {}
+        self._var_units = {'plate_surface__temperature': 'K'}
 
     def initialize(self, filename=None):
         if filename is None:

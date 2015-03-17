@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from nose.tools import assert_equal, assert_list_equal
+from nose.tools import assert_equal, assert_tuple_equal
 import numpy as np
 
 from heat import BmiHeat
@@ -10,10 +10,10 @@ def test_grid_var_names():
     model.initialize()
 
     names = model.get_input_var_names()
-    assert_list_equal(names, ['plate_surface__temperature'])
+    assert_tuple_equal(names, ('plate_surface__temperature',))
 
     names = model.get_output_var_names()
-    assert_list_equal(names, ['plate_surface__temperature'])
+    assert_tuple_equal(names, ('plate_surface__temperature',))
 
 
 def test_grid_var_units():
