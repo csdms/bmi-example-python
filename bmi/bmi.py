@@ -423,17 +423,17 @@ class BmiRaster(Bmi):
     """Defines an interface for a uniform rectilinear grid.
     """
 
-    def get_grid_shape(self, long_var_name):
+    def get_grid_shape(self, grid_id):
         """Returns the dimensions of the computational grid.
         """
         pass
 
-    def get_grid_spacing(self, long_var_name):
+    def get_grid_spacing(self, grid_id):
         """Returns the spacing between nodes of the computational grid.
         """
         pass
 
-    def get_grid_origin(self, long_var_name):
+    def get_grid_origin(self, grid_id):
         """Returns coordinates for the origin of the computational grid.
         """
         pass
@@ -444,22 +444,22 @@ class BmiRectilinear(Bmi):
     spacing.
     """
 
-    def get_grid_shape(self, long_var_name):
+    def get_grid_shape(self, grid_id):
         """Returns the dimensions of the computational grid.
         """
         pass
 
-    def get_grid_x(self, long_var_name):
+    def get_grid_x(self, grid_id):
         """Returns the grid nodes in the streamwise direction.
         """
         pass
 
-    def get_grid_y(self, long_var_name):
+    def get_grid_y(self, grid_id):
         """Returns the grid nodes in the transverse direction.
         """
         pass
 
-    def get_grid_z(self, long_var_name):
+    def get_grid_z(self, grid_id):
         """Returns the grid nodes in the normal direction.
         """
         pass
@@ -470,22 +470,22 @@ class BmiStructured (Bmi):
     spacing of nodes.
     """
 
-    def get_grid_shape(self, long_var_name):
+    def get_grid_shape(self, grid_id):
         """Returns the dimensions of the computational grid.
         """
         pass
 
-    def get_grid_x(self, long_var_name):
+    def get_grid_x(self, grid_id):
         """Returns the grid nodes in the streamwise direction.
         """
         pass
 
-    def get_grid_y(self, long_var_name):
+    def get_grid_y(self, grid_id):
         """Returns the grid nodes in the transverse direction.
         """
         pass
 
-    def get_grid_z(self, long_var_name):
+    def get_grid_z(self, grid_id):
         """Returns the grid nodes in the normal direction.
         """
         pass
@@ -495,27 +495,27 @@ class BmiUnstructured(Bmi):
     """Defines an interface for an unstructured mesh of nodes.
     """
 
-    def get_grid_x(self, long_var_name):
+    def get_grid_x(self, grid_id):
         """Returns the grid nodes in the streamwise direction.
         """
         pass
 
-    def get_grid_y(self, long_var_name):
+    def get_grid_y(self, grid_id):
         """Returns the grid nodes in the transverse direction.
         """
         pass
 
-    def get_grid_z(self, long_var_name):
+    def get_grid_z(self, grid_id):
         """Returns the grid nodes in the normal direction.
         """
         pass
 
-    def get_grid_connectivity(self, long_var_name):
+    def get_grid_connectivity(self, grid_id):
         """Returns connectivity array of the grid.
         """
         pass
 
-    def get_grid_offset(self, long_var_name):
+    def get_grid_offset(self, grid_id):
         """Returns the grid offset values.
         """
         pass
