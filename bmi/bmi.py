@@ -313,14 +313,39 @@ class Bmi(object):
     def get_value(self, long_var_name):
         """Returns the value of the given variable.
 
-        This is the getter for the model, used to access the model's
-        current state. It returns the value of a model variable, with
+        This is a getter for the model, used to access the model's
+        current state. It returns a copy of a model variable, with
         the return type, size and rank dependent on the variable.
 
         Parameters
         ----------
         long_var_name : str
           An input or output variable name, a CSDMS Standard Name.
+
+        Returns
+        -------
+        object
+          The value of a model variable.
+
+        """
+        pass
+
+    def get_value_ref(self, long_var_name):
+        """Returns a given variable.
+
+        This is a getter for the model, used to access the model's
+        current state. It returns a reference to a model variable,
+        with the return type, size and rank dependent on the variable.
+
+        Parameters
+        ----------
+        long_var_name : str
+          An input or output variable name, a CSDMS Standard Name.
+
+        Returns
+        -------
+        object
+          A model variable.
 
         """
         pass
