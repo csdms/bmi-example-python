@@ -425,16 +425,49 @@ class BmiRaster(Bmi):
 
     def get_grid_shape(self, grid_id):
         """Returns the dimensions of the computational grid.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        tuple of int
+          The dimensions of the grid.
+
         """
         pass
 
     def get_grid_spacing(self, grid_id):
-        """Returns the spacing between nodes of the computational grid.
+        """Returns the distance between nodes of the computational grid.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        tuple of float
+          The grid spacing.
+
         """
         pass
 
     def get_grid_origin(self, grid_id):
         """Returns coordinates for the origin of the computational grid.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        tuple of float
+          The coordinates of the lower left corner of the grid.
+
         """
         pass
 
@@ -446,21 +479,65 @@ class BmiRectilinear(Bmi):
 
     def get_grid_shape(self, grid_id):
         """Returns the dimensions of the computational grid.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        tuple of int
+          The dimensions of the grid.
+
         """
         pass
 
     def get_grid_x(self, grid_id):
         """Returns the grid nodes in the streamwise direction.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        tuple of float
+          The positions of the grid nodes.
+
         """
         pass
 
     def get_grid_y(self, grid_id):
         """Returns the grid nodes in the transverse direction.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        tuple of float
+          The positions of the grid nodes.
+
         """
         pass
 
     def get_grid_z(self, grid_id):
         """Returns the grid nodes in the normal direction.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        tuple of float
+          The positions of the grid nodes.
+
         """
         pass
 
@@ -472,21 +549,65 @@ class BmiStructured (Bmi):
 
     def get_grid_shape(self, grid_id):
         """Returns the dimensions of the computational grid.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        tuple of int
+          The dimensions of the grid.
+
         """
         pass
 
     def get_grid_x(self, grid_id):
         """Returns the grid nodes in the streamwise direction.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        array_like of float
+          The positions of the grid nodes.
+
         """
         pass
 
     def get_grid_y(self, grid_id):
         """Returns the grid nodes in the transverse direction.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        array_like of float
+          The positions of the grid nodes.
+
         """
         pass
 
     def get_grid_z(self, grid_id):
         """Returns the grid nodes in the normal direction.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        array_like of float
+          The positions of the grid nodes.
+
         """
         pass
 
@@ -497,25 +618,80 @@ class BmiUnstructured(Bmi):
 
     def get_grid_x(self, grid_id):
         """Returns the grid nodes in the streamwise direction.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        array_like of float
+          The positions of the grid nodes.
+
         """
         pass
 
     def get_grid_y(self, grid_id):
         """Returns the grid nodes in the transverse direction.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        array_like of float
+          The positions of the grid nodes.
+
         """
         pass
 
     def get_grid_z(self, grid_id):
         """Returns the grid nodes in the normal direction.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        array_like of float
+          The positions of the grid nodes.
+
         """
         pass
 
     def get_grid_connectivity(self, grid_id):
-        """Returns connectivity array of the grid.
+        """Returns the connectivity array of the grid.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        array_like of float
+          The graph of connections between the grid nodes.
+
         """
         pass
 
     def get_grid_offset(self, grid_id):
-        """Returns the grid offset values.
+        """Returns the offsets for the grid nodes.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        array_like of int
+          The offsets for the grid nodes.
+
         """
         pass
