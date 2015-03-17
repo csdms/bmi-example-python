@@ -54,14 +54,14 @@ class BmiHeat(Bmi):
     def get_var_units(self, var_name):
         return self._var_units[var_name]
 
-    def get_var_rank(self, var_name):
-        return self.get_value_ptr(var_name).ndim
-
-    def get_var_size(self, var_name):
-        return self.get_value_ptr(var_name).size
-
     def get_var_nbytes(self, var_name):
         return self.get_value_ptr(var_name).nbytes
+
+    def get_grid_rank(self, var_name):
+        return self.get_value_ptr(var_name).ndim
+
+    def get_grid_size(self, var_name):
+        return self.get_value_ptr(var_name).size
 
     def get_value_ptr(self, var_name):
         return self._values[var_name]

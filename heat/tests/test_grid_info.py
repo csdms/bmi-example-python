@@ -25,7 +25,7 @@ def test_grid_var_units():
 def test_grid_var_rank():
     model = BmiHeat()
     model.initialize()
-    assert_equal(model.get_var_rank('plate_surface__temperature'), 2)
+    assert_equal(model.get_grid_rank('plate_surface__temperature'), 2)
 
 
 def test_grid_var_shape():
