@@ -2,7 +2,7 @@
 import types
 import numpy as np
 
-from bmi import Bmi, BmiGridType
+from bmi import Bmi
 from .heat import Heat
 
 

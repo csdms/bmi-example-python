@@ -1,12 +1,5 @@
 #! /usr/bin/env python
 
-class BmiGridType(object):
-    UNKNOWN = 0
-    UNIFORM = 1
-    RECTILINEAR = 2
-    STRUCTURED = 3
-    UNSTRUCTURED = 4
-
 
 class Bmi(object):
     """Defines an interface for converting a standalone model into an
