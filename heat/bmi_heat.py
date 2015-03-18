@@ -70,11 +70,12 @@ class BmiHeat(Bmi):
             if var_name in var_name_list:
                 return grid_id
 
-    def get_grid_rank(self, var_name):
-        return self.get_value_ref(var_name).ndim
+    def get_grid_rank(self, grid_id):
+        return len(self.get_grid_shape(grid_id))
 
-    def get_grid_size(self, var_name):
-        return self.get_value_ref(var_name).size
+    def get_grid_size(self, grid_id):
+        from operator import mul
+        return reduce(mul, self.get_grid_shape(grid_id), 1)
 
     def get_value_ref(self, var_name):
         return self._values[var_name]
@@ -102,18 +103,35 @@ class BmiHeat(Bmi):
     def get_output_var_names(self):
         return self._output_var_names
 
-    def get_grid_shape (self, var_name):
-        return self.get_value_ref(var_name).shape
+    def get_grid_shape (self, grid_id):
+        try:
+            var_name = self._grids[grid_id][0]
+        except KeyError:
+            var_name = None
+        if var_name in self._values:
+            return self.get_value_ref(var_name).shape
 
-    def get_grid_spacing(self, var_name):
+    def get_grid_spacing(self, grid_id):
+        try:
+            var_name = self._grids[grid_id][0]
+        except KeyError:
+            var_name = None
         if var_name in self._values:
             return self._model.spacing
 
-    def get_grid_origin(self, var_name):
+    def get_grid_origin(self, grid_id):
+        try:
+            var_name = self._grids[grid_id][0]
+        except KeyError:
+            var_name = None
         if var_name in self._values:
             return self._model.origin
 
-    def get_grid_type(self, var_name):
+    def get_grid_type(self, grid_id):
+        try:
+            var_name = self._grids[grid_id][0]
+        except KeyError:
+            var_name = None
         if var_name in self._values:
             return BmiGridType.UNIFORM
         else:

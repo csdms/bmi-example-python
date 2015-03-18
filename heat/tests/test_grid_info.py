@@ -5,6 +5,8 @@ import numpy as np
 from heat import BmiHeat
 
 
+grid_id = 0
+
 def test_grid_var_names():
     model = BmiHeat()
     model.initialize()
@@ -25,31 +27,31 @@ def test_grid_var_units():
 def test_grid_id():
     model = BmiHeat()
     model.initialize()
-    assert_equal(model.get_var_grid('plate_surface__temperature'), 0)
+    assert_equal(model.get_var_grid('plate_surface__temperature'), grid_id)
 
 
 def test_grid_var_rank():
     model = BmiHeat()
     model.initialize()
-    assert_equal(model.get_grid_rank('plate_surface__temperature'), 2)
+    assert_equal(model.get_grid_rank(grid_id), 2)
 
 
 def test_grid_var_shape():
     model = BmiHeat()
     model.initialize()
-    assert_equal(model.get_grid_shape('plate_surface__temperature'), (10, 20))
+    assert_equal(model.get_grid_shape(grid_id), (10, 20))
 
 
 def test_grid_var_spacing():
     model = BmiHeat()
     model.initialize()
-    assert_equal(model.get_grid_spacing('plate_surface__temperature'), (1., 1.))
+    assert_equal(model.get_grid_spacing(grid_id), (1., 1.))
 
 
 def test_grid_var_origin():
     model = BmiHeat()
     model.initialize()
-    assert_equal(model.get_grid_origin('plate_surface__temperature'), (0., 0.))
+    assert_equal(model.get_grid_origin(grid_id), (0., 0.))
 
 
 def test_grid_var_type():
@@ -63,6 +65,5 @@ def test_grid_type():
 
     model = BmiHeat()
     model.initialize()
-    assert_equal(model.get_grid_type('plate_surface__temperature'),
-                 BmiGridType.UNIFORM)
-    assert_equal(model.get_grid_type('invalid-name'), BmiGridType.UNKNOWN)
+    assert_equal(model.get_grid_type(grid_id), BmiGridType.UNIFORM)
+    assert_equal(model.get_grid_type(12345), BmiGridType.UNKNOWN)
