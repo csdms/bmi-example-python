@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Basic Model Interface documentation build configuration file, created by
-# sphinx-quickstart on Tue Mar 17 19:27:51 2015.
+# sphinx-quickstart on Tue Mar 17 20:28:33 2015.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -31,8 +31,8 @@ sys.path.insert(0, os.path.abspath('../sphinxext'))
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.todo',
     'sphinx.ext.mathjax',
+    'sphinx.ext.viewcode',
     'numpydoc',
     'sphinx.ext.autosummary',
 ]
@@ -111,6 +111,7 @@ html_theme = 'scipy'
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
+#html_theme_options = {}
 html_theme_options = {
         'edit_link': False,
         'sidebar': 'right',
@@ -122,8 +123,8 @@ html_theme_options = {
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
 html_theme_path = [
-    os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
-                                 'scipy-sphinx-theme', '_theme'))
+        os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
+                                     'scipy-sphinx-theme', '_theme'))
 ]
 
 # The name for this set of Sphinx documents.  If None, it defaults to
