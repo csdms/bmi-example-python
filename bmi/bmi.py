@@ -219,9 +219,9 @@ class Bmi(object):
         """
         pass
 
-    def get_grid_rank(self, long_var_name):
-        """Returns the number of dimensions of the grid associated with a
-        given variable.
+    def get_grid_rank(self, grid_id):
+        """Returns the number of dimensions of the grid associated with the
+        given identifier.
 
         Scalars have a rank of 0, vectors a rank of 1, planar grids
         and meshes a rank of 2, and volumetric grids and meshes a rank
@@ -229,8 +229,8 @@ class Bmi(object):
 
         Parameters
         ----------
-        long_var_name : str
-          An input or output variable name, a CSDMS Standard Name.
+        grid_id : int
+          A grid identifier.
 
         Returns
         -------
@@ -240,14 +240,14 @@ class Bmi(object):
         """
         pass
 
-    def get_grid_size(self, long_var_name):
-        """Returns the number of elements in the grid associated with a given
-        variable.
+    def get_grid_size(self, grid_id):
+        """Returns the number of elements in the grid associated with the
+        given identifier.
 
         Parameters
         ----------
-        long_var_name : str
-          An input or output variable name, a CSDMS Standard Name.
+        grid_id : int
+          A grid identifier.
 
         Returns
         -------
