@@ -10,13 +10,13 @@ class BmiHeat(Bmi):
     _name = 'The 2D Heat Equation'
     _input_var_names = ('plate_surface__temperature',)
     _output_var_names = ('plate_surface__temperature',)
-    _var_units = None
 
     def __init__(self):
         self._model = None
         self._values = {}
         self._var_units = {}
         self._grids = {}
+        self._grid_type = None
 
     def initialize(self, filename=None):
         if filename is None:
@@ -36,6 +36,7 @@ class BmiHeat(Bmi):
         self._grids = {
             0: ['plate_surface__temperature']
         }
+        self._grid_type = 'uniform_rectilinear_grid'
 
     def update(self):
         self._model.advance_in_time()
@@ -115,11 +116,7 @@ class BmiHeat(Bmi):
         return self._model.origin
 
     def get_grid_type(self, grid_id):
-        var_name = self._grids[grid_id][0]
-        if var_name in self._values:
-            return BmiGridType.UNIFORM
-        else:
-            return BmiGridType.UNKNOWN
+        return self._grid_type
 
     def get_start_time (self):
         return 0.

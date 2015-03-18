@@ -103,17 +103,6 @@ def test_grid_var_type():
 
 
 def test_grid_type():
-    from bmi import BmiGridType
-
     model = BmiHeat()
     model.initialize()
-    assert_equal(model.get_grid_type(grid_id), BmiGridType.UNIFORM)
-
-
-@raises(KeyError)
-def test_grid_type_fail():
-    from bmi import BmiGridType
-
-    model = BmiHeat()
-    model.initialize()
-    model.get_grid_type(invalid_grid_id)
+    assert_equal(model.get_grid_type(grid_id), 'uniform_rectilinear_grid')
