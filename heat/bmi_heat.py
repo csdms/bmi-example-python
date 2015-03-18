@@ -108,11 +108,9 @@ class BmiHeat(Bmi):
         return self.get_value_ref(var_name).shape
 
     def get_grid_spacing(self, grid_id):
-        var_name = self._grids[grid_id][0]
         return self._model.spacing
 
     def get_grid_origin(self, grid_id):
-        var_name = self._grids[grid_id][0]
         return self._model.origin
 
     def get_grid_type(self, grid_id):
