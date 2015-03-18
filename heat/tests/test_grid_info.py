@@ -76,24 +76,10 @@ def test_grid_var_spacing():
     assert_equal(model.get_grid_spacing(grid_id), (1., 1.))
 
 
-@raises(KeyError)
-def test_grid_var_spacing_fail():
-    model = BmiHeat()
-    model.initialize()
-    model.get_grid_spacing(invalid_grid_id)
-
-
 def test_grid_var_origin():
     model = BmiHeat()
     model.initialize()
     assert_equal(model.get_grid_origin(grid_id), (0., 0.))
-
-
-@raises(KeyError)
-def test_grid_var_origin_fail():
-    model = BmiHeat()
-    model.initialize()
-    model.get_grid_origin(invalid_grid_id)
 
 
 def test_grid_var_type():
