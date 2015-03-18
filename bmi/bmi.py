@@ -195,61 +195,6 @@ class Bmi(object):
         """
         pass
 
-    def get_var_grid(self, long_var_name):
-        """Returns the identifier of the grid associated with a given
-        variable.
-
-        Parameters
-        ----------
-        long_var_name : str
-          An input or output variable name, a CSDMS Standard Name.
-
-        Returns
-        -------
-        int
-          The grid identifier.
-
-        """
-        pass
-
-    def get_grid_rank(self, grid_id):
-        """Returns the number of dimensions of the grid associated with the
-        given identifier.
-
-        Scalars have a rank of 0, vectors a rank of 1, planar grids
-        and meshes a rank of 2, and volumetric grids and meshes a rank
-        of 3.
-
-        Parameters
-        ----------
-        grid_id : int
-          A grid identifier.
-
-        Returns
-        -------
-        int
-          The grid rank.
-
-        """
-        pass
-
-    def get_grid_size(self, grid_id):
-        """Returns the number of elements in the grid associated with the
-        given identifier.
-
-        Parameters
-        ----------
-        grid_id : int
-          A grid identifier.
-
-        Returns
-        -------
-        int
-          The grid node count.
-
-        """
-        pass
-
     def get_start_time(self):
         """Returns the start time of the model.
 
@@ -411,10 +356,60 @@ class Bmi(object):
         """
         pass
 
+    def get_var_grid(self, long_var_name):
+        """Returns the identifier of the grid associated with a given
+        variable.
 
-class BmiRaster(Bmi):
-    """Defines an interface for a uniform rectilinear grid.
-    """
+        Parameters
+        ----------
+        long_var_name : str
+          An input or output variable name, a CSDMS Standard Name.
+
+        Returns
+        -------
+        int
+          The grid identifier.
+
+        """
+        pass
+
+    def get_grid_rank(self, grid_id):
+        """Returns the number of dimensions of the grid associated with the
+        given identifier.
+
+        Scalars have a rank of 0, vectors a rank of 1, planar grids
+        and meshes a rank of 2, and volumetric grids and meshes a rank
+        of 3.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        int
+          The grid rank.
+
+        """
+        pass
+
+    def get_grid_size(self, grid_id):
+        """Returns the number of elements in the grid associated with the
+        given identifier.
+
+        Parameters
+        ----------
+        grid_id : int
+          A grid identifier.
+
+        Returns
+        -------
+        int
+          The grid node count.
+
+        """
+        pass
 
     def get_grid_shape(self, grid_id):
         """Returns the dimensions of the computational grid.
@@ -464,28 +459,6 @@ class BmiRaster(Bmi):
         """
         pass
 
-
-class BmiRectilinear(Bmi):
-    """Defines an interface for a rectilinear grid with nonuniform
-    spacing.
-    """
-
-    def get_grid_shape(self, grid_id):
-        """Returns the dimensions of the computational grid.
-
-        Parameters
-        ----------
-        grid_id : int
-          A grid identifier.
-
-        Returns
-        -------
-        tuple of int
-          The dimensions of the grid.
-
-        """
-        pass
-
     def get_grid_x(self, grid_id):
         """Returns the grid nodes in the streamwise direction.
 
@@ -496,7 +469,7 @@ class BmiRectilinear(Bmi):
 
         Returns
         -------
-        tuple of float
+        tuple of float or array_like of float
           The positions of the grid nodes.
 
         """
@@ -512,7 +485,7 @@ class BmiRectilinear(Bmi):
 
         Returns
         -------
-        tuple of float
+        tuple of float or array_like of float
           The positions of the grid nodes.
 
         """
@@ -528,130 +501,7 @@ class BmiRectilinear(Bmi):
 
         Returns
         -------
-        tuple of float
-          The positions of the grid nodes.
-
-        """
-        pass
-
-
-class BmiStructured (Bmi):
-    """Defines an interface for a grid with nonuniform position and
-    spacing of nodes.
-    """
-
-    def get_grid_shape(self, grid_id):
-        """Returns the dimensions of the computational grid.
-
-        Parameters
-        ----------
-        grid_id : int
-          A grid identifier.
-
-        Returns
-        -------
-        tuple of int
-          The dimensions of the grid.
-
-        """
-        pass
-
-    def get_grid_x(self, grid_id):
-        """Returns the grid nodes in the streamwise direction.
-
-        Parameters
-        ----------
-        grid_id : int
-          A grid identifier.
-
-        Returns
-        -------
-        array_like of float
-          The positions of the grid nodes.
-
-        """
-        pass
-
-    def get_grid_y(self, grid_id):
-        """Returns the grid nodes in the transverse direction.
-
-        Parameters
-        ----------
-        grid_id : int
-          A grid identifier.
-
-        Returns
-        -------
-        array_like of float
-          The positions of the grid nodes.
-
-        """
-        pass
-
-    def get_grid_z(self, grid_id):
-        """Returns the grid nodes in the normal direction.
-
-        Parameters
-        ----------
-        grid_id : int
-          A grid identifier.
-
-        Returns
-        -------
-        array_like of float
-          The positions of the grid nodes.
-
-        """
-        pass
-
-
-class BmiUnstructured(Bmi):
-    """Defines an interface for an unstructured mesh of nodes.
-    """
-
-    def get_grid_x(self, grid_id):
-        """Returns the grid nodes in the streamwise direction.
-
-        Parameters
-        ----------
-        grid_id : int
-          A grid identifier.
-
-        Returns
-        -------
-        array_like of float
-          The positions of the grid nodes.
-
-        """
-        pass
-
-    def get_grid_y(self, grid_id):
-        """Returns the grid nodes in the transverse direction.
-
-        Parameters
-        ----------
-        grid_id : int
-          A grid identifier.
-
-        Returns
-        -------
-        array_like of float
-          The positions of the grid nodes.
-
-        """
-        pass
-
-    def get_grid_z(self, grid_id):
-        """Returns the grid nodes in the normal direction.
-
-        Parameters
-        ----------
-        grid_id : int
-          A grid identifier.
-
-        Returns
-        -------
-        array_like of float
+        tuple of float or array_like of float
           The positions of the grid nodes.
 
         """
