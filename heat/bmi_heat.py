@@ -15,7 +15,8 @@ class BmiHeat(Bmi):
     def __init__(self):
         self._model = None
         self._values = {}
-        self._var_units = {'plate_surface__temperature': 'K'}
+        self._var_units = {}
+        self._grids = {}
 
     def initialize(self, filename=None):
         if filename is None:
@@ -28,6 +29,12 @@ class BmiHeat(Bmi):
 
         self._values = {
             'plate_surface__temperature': self._model.z,
+        }
+        self._var_units = {
+            'plate_surface__temperature': 'K'
+        }
+        self._grids = {
+            0: ['plate_surface__temperature']
         }
 
     def update(self):
@@ -57,6 +64,11 @@ class BmiHeat(Bmi):
 
     def get_var_nbytes(self, var_name):
         return self.get_value_ref(var_name).nbytes
+
+    def get_var_grid(self, var_name):
+        for grid_id, var_name_list in self._grids.items():
+            if var_name in var_name_list:
+                return grid_id
 
     def get_grid_rank(self, var_name):
         return self.get_value_ref(var_name).ndim
