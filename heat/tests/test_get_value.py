@@ -57,7 +57,7 @@ def test_value_size():
     model.initialize()
 
     z = model.get_value_ref('plate_surface__temperature')
-    assert_equal(model.get_grid_size('plate_surface__temperature'), z.size)
+    assert_equal(model.get_grid_size(0), z.size)
 
 
 def test_value_nbytes():

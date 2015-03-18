@@ -45,7 +45,7 @@ def test_initialize_from_file_like():
     model = BmiHeat()
     model.initialize(config)
 
-    assert_equal(model.get_grid_shape('plate_surface__temperature'), (7, 5))
+    assert_equal(model.get_grid_shape(0), (7, 5))
 
 
 def test_initialize_from_file():
@@ -62,7 +62,7 @@ def test_initialize_from_file():
 
     os.remove(name)
 
-    assert_equal(model.get_grid_shape('plate_surface__temperature'), (7, 5))
+    assert_equal(model.get_grid_shape(0), (7, 5))
 
 
 def test_update():

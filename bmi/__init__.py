@@ -1,4 +1,4 @@
-from .bmi import Bmi, BmiGridType
+from .bmi import Bmi
 
 
-__all__ = ['Bmi', 'BmiGridType']
+__all__ = ['Bmi']
