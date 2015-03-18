@@ -16,7 +16,7 @@ class BmiHeat(Bmi):
         self._values = {}
         self._var_units = {}
         self._grids = {}
-        self._grid_type = None
+        self._grid_type = {}
 
     def initialize(self, filename=None):
         if filename is None:
@@ -36,7 +36,9 @@ class BmiHeat(Bmi):
         self._grids = {
             0: ['plate_surface__temperature']
         }
-        self._grid_type = 'uniform_rectilinear_grid'
+        self._grid_type = {
+            0: 'uniform_rectilinear_grid'
+        }
 
     def update(self):
         self._model.advance_in_time()
@@ -114,7 +116,7 @@ class BmiHeat(Bmi):
         return self._model.origin
 
     def get_grid_type(self, grid_id):
-        return self._grid_type
+        return self._grid_type[grid_id]
 
     def get_start_time (self):
         return 0.
