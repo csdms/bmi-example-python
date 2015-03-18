@@ -34,6 +34,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
     'numpydoc',
+    'sphinx.ext.autosummary',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -119,8 +120,9 @@ html_theme_options = {
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
+#html_theme_path = []
 html_theme_path = [
-    os.path.abspath(os.path.join(os.path.dirname(__file__),
+    os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
                                  'scipy-sphinx-theme', '_theme'))
 ]
 
