@@ -74,8 +74,7 @@ class BmiHeat(Bmi):
         return len(self.get_grid_shape(grid_id))
 
     def get_grid_size(self, grid_id):
-        from operator import mul
-        return reduce(mul, self.get_grid_shape(grid_id), 1)
+        return np.prod(self.get_grid_shape(grid_id))
 
     def get_value_ref(self, var_name):
         return self._values[var_name]
