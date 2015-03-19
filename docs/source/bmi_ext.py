@@ -58,7 +58,6 @@ class MyTemplateLoader(BuiltinTemplateLoader):
         # the template from Fityk. To avoid recursion, Fityk template
         # is not using "!".
         self.templatepathlen -= 1
-        return BuiltinTemplateLoader.get_source(
-            self, environment, os.path.join('_templates', template))
+        return BuiltinTemplateLoader.get_source(self, environment, template)
         self.templatepathlen += 1
 

@@ -42,7 +42,7 @@ if os.getenv('READTHEDOCS'):
     template_bridge = 'bmi_ext.MyTemplateLoader'
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ['.']
 
 # The suffix of source filenames.
 source_suffix = '.rst'
