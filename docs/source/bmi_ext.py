@@ -1,4 +1,4 @@
-
+import os
 import re
 
 from pygments.lexer import RegexLexer
@@ -45,7 +45,6 @@ def setup(app):
     app.connect('doctree-read', doctree_read)
 
 
-
 # this is hack is needed to use our layout.html on ReadTheDocs
 from sphinx.jinja2glue import BuiltinTemplateLoader
 class MyTemplateLoader(BuiltinTemplateLoader):
@@ -59,6 +58,7 @@ class MyTemplateLoader(BuiltinTemplateLoader):
         # the template from Fityk. To avoid recursion, Fityk template
         # is not using "!".
         self.templatepathlen -= 1
-        return BuiltinTemplateLoader.get_source(self, environment, template)
+        return BuiltinTemplateLoader.get_source(
+            self, environment, os.path.join('_templates', template))
         self.templatepathlen += 1
 
