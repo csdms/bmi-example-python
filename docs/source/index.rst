@@ -15,7 +15,7 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   Base control functions <bmi.irf>
+   Base control functions <bmi.base>
    Component info <bmi.info>
    Time <bmi.time>
    Variables <bmi.vars>
