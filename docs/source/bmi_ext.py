@@ -1,7 +1,7 @@
 import re
 
 from pygments.lexer import RegexLexer
-from pygments.token import Text, Name, Comment, String, Generic
+from pygments.token import Text, Comment, String, Generic
 from sphinx import addnodes
 from docutils import nodes
 
@@ -60,6 +60,8 @@ def setup(app):
 # this is hack is needed to use our layout.html on ReadTheDocs
 from sphinx.jinja2glue import BuiltinTemplateLoader
 from jinja2 import TemplateNotFound
+
+
 class MyTemplateLoader(BuiltinTemplateLoader):
     def get_source(self, environment, template):
         # If template name in Jinja's "extends" is prepended with "!"
