@@ -2,23 +2,28 @@
 
 
 class BmiInfo(object):
-    """Defines an interface for converting a standalone model into an
-    integrated modeling framework component.
+    """Get metadata about a model.
     """
 
     def get_component_name(self):
-        """Returns the name of the component.
+        """The name of the component.
 
         Returns
         -------
         str
           The name of the component.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_component_name(void * self, char * name);
         """
         pass
 
     def get_input_var_names(self):
-        """Lists the model's input variables.
+        """List of a model's input variables.
 
         Input variable names must be CSDMS Standard Names, also known
         as *long variable names*.
@@ -37,11 +42,18 @@ class BmiInfo(object):
 
         Standard Names do not have to be used within the model.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_input_var_name_count(void * self, int * count);
+            int get_input_var_names(void * self, char ** names);
         """
         pass
 
     def get_output_var_names(self):
-        """Lists the model's output variables.
+        """List of a model's output variables.
 
         Output variable names must be CSDMS Standard Names, also known
         as *long variable names*.
@@ -55,6 +67,12 @@ class BmiInfo(object):
         --------
         get_input_var_names
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_output_var_name_count(void * self, int * count);
+            int get_output_var_names(void * self, char ** names);
         """
         pass
-
