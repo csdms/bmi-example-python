@@ -30,6 +30,7 @@ class BmiGetter(object):
         -----
         .. code-block:: c
 
+            /* C */
             int get_value(void * self, const char * var_name, void * buffer);
         """
         pass
@@ -55,7 +56,9 @@ class BmiGetter(object):
         -----
         .. code-block:: c
 
-            int get_value_ref(void * self, const char * var_name, void ** buffer);
+            /* C */
+            int get_value_ref(void * self, const char * var_name,
+                              void ** buffer);
         """
         pass
 
@@ -78,7 +81,9 @@ class BmiGetter(object):
         -----
         .. code-block:: c
 
-            int get_value_at_indices(void * self, const char * var_name, void * buffer, int * indices, int len);
+            /* C */
+            int get_value_at_indices(void * self, const char * var_name,
+                                     void * buffer, int * indices, int len);
         """
         pass
 
@@ -109,18 +114,19 @@ class BmiSetter(object):
         -----
         .. code-block:: c
 
+            /* C */
             int set_value(void * self, const char * var_name, void * src);
         """
         pass
 
-    def set_value_at_indices(self, var_name, inds, src):
+    def set_value_at_indices(self, var_name, indices, src):
         """Specifies a new value for a model variable at particular indices.
 
         Parameters
         ----------
         var_name : str
           An input or output variable name, a CSDMS Standard Name.
-        inds : array_like
+        indices : array_like
           The indices into the variable array.
         src : array_like
           The new value for the specified variable.
@@ -129,6 +135,8 @@ class BmiSetter(object):
         -----
         .. code-block:: c
 
-            int set_value_at_indices(void * self, const char * var_name, int * indices, int len, void * src);
+            /* C */
+            int set_value_at_indices(void * self, const char * var_name,
+                                     int * indices, int len, void * src);
         """
         pass
