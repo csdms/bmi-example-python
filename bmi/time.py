@@ -6,7 +6,7 @@ class BmiTime(object):
     """
 
     def get_start_time(self):
-        """The start time of the model.
+        """Start time of the model.
 
         Model times should be of type float. The default model start
         time is 0.
@@ -26,7 +26,7 @@ class BmiTime(object):
         pass
 
     def get_current_time(self):
-        """The model's current time.
+        """Current time of the model.
 
         Returns
         -------
@@ -47,7 +47,7 @@ class BmiTime(object):
         pass
 
     def get_end_time(self):
-        """The maximum time of the model.
+        """End time of the model.
 
         Returns
         -------
@@ -68,7 +68,7 @@ class BmiTime(object):
         pass
 
     def get_time_step(self):
-        """The model's current time step.
+        """Current time step of the model.
 
         The model time step should be of type float. The default time
         step is 1.0.
@@ -88,7 +88,7 @@ class BmiTime(object):
         pass
 
     def get_time_units(self):
-        """The model's time units.
+        """Time units of the model.
 
         Returns
         -------

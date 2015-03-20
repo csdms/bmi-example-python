@@ -6,7 +6,7 @@ class BmiInfo(object):
     """
 
     def get_component_name(self):
-        """The name of the component.
+        """Name of the component.
 
         Returns
         -------

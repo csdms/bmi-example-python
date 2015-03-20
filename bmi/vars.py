@@ -11,7 +11,7 @@ class BmiVars(object):
     """
 
     def get_var_type(self, var_name):
-        """The data type of the given variable.
+        """Data type of the given variable.
 
         Parameters
         ----------
@@ -33,7 +33,7 @@ class BmiVars(object):
         pass
 
     def get_var_units(self, var_name):
-        """The units of the given variable.
+        """Units of the given variable.
 
         Standard unit names, in lower case, should be used, such as
         ``meters`` or ``seconds``. Standard abbreviations, like ``m`` for
@@ -68,7 +68,7 @@ class BmiVars(object):
         pass
 
     def get_var_nbytes(self, var_name):
-        """The size, in bytes, of the given variable.
+        """Size, in bytes, of the given variable.
 
         Parameters
         ----------
@@ -90,7 +90,7 @@ class BmiVars(object):
         pass
 
     def get_var_grid(self, var_name):
-        """The identifier of the grid associated with a variable.
+        """Grid identifier for the given variable.
 
         Parameters
         ----------

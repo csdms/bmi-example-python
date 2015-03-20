@@ -89,7 +89,7 @@ class BmiGridUnstructured(object):
         pass
 
     def get_grid_connectivity(self, grid_id):
-        """The connectivity array of the grid.
+        """Connectivity array of the grid.
 
         Parameters
         ----------
@@ -115,7 +115,7 @@ class BmiGridUnstructured(object):
         pass
 
     def get_grid_offset(self, grid_id):
-        """The offsets for the grid nodes.
+        """Offsets for the grid nodes.
 
         Parameters
         ----------

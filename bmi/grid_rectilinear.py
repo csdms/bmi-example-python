@@ -17,7 +17,7 @@ class BmiGridRectilinear(object):
     """
 
     def get_grid_shape(self, grid_id):
-        """The dimensions of the computational grid.
+        """Dimensions of the computational grid.
 
         Parameters
         ----------
@@ -43,7 +43,7 @@ class BmiGridRectilinear(object):
         pass
 
     def get_grid_x(self, grid_id):
-        """The grid nodes in the streamwise direction.
+        """Coordinates of grid nodes in the streamwise direction.
 
         Parameters
         ----------
@@ -69,7 +69,7 @@ class BmiGridRectilinear(object):
         pass
 
     def get_grid_y(self, grid_id):
-        """The grid nodes in the transverse direction.
+        """Coordinates of grid nodes in the transverse direction.
 
         Parameters
         ----------
@@ -95,7 +95,7 @@ class BmiGridRectilinear(object):
         pass
 
     def get_grid_z(self, grid_id):
-        """The grid nodes in the normal direction.
+        """Coordinates of grid nodes in the normal direction.
 
         Parameters
         ----------
