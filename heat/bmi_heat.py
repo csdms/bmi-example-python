@@ -22,13 +22,13 @@ class BmiHeat(Bmi):
         if filename is None:
             self._model = Heat()
         elif isinstance(filename, types.StringTypes):
-            with open(filename, 'r') as fp:
-                self._model = Heat.from_file_like(fp.read())
+            with open(filename, 'r') as file_obj:
+                self._model = Heat.from_file_like(file_obj.read())
         else:
             self._model = Heat.from_file_like(filename)
 
         self._values = {
-            'plate_surface__temperature': self._model.z,
+            'plate_surface__temperature': self._model.temperature,
         }
         self._var_units = {
             'plate_surface__temperature': 'K'
@@ -44,10 +44,10 @@ class BmiHeat(Bmi):
         self._model.advance_in_time()
 
     def update_frac(self, time_frac):
-        dt = self.get_time_step()
-        self._model.dt = time_frac * dt
+        time_step = self.get_time_step()
+        self._model.time_step = time_frac * time_step
         self.update()
-        self._model.dt = dt
+        self._model.time_step = time_step
 
     def update_until(self, then):
         n_steps = (then - self.get_current_time()) / self.get_time_step()
@@ -59,7 +59,7 @@ class BmiHeat(Bmi):
     def finalize(self):
         self._model = None
 
-    def get_var_type (self, var_name):
+    def get_var_type(self, var_name):
         return str(self.get_value_ref(var_name).dtype)
 
     def get_var_units(self, var_name):
@@ -105,7 +105,7 @@ class BmiHeat(Bmi):
     def get_output_var_names(self):
         return self._output_var_names
 
-    def get_grid_shape (self, grid_id):
+    def get_grid_shape(self, grid_id):
         var_name = self._grids[grid_id][0]
         return self.get_value_ref(var_name).shape
 
@@ -118,14 +118,14 @@ class BmiHeat(Bmi):
     def get_grid_type(self, grid_id):
         return self._grid_type[grid_id]
 
-    def get_start_time (self):
+    def get_start_time(self):
         return 0.
 
-    def get_end_time (self):
+    def get_end_time(self):
         return np.finfo('d').max
 
-    def get_current_time (self):
+    def get_current_time(self):
         return self._model.time
 
-    def get_time_step (self):
-        return self._model.dt
+    def get_time_step(self):
+        return self._model.time_step

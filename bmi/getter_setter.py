@@ -3,7 +3,7 @@
 
 class BmiGetter(object):
     """Get values from a component.
-    
+
     Methods that get variables from a model's state. Often a model's state
     variables are changing with each time step, so getters are called to get
     current values.
@@ -64,7 +64,7 @@ class BmiGetter(object):
 
     def get_value_at_indices(self, var_name, indices):
         """Get values at particular indices.
-        
+
         Parameters
         ----------
         var_name : str
@@ -90,10 +90,9 @@ class BmiGetter(object):
 
 class BmiSetter(object):
     """Set values into a component.
-   
+
     Methods that set variables of a model's state.
     """
-
 
     def set_value(self, var_name, src):
         """Specifies a new value for a model variable.

@@ -3,7 +3,7 @@ from scipy import ndimage, random
 import yaml
 
 
-def solve_2d(temp, spacing, out=None, alpha=1., dt=1.):
+def solve_2d(temp, spacing, out=None, alpha=1., time_step=1.):
     """Solve the 2D Heat Equation on a uniform mesh.
 
     Parameters
@@ -16,13 +16,13 @@ def solve_2d(temp, spacing, out=None, alpha=1., dt=1.):
         Output array.
     alpha : float (optional)
         Thermal diffusivity.
-    dt : float (optional)
+    time_step : float (optional)
         Time step.
 
     Returns
     -------
     result : ndarray
-        The temperatures after time *dt*.
+        The temperatures after time *time_step*.
 
     Examples
     --------
@@ -37,7 +37,7 @@ def solve_2d(temp, spacing, out=None, alpha=1., dt=1.):
     dy2, dx2 = spacing[0] ** 2, spacing[1] ** 2
     stencil = np.array([[0., dy2, 0.],
                         [dx2, -2. * (dx2 + dy2), dx2],
-                        [0., dy2, 0.]]) * alpha * dt / (dx2 * dy2)
+                        [0., dy2, 0.]]) * alpha * time_step / (dx2 * dy2)
 
     if out is None:
         out = np.empty_like(temp)
@@ -56,22 +56,22 @@ class Heat(object):
     >>> heat = Heat()
     >>> heat.time
     0.0
-    >>> heat.dt
+    >>> heat.time_step
     0.25
     >>> heat.advance_in_time()
     >>> heat.time
     0.25
 
     >>> heat = Heat(shape=(5, 5))
-    >>> heat.z = np.zeros_like(heat.z)
-    >>> heat.z[2, 2] = 1.
+    >>> heat.temperature = np.zeros_like(heat.temperature)
+    >>> heat.temperature[2, 2] = 1.
     >>> heat.advance_in_time()
 
     >>> heat = Heat(alpha=.5)
-    >>> heat.dt
+    >>> heat.time_step
     0.5
     >>> heat = Heat(alpha=.5, spacing=(2., 3.))
-    >>> heat.dt
+    >>> heat.time_step
     2.0
     """
     def __init__(self, shape=(10, 20), spacing=(1., 1.), origin=(0., 0.),
@@ -81,30 +81,30 @@ class Heat(object):
         self._origin = origin
         self._time = 0.
         self._alpha = alpha
-        self._dt = min(spacing) ** 2 / (4. * self._alpha)
+        self._time_step = min(spacing) ** 2 / (4. * self._alpha)
 
-        self._z = random.random(self._shape)
-        self._z_temp = np.empty_like(self._z)
+        self._temperature = random.random(self._shape)
+        self._z_temp = np.empty_like(self._temperature)
 
     @property
     def time(self):
         return self._time
 
     @property
-    def z(self):
-        return self._z
+    def temperature(self):
+        return self._temperature
 
-    @z.setter
-    def z(self, new_z):
-        self._z[:] = new_z
+    @temperature.setter
+    def temperature(self, new_temp):
+        self._temperature[:] = new_temp
 
     @property
-    def dt(self):
-        return self._dt
+    def time_step(self):
+        return self._time_step
 
-    @dt.setter
-    def dt(self, dt):
-        self._dt = dt
+    @time_step.setter
+    def time_step(self, time_step):
+        self._time_step = time_step
 
     @property
     def spacing(self):
@@ -115,13 +115,13 @@ class Heat(object):
         return self._origin
 
     @classmethod
-    def from_file_like(clazz, file_like):
+    def from_file_like(cls, file_like):
         config = yaml.load(file_like)
-        return clazz(**config)
+        return cls(**config)
 
     def advance_in_time(self):
-        solve_2d(self._z, self._spacing, out=self._z_temp, alpha=self._alpha,
-                 dt=self._dt)
-        np.copyto(self._z, self._z_temp)
+        solve_2d(self._temperature, self._spacing, out=self._z_temp,
+                 alpha=self._alpha, time_step=self._time_step)
+        np.copyto(self._temperature, self._z_temp)
 
-        self._time += self._dt
+        self._time += self._time_step

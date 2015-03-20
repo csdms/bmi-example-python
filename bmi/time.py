@@ -19,7 +19,7 @@ class BmiTime(object):
         Notes
         -----
         .. code-block:: c
-        
+
             /* C */
             int get_start_time(void * self, double * time);
         """
@@ -40,7 +40,7 @@ class BmiTime(object):
         Notes
         -----
         .. code-block:: c
-        
+
             /* C */
             int get_current_time(void * self, double * time);
         """
@@ -61,7 +61,7 @@ class BmiTime(object):
         Notes
         -----
         .. code-block:: c
-        
+
             /* C */
             int get_end_time(void * self, double * time);
         """
@@ -81,7 +81,7 @@ class BmiTime(object):
         Notes
         -----
         .. code-block:: c
-        
+
             /* C */
             int get_time_step(void * self, double * dt);
         """
@@ -102,7 +102,7 @@ class BmiTime(object):
         Notes
         -----
         .. code-block:: c
-        
+
             /* C */
             int get_time_units(void * self, char * units);
         """
