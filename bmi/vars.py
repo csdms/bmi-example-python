@@ -65,7 +65,7 @@ class BmiVars(object):
             int get_var_units(void * self, const char * var_name,
                               char * units);
 
-        .. _UDUNITS: http://www.unidata.ucar.edu/software/udunits/udunits-2.2.18/doc/udunits/udunits2.html
+        .. _UDUNITS: http://www.unidata.ucar.edu/software/udunits
 
         """
         pass
