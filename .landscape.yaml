@@ -1,4 +1,6 @@
 ignore-patterns:
   - ez_setup.py
+  - bmi_ext.py
+  - conf.py
 strictness: high
 doc-warnings: True
