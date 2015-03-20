@@ -28,11 +28,18 @@ class BmiGridRectilinear(object):
         -------
         tuple of int
           The dimensions of the grid.
+
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_shape(void * self, const char * var_name, int * shape);
         """
         pass
 
     def get_grid_x(self, grid_id):
-        """Returns the grid nodes in the streamwise direction.
+        """The grid nodes in the streamwise direction.
 
         Parameters
         ----------
@@ -41,14 +48,20 @@ class BmiGridRectilinear(object):
 
         Returns
         -------
-        tuple of float or array_like of float
+        array_like of float
           The positions of the grid nodes.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_x(void * self, const char * var_name, double * x);
         """
         pass
 
     def get_grid_y(self, grid_id):
-        """Returns the grid nodes in the transverse direction.
+        """The grid nodes in the transverse direction.
 
         Parameters
         ----------
@@ -57,14 +70,20 @@ class BmiGridRectilinear(object):
 
         Returns
         -------
-        tuple of float or array_like of float
+        array_like of float
           The positions of the grid nodes.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_y(void * self, const char * var_name, double * y);
         """
         pass
 
     def get_grid_z(self, grid_id):
-        """Returns the grid nodes in the normal direction.
+        """The grid nodes in the normal direction.
 
         Parameters
         ----------
@@ -73,8 +92,14 @@ class BmiGridRectilinear(object):
 
         Returns
         -------
-        tuple of float or array_like of float
+        array_like of float
           The positions of the grid nodes.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_z(void * self, const char * var_name, double * z);
         """
         pass
