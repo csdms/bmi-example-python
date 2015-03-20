@@ -80,6 +80,19 @@ class Heat(object):
 
     def __init__(self, shape=(10, 20), spacing=(1., 1.), origin=(0., 0.),
                  alpha=1.):
+        """Create a new heat model.
+
+        Paramters
+        ---------
+        shape : array_like, optional
+            The shape of the solution grid as (*rows*, *columns*).
+        spacing : array_like, optional
+            Spacing of grid rows and columns.
+        origin : array_like, optional
+            Coordinates of lower left corner of grid.
+        alpha : float
+            Alpha parameter in the heat equation.
+        """
         self._shape = shape
         self._spacing = spacing
         self._origin = origin
@@ -92,38 +105,64 @@ class Heat(object):
 
     @property
     def time(self):
+        """Current model time."""
         return self._time
 
     @property
     def temperature(self):
+        """Temperature of the plate."""
         return self._temperature
 
     @temperature.setter
     def temperature(self, new_temp):
+        """Set the temperature of the plate.
+        
+        Parameters
+        ----------
+        new_temp : array_like
+            The new temperatures.
+        """
         self._temperature[:] = new_temp
 
     @property
     def time_step(self):
+        """Model time step."""
         return self._time_step
 
     @time_step.setter
     def time_step(self, time_step):
+        """Set model time step."""
         self._time_step = time_step
 
     @property
     def spacing(self):
+        """Shape of the model grid."""
         return self._spacing
 
     @property
     def origin(self):
+        """Origin coordinates of the model grid."""
         return self._origin
 
     @classmethod
     def from_file_like(cls, file_like):
+        """Create a Heat object from a file-like object.
+        
+        Parameters
+        ----------
+        file_like : file_like
+            Input parameter file.
+        
+        Returns
+        -------
+        Heat
+            A new instance of a Heat object.
+        """
         config = yaml.load(file_like)
         return cls(**config)
 
     def advance_in_time(self):
+        """Calculate new temperatures for the next time step."""
         solve_2d(self._temperature, self._spacing, out=self._next_temperature,
                  alpha=self._alpha, time_step=self._time_step)
         np.copyto(self._temperature, self._next_temperature)
