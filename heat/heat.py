@@ -88,7 +88,7 @@ class Heat(object):
         self._time_step = min(spacing) ** 2 / (4. * self._alpha)
 
         self._temperature = random.random(self._shape)
-        self._z_temp = np.empty_like(self._temperature)
+        self._next_temperature = np.empty_like(self._temperature)
 
     @property
     def time(self):
@@ -124,8 +124,8 @@ class Heat(object):
         return cls(**config)
 
     def advance_in_time(self):
-        solve_2d(self._temperature, self._spacing, out=self._z_temp,
+        solve_2d(self._temperature, self._spacing, out=self._next_temperature,
                  alpha=self._alpha, time_step=self._time_step)
-        np.copyto(self._temperature, self._z_temp)
+        np.copyto(self._temperature, self._next_temperature)
 
         self._time += self._time_step
