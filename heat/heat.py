@@ -1,3 +1,5 @@
+"""The 2D heat model."""
+
 import numpy as np
 from scipy import ndimage, random
 import yaml
