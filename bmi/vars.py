@@ -102,6 +102,10 @@ class BmiVars(object):
         int
           The grid identifier.
 
+        See Also
+        --------
+        bmi.info.BmiInfo.get_input_var_names : Get `var_name` from this method or from :func:`~bmi.info.BmiInfo.get_output_var_names.
+
         Notes
         -----
         .. code-block:: c

@@ -23,6 +23,10 @@ class BmiGridStructuredQuad(object):
         array_like
           The dimensions of the grid.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         Notes
         -----
         .. code-block:: c
@@ -44,6 +48,10 @@ class BmiGridStructuredQuad(object):
         -------
         array_like
           The positions of the grid nodes.
+
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
 
         Notes
         -----
@@ -67,6 +75,10 @@ class BmiGridStructuredQuad(object):
         array_like
           The positions of the grid nodes.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         Notes
         -----
         .. code-block:: c
@@ -88,6 +100,10 @@ class BmiGridStructuredQuad(object):
         -------
         array_like
           The positions of the grid nodes.
+
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
 
         Notes
         -----

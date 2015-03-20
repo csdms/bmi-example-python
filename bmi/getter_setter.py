@@ -75,7 +75,7 @@ class BmiGetter(object):
         Returns
         -------
         array_like
-            Values at the given indices.
+            Value of the model variable at the given location.
 
         Notes
         -----

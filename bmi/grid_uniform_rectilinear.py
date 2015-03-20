@@ -36,6 +36,10 @@ class BmiGridUniformRectilinear(object):
         array_like
           The dimensions of the grid.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         Notes
         -----
         .. code-block:: c
@@ -58,6 +62,10 @@ class BmiGridUniformRectilinear(object):
         array_like
           The grid spacing.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         Notes
         -----
         .. code-block:: c
@@ -79,6 +87,10 @@ class BmiGridUniformRectilinear(object):
         -------
         array_like
           The coordinates of the lower left corner of the grid.
+
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
 
         Notes
         -----

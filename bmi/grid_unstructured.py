@@ -23,6 +23,10 @@ class BmiGridUnstructured(object):
         array_like
           The positions of the grid nodes.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         Notes
         -----
         .. code-block:: c
@@ -44,6 +48,10 @@ class BmiGridUnstructured(object):
         -------
         array_like
           The positions of the grid nodes.
+
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
 
         Notes
         -----
@@ -67,6 +75,10 @@ class BmiGridUnstructured(object):
         array_like
           The positions of the grid nodes.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         Notes
         -----
         .. code-block:: c
@@ -89,6 +101,10 @@ class BmiGridUnstructured(object):
         array_like or int
           The graph of connections between the grid nodes.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         Notes
         -----
         .. code-block:: c
@@ -110,6 +126,10 @@ class BmiGridUnstructured(object):
         -------
         array_like of int
           The offsets for the grid nodes.
+
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
 
         Notes
         -----

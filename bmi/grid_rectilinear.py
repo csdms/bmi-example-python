@@ -29,6 +29,10 @@ class BmiGridRectilinear(object):
         tuple of int
           The dimensions of the grid.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         Notes
         -----
         .. code-block:: c
@@ -50,6 +54,10 @@ class BmiGridRectilinear(object):
         -------
         array_like of float
           The positions of the grid nodes.
+
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
 
         Notes
         -----
@@ -73,6 +81,10 @@ class BmiGridRectilinear(object):
         array_like of float
           The positions of the grid nodes.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         Notes
         -----
         .. code-block:: c
@@ -94,6 +106,10 @@ class BmiGridRectilinear(object):
         -------
         array_like of float
           The positions of the grid nodes.
+
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
 
         Notes
         -----
