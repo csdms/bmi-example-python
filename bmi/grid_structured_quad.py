@@ -89,7 +89,6 @@ class BmiGridStructuredQuad(object):
         array_like
           The positions of the grid nodes.
 
-
         Notes
         -----
         .. code-block:: c
