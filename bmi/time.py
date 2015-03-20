@@ -2,12 +2,11 @@
 
 
 class BmiTime(object):
-    """Defines an interface for converting a standalone model into an
-    integrated modeling framework component.
+    """Methods that get time information from a model.
     """
 
     def get_start_time(self):
-        """Returns the start time of the model.
+        """The start time of the model.
 
         Model times should be of type float. The default model start
         time is 0.
@@ -17,11 +16,17 @@ class BmiTime(object):
         float
           The model start time.
 
+        Notes
+        -----
+        .. code-block:: c
+        
+            /* C */
+            int get_start_time(void * self, double * time);
         """
         pass
 
     def get_current_time(self):
-        """Returns the model's current time.
+        """The model's current time.
 
         Returns
         -------
@@ -32,11 +37,17 @@ class BmiTime(object):
         --------
         get_start_time
 
+        Notes
+        -----
+        .. code-block:: c
+        
+            /* C */
+            int get_current_time(void * self, double * time);
         """
         pass
 
     def get_end_time(self):
-        """Returns the maximum time of the model.
+        """The maximum time of the model.
 
         Returns
         -------
@@ -47,11 +58,17 @@ class BmiTime(object):
         --------
         get_start_time
 
+        Notes
+        -----
+        .. code-block:: c
+        
+            /* C */
+            int get_end_time(void * self, double * time);
         """
         pass
 
     def get_time_step(self):
-        """Returns the model's current time step.
+        """The model's current time step.
 
         The model time step should be of type float. The default time
         step is 1.0.
@@ -61,11 +78,17 @@ class BmiTime(object):
         float
           The time step used in model.
 
+        Notes
+        -----
+        .. code-block:: c
+        
+            /* C */
+            int get_time_step(void * self, double * dt);
         """
         pass
 
     def get_time_units(self):
-        """Returns the model's time units.
+        """The model's time units.
 
         Returns
         -------
@@ -76,7 +99,11 @@ class BmiTime(object):
         --------
         get_var_units
 
+        Notes
+        -----
+        .. code-block:: c
+        
+            /* C */
+            int get_time_units(void * self, char * units);
         """
         pass
-
-
