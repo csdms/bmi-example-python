@@ -26,7 +26,7 @@ class BmiGridUniformRectilinear(object):
     """
 
     def get_grid_shape(self, grid_id):
-        """Dimensions of the computational grid.
+        """Get dimensions of the computational grid.
 
         Parameters
         ----------
@@ -52,7 +52,7 @@ class BmiGridUniformRectilinear(object):
         pass
 
     def get_grid_spacing(self, grid_id):
-        """Distance between nodes of the computational grid.
+        """Get distance between nodes of the computational grid.
 
         Parameters
         ----------
@@ -78,7 +78,7 @@ class BmiGridUniformRectilinear(object):
         pass
 
     def get_grid_origin(self, grid_id):
-        """Coordinates for the origin of the computational grid.
+        """Get coordinates for the origin of the computational grid.
 
         Parameters
         ----------

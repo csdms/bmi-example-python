@@ -98,7 +98,7 @@ class BmiSetter(object):
     """
 
     def set_value(self, var_name, src):
-        """Specifies a new value for a model variable.
+        """Specify a new value for a model variable.
 
         This is the setter for the model, used to change the model's
         current state. It accepts, through *src*, a new value for a
@@ -122,7 +122,7 @@ class BmiSetter(object):
         pass
 
     def set_value_at_indices(self, var_name, indices, src):
-        """Specifies a new value for a model variable at particular indices.
+        """Specify a new value for a model variable at particular indices.
 
         Parameters
         ----------

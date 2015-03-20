@@ -13,7 +13,7 @@ class BmiGridUnstructured(object):
     """
 
     def get_grid_x(self, grid_id):
-        """Coordinates of grid nodes in the streamwise direction.
+        """Get coordinates of grid nodes in the streamwise direction.
 
         Parameters
         ----------
@@ -39,7 +39,7 @@ class BmiGridUnstructured(object):
         pass
 
     def get_grid_y(self, grid_id):
-        """Coordinates of grid nodes in the transverse direction.
+        """Get coordinates of grid nodes in the transverse direction.
 
         Parameters
         ----------
@@ -65,7 +65,7 @@ class BmiGridUnstructured(object):
         pass
 
     def get_grid_z(self, grid_id):
-        """Coordinates of grid nodes in the normal direction.
+        """Get coordinates of grid nodes in the normal direction.
 
         Parameters
         ----------
@@ -91,7 +91,7 @@ class BmiGridUnstructured(object):
         pass
 
     def get_grid_connectivity(self, grid_id):
-        """Connectivity array of the grid.
+        """Get connectivity array of the grid.
 
         Parameters
         ----------
@@ -117,7 +117,7 @@ class BmiGridUnstructured(object):
         pass
 
     def get_grid_offset(self, grid_id):
-        """Offsets for the grid nodes.
+        """Get offsets for the grid nodes.
 
         Parameters
         ----------
