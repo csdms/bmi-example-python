@@ -510,8 +510,7 @@ table.docutils {
 .longtable.docutils {
     font-size: 12px;
     margin-bottom: 30px;
-    /*background-color: #ccc;*/
-    background-color: #eee;
+    background-color: #f8f8f8;
 }
 .longtable.docutils, .longtable.docutils td {
     border-color: #ccc;
@@ -580,7 +579,7 @@ dl.class, dl.function {
 
 
 .docutils.field-list th {
-    background-color: #eee;
+    background-color: #f8f8f8;
     padding: 10px;
     text-align: left;
     vertical-align: top;
