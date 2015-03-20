@@ -46,13 +46,13 @@ def role_ftype(name, rawtext, text, lineno, inliner, options=None, content=()):
     assert text.count('(') in (0, 1)
     assert text.count('(') == text.count(')')
     assert ')' not in text or text.endswith(')')
-    m = re.search(r'\((.*?)\)', text)
-    node['ids'] = [m.group(1) if m else text]
+    match = re.search(r'\((.*?)\)', text)
+    node['ids'] = [match.group(1) if match else text]
     return [node], []
 
 
 def setup(app):
-    app.add_lexer('bmi', BmiLexer());
+    app.add_lexer('bmi', BmiLexer())
     app.connect('doctree-read', doctree_read)
     app.add_role('ftype', role_ftype)
 
@@ -71,14 +71,12 @@ class MyTemplateLoader(BuiltinTemplateLoader):
         # This hack should leave the last path, so "!layout.html" will find
         # the template from Fityk. To avoid recursion, Fityk template
         # is not using "!".
-        print("\n(MyTemplateLoader.get_source) searching for %s" % template)
         loaders = self.loaders
         # exclamation mark starts search from theme
         if template.startswith('!'):
             loaders = loaders[self.templatepathlen-1:]
             template = template[1:]
         for loader in loaders:
-            print("\ttrying in: %s" % ":".join(loader.searchpath))
             try:
                 return loader.get_source(environment, template)
             except TemplateNotFound:
