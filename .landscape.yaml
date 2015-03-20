@@ -1,2 +1,3 @@
 ignore-patterns:
   - ez_setup.py
+strictness: high
