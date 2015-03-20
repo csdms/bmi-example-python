@@ -40,7 +40,8 @@ class BmiGridRectilinear(object):
         .. code-block:: c
 
             /* C */
-            int get_grid_shape(void * self, const char * var_name, int * shape);
+            int get_grid_shape(void * self, const char * var_name,
+                               int * shape);
         """
         pass
 

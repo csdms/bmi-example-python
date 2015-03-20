@@ -112,7 +112,8 @@ class BmiGridUnstructured(object):
         .. code-block:: c
 
             /* C */
-            int get_grid_connectivity(void * self, int grid_id, int * connectivity);
+            int get_grid_connectivity(void * self, int grid_id,
+                                      int * connectivity);
         """
         pass
 

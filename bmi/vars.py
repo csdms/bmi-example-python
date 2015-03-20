@@ -87,7 +87,8 @@ class BmiVars(object):
         .. code-block:: c
 
             /* C */
-            int get_var_nbytes(void * self, const char * var_name, int * nbytes);
+            int get_var_nbytes(void * self, const char * var_name,
+                               int * nbytes);
         """
         pass
 
