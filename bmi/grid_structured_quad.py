@@ -2,6 +2,7 @@
 
 
 class BmiGridStructuredQuad(object):
+
     """Methods that describe a structured grid of quadrilaterals.
 
     .. figure:: _static/grid_structured_quad.png

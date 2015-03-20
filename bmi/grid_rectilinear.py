@@ -2,6 +2,7 @@
 
 
 class BmiGridRectilinear(object):
+
     """Methods that describe a rectilinear grid.
 
     In a 2D rectilinear grid, every grid cell (or element) is a rectangle but

@@ -7,6 +7,8 @@ from .heat import Heat
 
 
 class BmiHeat(Bmi):
+    """Solve the heat equation for a 2D plate."""
+
     _name = 'The 2D Heat Equation'
     _input_var_names = ('plate_surface__temperature',)
     _output_var_names = ('plate_surface__temperature',)

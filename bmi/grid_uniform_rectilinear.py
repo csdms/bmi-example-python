@@ -2,6 +2,7 @@
 
 
 class BmiGridUniformRectilinear(object):
+
     """Methods that describe a uniform rectilinear grid.
 
     In a 2D uniform grid, every grid cell (or element) is a rectangle and all

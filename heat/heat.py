@@ -49,6 +49,7 @@ def solve_2d(temp, spacing, out=None, alpha=1., time_step=1.):
 
 
 class Heat(object):
+
     """Solve the Heat equation on a grid.
 
     Examples
@@ -74,6 +75,7 @@ class Heat(object):
     >>> heat.time_step
     2.0
     """
+
     def __init__(self, shape=(10, 20), spacing=(1., 1.), origin=(0., 0.),
                  alpha=1.):
         self._shape = shape

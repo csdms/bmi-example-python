@@ -2,6 +2,7 @@
 
 
 class BmiGetter(object):
+
     """Get values from a component.
 
     Methods that get variables from a model's state. Often a model's state
@@ -89,6 +90,7 @@ class BmiGetter(object):
 
 
 class BmiSetter(object):
+
     """Set values into a component.
 
     Methods that set variables of a model's state.

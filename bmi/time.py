@@ -2,8 +2,8 @@
 
 
 class BmiTime(object):
-    """Methods that get time information from a model.
-    """
+
+    """Methods that get time information from a model."""
 
     def get_start_time(self):
         """Start time of the model.

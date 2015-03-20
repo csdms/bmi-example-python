@@ -2,8 +2,8 @@
 
 
 class BmiInfo(object):
-    """Get metadata about a model.
-    """
+
+    """Get metadata about a model."""
 
     def get_component_name(self):
         """Name of the component.

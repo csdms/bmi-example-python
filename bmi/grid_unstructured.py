@@ -2,6 +2,7 @@
 
 
 class BmiGridUnstructured(object):
+
     """Methods that describe an unstructured grid.
 
     .. figure:: _static/grid_unstructured.png

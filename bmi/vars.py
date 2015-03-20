@@ -2,6 +2,7 @@
 
 
 class BmiVars(object):
+
     """Methods that get information about input and output variables.
 
     These BMI functions obtain information about a particular input or output
