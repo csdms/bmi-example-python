@@ -2,12 +2,22 @@
 
 
 class BmiGridRectilinear(object):
-    """Defines an interface for converting a standalone model into an
-    integrated modeling framework component.
+    """Methods that describe a rectilinear grid.
+
+    In a 2D rectilinear grid, every grid cell (or element) is a rectangle but
+    different cells can have different dimensions. All cells in the same row
+    have the same grid spacing in the y direction and all cells in the same
+    column have the same grid spacing in the x direction. Grid spacings can
+    be computed as the difference of successive x or y values.
+
+    .. figure:: _static/grid_rectilinear.png
+        :scale: 10%
+        :align: center
+        :alt: An example of a rectilinear grid
     """
 
     def get_grid_shape(self, grid_id):
-        """Returns the dimensions of the computational grid.
+        """The dimensions of the computational grid.
 
         Parameters
         ----------
@@ -18,7 +28,6 @@ class BmiGridRectilinear(object):
         -------
         tuple of int
           The dimensions of the grid.
-
         """
         pass
 
