@@ -19,6 +19,10 @@ class BmiGridUnstructured(object):
         tuple of float or array_like of float
           The positions of the grid nodes.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         """
         pass
 
@@ -34,6 +38,10 @@ class BmiGridUnstructured(object):
         -------
         tuple of float or array_like of float
           The positions of the grid nodes.
+
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
 
         """
         pass
@@ -51,11 +59,15 @@ class BmiGridUnstructured(object):
         tuple of float or array_like of float
           The positions of the grid nodes.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         """
         pass
 
     def get_grid_connectivity(self, grid_id):
-        """Returns the connectivity array of the grid.
+        """Returns the connectivity array of a grid.
 
         Parameters
         ----------
@@ -66,6 +78,10 @@ class BmiGridUnstructured(object):
         -------
         array_like of float
           The graph of connections between the grid nodes.
+
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
 
         """
         pass
@@ -82,6 +98,10 @@ class BmiGridUnstructured(object):
         -------
         array_like of int
           The offsets for the grid nodes.
+
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
 
         """
         pass

@@ -7,7 +7,7 @@ class BmiGridStructuredQuad(object):
     """
 
     def get_grid_shape(self, grid_id):
-        """Returns the dimensions of the computational grid.
+        """Returns the dimensions of a computational grid.
 
         Parameters
         ----------
@@ -18,6 +18,10 @@ class BmiGridStructuredQuad(object):
         -------
         tuple of int
           The dimensions of the grid.
+
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
 
         """
         pass
@@ -35,6 +39,10 @@ class BmiGridStructuredQuad(object):
         tuple of float or array_like of float
           The positions of the grid nodes.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         """
         pass
 
@@ -51,6 +59,10 @@ class BmiGridStructuredQuad(object):
         tuple of float or array_like of float
           The positions of the grid nodes.
 
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
+
         """
         pass
 
@@ -66,6 +78,10 @@ class BmiGridStructuredQuad(object):
         -------
         tuple of float or array_like of float
           The positions of the grid nodes.
+
+        See Also
+        --------
+        bmi.vars.BmiVars.get_var_grid : Obtain a `grid_id`.
 
         """
         pass
