@@ -2,12 +2,16 @@
 
 
 class BmiGridUnstructured(object):
-    """Defines an interface for converting a standalone model into an
-    integrated modeling framework component.
+    """Methods that describe an unstructured grid.
+
+    .. figure:: _static/grid_unstructured.png
+        :scale: 10%
+        :align: center
+        :alt: An example of an unstructured grid.
     """
 
     def get_grid_x(self, grid_id):
-        """Returns the grid nodes in the streamwise direction.
+        """Coordinates of grid nodes in the streamwise direction.
 
         Parameters
         ----------
@@ -16,14 +20,20 @@ class BmiGridUnstructured(object):
 
         Returns
         -------
-        tuple of float or array_like of float
+        array_like
           The positions of the grid nodes.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_x(void * self, int grid_id, double * x);
         """
         pass
 
     def get_grid_y(self, grid_id):
-        """Returns the grid nodes in the transverse direction.
+        """Coordinates of grid nodes in the transverse direction.
 
         Parameters
         ----------
@@ -32,14 +42,20 @@ class BmiGridUnstructured(object):
 
         Returns
         -------
-        tuple of float or array_like of float
+        array_like
           The positions of the grid nodes.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_y(void * self, int grid_id, double * y);
         """
         pass
 
     def get_grid_z(self, grid_id):
-        """Returns the grid nodes in the normal direction.
+        """Coordinates of grid nodes in the normal direction.
 
         Parameters
         ----------
@@ -48,14 +64,20 @@ class BmiGridUnstructured(object):
 
         Returns
         -------
-        tuple of float or array_like of float
+        array_like
           The positions of the grid nodes.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_z(void * self, int grid_id, double * z);
         """
         pass
 
     def get_grid_connectivity(self, grid_id):
-        """Returns the connectivity array of the grid.
+        """The connectivity array of the grid.
 
         Parameters
         ----------
@@ -64,14 +86,20 @@ class BmiGridUnstructured(object):
 
         Returns
         -------
-        array_like of float
+        array_like or int
           The graph of connections between the grid nodes.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_connectivity(void * self, int grid_id, int * connectivity);
         """
         pass
 
     def get_grid_offset(self, grid_id):
-        """Returns the offsets for the grid nodes.
+        """The offsets for the grid nodes.
 
         Parameters
         ----------
@@ -83,5 +111,11 @@ class BmiGridUnstructured(object):
         array_like of int
           The offsets for the grid nodes.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_offset(void * self, int grid_id, int * offset);
         """
         pass
