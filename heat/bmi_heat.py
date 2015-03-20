@@ -260,11 +260,11 @@ class BmiHeat(Bmi):
         return self._name
 
     def get_input_var_names(self):
-        """Names of input variables"""
+        """Names of input variables."""
         return self._input_var_names
 
     def get_output_var_names(self):
-        """Names of output variables"""
+        """Names of output variables."""
         return self._output_var_names
 
     def get_grid_shape(self, grid_id):
