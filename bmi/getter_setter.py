@@ -58,6 +58,11 @@ class BmiGetter(object):
         inds : array_like
           The indices into the variable array.
 
+        Returns
+        -------
+        object
+          The value of the model variable at the given location.
+
         """
         pass
 

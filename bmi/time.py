@@ -28,10 +28,6 @@ class BmiTime(object):
         float
           The current model time.
 
-        See Also
-        --------
-        get_start_time
-
         """
         pass
 
@@ -42,10 +38,6 @@ class BmiTime(object):
         -------
         float
           The maximum model time.
-
-        See Also
-        --------
-        get_start_time
 
         """
         pass
@@ -70,11 +62,11 @@ class BmiTime(object):
         Returns
         -------
         float
-          The model time unit; e.g., 'days' or 's'.
+          The model time unit; e.g., `days` or `s`.
 
-        See Also
-        --------
-        get_var_units
+        Notes
+        -----
+        CSDMS uses the UDUNITS standard from Unidata.
 
         """
         pass
