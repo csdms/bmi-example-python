@@ -2,26 +2,24 @@
 
 
 class BmiBase(object):
-    """Defines an interface for converting a standalone model into an
-    integrated modeling framework component.
+    """Functions that control model execution.
+
+    These BMI functions are critical to plug-and-play modeling because they
+    give a calling component fine-grained control over the model execution.
     """
 
     def initialize(self, filename):
-        """Performs startup tasks for the model.
+        """Perform startup tasks for the model.
 
-        Initialize() performs all tasks that take place before
-        entering the model's time loop, including opening files and
-        initializing the model state. Model inputs are read from a
-        text-based configuration file, specified by `filename`.
+        Perform all tasks that take place before entering the model's time
+        loop, including opening files and initializing the model state. Model
+        inputs are read from a text-based configuration file, specified by
+        `filename`.
 
         Parameters
         ----------
         filename : str, optional
           The path to the model configuration file.
-
-        Bindings
-        --------
-        C : int initialize(void *self, char * filename);
 
         Notes
         -----
@@ -31,24 +29,33 @@ class BmiBase(object):
         recommended. A template of a model's configuration file
         with placeholder values is used by the BMI.
 
+        .. code-block:: c
+
+            /* C */
+            int initialize(void *self, char * filename);
         """
         pass
 
     def update(self):
-        """Advances model state by one time step.
+        """Advance model state by one time step.
 
-        Update() performs all tasks that take place within one pass
-        through the model's time loop. This typically includes
-        incrementing all of the model's state variables. If the
-        model's state variables don't change in time, then they can be
-        computed by the ***initialize()*** method and this method can
-        return with no action.
+        Perform all tasks that take place within one pass through the model's
+        time loop. This typically includes incrementing all of the model's
+        state variables. If the model's state variables don't change in time,
+        then they can be computed by the :func:`initialize` method and this
+        method can return with no action.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int update(void *self);
         """
         pass
 
     def update_until(self, time):
-        """Advances model state until the given time.
+        """Advance model state until the given time.
 
         Parameters
         ----------
@@ -59,11 +66,17 @@ class BmiBase(object):
         --------
         update
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int update_until(void *self, double time);
         """
         pass
 
     def update_frac(self, time_frac):
-        """Advances model state by a fraction of a time step.
+        """Advance model state by a fraction of a time step.
 
         Parameters
         ----------
@@ -74,17 +87,27 @@ class BmiBase(object):
         --------
         update
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int update_frac(void *self, double time_frac);
         """
         pass
 
     def finalize(self):
-        """Performs tear-down tasks for the model.
+        """Perform tear-down tasks for the model.
 
-        Finalize() performs all tasks that take place after exiting
-        the model's time loop. This typically includes deallocating
-        memory, closing files and printing reports.
+        Perform all tasks that take place after exiting the model's time
+        loop. This typically includes deallocating memory, closing files and
+        printing reports.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int finalize(void *self);
         """
         pass
-
-
