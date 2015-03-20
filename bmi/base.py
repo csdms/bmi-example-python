@@ -11,17 +11,10 @@ class BmiBase(object):
     def initialize(self, filename):
         """Perform startup tasks for the model.
 
-<<<<<<< HEAD
         Perform all tasks that take place before entering the model's time
         loop, including opening files and initializing the model state. Model
         inputs are read from a text-based configuration file, specified by
         `filename`.
-=======
-        **Initialize()** performs all tasks that take place before
-        entering the model's time loop, including opening files and
-        initializing the model state. Model inputs are read from a
-        text-based configuration file, specified by `filename`.
->>>>>>> 4a9da9f749d24fa0f5247624d7c81564ba38fc03
 
         Parameters
         ----------
@@ -46,20 +39,11 @@ class BmiBase(object):
     def update(self):
         """Advance model state by one time step.
 
-<<<<<<< HEAD
         Perform all tasks that take place within one pass through the model's
         time loop. This typically includes incrementing all of the model's
         state variables. If the model's state variables don't change in time,
         then they can be computed by the :func:`initialize` method and this
         method can return with no action.
-=======
-        **Update()** performs all tasks that take place within one pass
-        through the model's time loop. This typically includes
-        incrementing all of the model's state variables. If the
-        model's state variables don't change in time, then they can be
-        computed by **initialize()** and this method can
-        return with no action.
->>>>>>> 4a9da9f749d24fa0f5247624d7c81564ba38fc03
 
         Notes
         -----
@@ -115,15 +99,9 @@ class BmiBase(object):
     def finalize(self):
         """Perform tear-down tasks for the model.
 
-<<<<<<< HEAD
         Perform all tasks that take place after exiting the model's time
         loop. This typically includes deallocating memory, closing files and
         printing reports.
-=======
-        **Finalize()** performs all tasks that take place after exiting
-        the model's time loop. This typically includes deallocating
-        memory, closing files and printing reports.
->>>>>>> 4a9da9f749d24fa0f5247624d7c81564ba38fc03
 
         Notes
         -----
