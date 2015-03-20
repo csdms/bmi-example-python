@@ -11,7 +11,7 @@ class BmiGridStructuredQuad(object):
     """
 
     def get_grid_shape(self, grid_id):
-        """Returns the dimensions of the computational grid.
+        """The dimensions of the computational grid.
 
         Parameters
         ----------
@@ -20,14 +20,20 @@ class BmiGridStructuredQuad(object):
 
         Returns
         -------
-        tuple of int
+        array_like
           The dimensions of the grid.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_shape(void * self, int grid_id, int * shape);
         """
         pass
 
     def get_grid_x(self, grid_id):
-        """Returns the grid nodes in the streamwise direction.
+        """Coordinates of grid nodes in the streamwise direction.
 
         Parameters
         ----------
@@ -36,14 +42,20 @@ class BmiGridStructuredQuad(object):
 
         Returns
         -------
-        tuple of float or array_like of float
+        array_like
           The positions of the grid nodes.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_x(void * self, int grid_id, double * x);
         """
         pass
 
     def get_grid_y(self, grid_id):
-        """Returns the grid nodes in the transverse direction.
+        """Coordinates of grid nodes in the transverse direction.
 
         Parameters
         ----------
@@ -52,14 +64,20 @@ class BmiGridStructuredQuad(object):
 
         Returns
         -------
-        tuple of float or array_like of float
+        array_like
           The positions of the grid nodes.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_y(void * self, int grid_id, double * y);
         """
         pass
 
     def get_grid_z(self, grid_id):
-        """Returns the grid nodes in the normal direction.
+        """Coordinates of grid nodes in the normal direction.
 
         Parameters
         ----------
@@ -68,8 +86,15 @@ class BmiGridStructuredQuad(object):
 
         Returns
         -------
-        tuple of float or array_like of float
+        array_like
           The positions of the grid nodes.
 
+
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_z(void * self, int grid_id, double * z);
         """
         pass
