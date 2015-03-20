@@ -24,7 +24,7 @@ class BmiGridUniformRectilinear(object):
     """
 
     def get_grid_shape(self, grid_id):
-        """Returns the dimensions of the computational grid.
+        """The dimensions of the computational grid.
 
         Parameters
         ----------
@@ -33,14 +33,20 @@ class BmiGridUniformRectilinear(object):
 
         Returns
         -------
-        tuple of int
+        array_like
           The dimensions of the grid.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_shape(void * self, int grid_id, int * shape);
         """
         pass
 
     def get_grid_spacing(self, grid_id):
-        """Returns the distance between nodes of the computational grid.
+        """The distance between nodes of the computational grid.
 
         Parameters
         ----------
@@ -49,14 +55,20 @@ class BmiGridUniformRectilinear(object):
 
         Returns
         -------
-        tuple of float
+        array_like
           The grid spacing.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_spacing(void * self, int grid_id, double * spacing);
         """
         pass
 
     def get_grid_origin(self, grid_id):
-        """Returns coordinates for the origin of the computational grid.
+        """Coordinates for the origin of the computational grid.
 
         Parameters
         ----------
@@ -65,8 +77,14 @@ class BmiGridUniformRectilinear(object):
 
         Returns
         -------
-        tuple of float
+        array_like
           The coordinates of the lower left corner of the grid.
 
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_grid_origin(void * self, int grid_id, double * origin);
         """
         pass
