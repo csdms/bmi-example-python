@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+"""Interface that describes structured quadrilateral grids."""
 
 
 class BmiGridStructuredQuad(object):

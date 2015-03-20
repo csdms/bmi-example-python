@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+"""Interface that describes a model's input and output variables."""
 
 
 class BmiVars(object):

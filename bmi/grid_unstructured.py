@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+"""Interface that describes unstructured grids."""
 
 
 class BmiGridUnstructured(object):

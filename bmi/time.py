@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+"""Interface that describes the time stepping of a model."""
 
 
 class BmiTime(object):

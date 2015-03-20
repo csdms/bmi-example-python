@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+"""Interface for getting and setting a model's internal variables."""
 
 
 class BmiGetter(object):

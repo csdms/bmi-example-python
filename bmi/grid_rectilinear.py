@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+"""Interface that describes rectilinear grids."""
 
 
 class BmiGridRectilinear(object):

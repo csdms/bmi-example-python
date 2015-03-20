@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+"""Interface to the basic control functions of a model."""
 
 
 class BmiBase(object):

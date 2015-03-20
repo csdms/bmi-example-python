@@ -1,3 +1,4 @@
+"""The Basic Model Interface."""
 from .bmi import Bmi
 
 
