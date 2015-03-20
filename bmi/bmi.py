@@ -14,7 +14,9 @@ from .grid_unstructured import BmiGridUnstructured
 class Bmi(BmiBase, BmiInfo, BmiTime, BmiVars, BmiGetter, BmiSetter,
           BmiGridRectilinear, BmiGridUniformRectilinear, BmiGridStructuredQuad,
           BmiGridUnstructured):
-    """Defines an interface for converting a standalone model into an
+    """The complete Basic Model Interface.
+    
+    Defines an interface for converting a standalone model into an
     integrated modeling framework component.
     """
     pass
