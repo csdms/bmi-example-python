@@ -116,7 +116,7 @@ class Heat(object):
     @temperature.setter
     def temperature(self, new_temp):
         """Set the temperature of the plate.
-        
+
         Parameters
         ----------
         new_temp : array_like
@@ -147,12 +147,12 @@ class Heat(object):
     @classmethod
     def from_file_like(cls, file_like):
         """Create a Heat object from a file-like object.
-        
+
         Parameters
         ----------
         file_like : file_like
             Input parameter file.
-        
+
         Returns
         -------
         Heat
