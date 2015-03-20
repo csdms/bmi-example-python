@@ -104,7 +104,7 @@ class BmiHeat(Bmi):
         return str(self.get_value_ref(var_name).dtype)
 
     def get_var_units(self, var_name):
-        """Units of variable.
+        """Get units of variable.
 
         Parameters
         ----------
@@ -119,7 +119,7 @@ class BmiHeat(Bmi):
         return self._var_units[var_name]
 
     def get_var_nbytes(self, var_name):
-        """Units of variable.
+        """Get units of variable.
 
         Parameters
         ----------
