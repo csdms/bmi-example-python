@@ -11,7 +11,7 @@ class BmiGridStructuredQuad(object):
     """
 
     def get_grid_shape(self, grid_id):
-        """The dimensions of the computational grid.
+        """Dimensions of the computational grid.
 
         Parameters
         ----------
