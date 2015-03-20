@@ -16,7 +16,7 @@ class Bmi(BmiBase, BmiInfo, BmiTime, BmiVars, BmiGetter, BmiSetter,
           BmiGridUnstructured):
 
     """The complete Basic Model Interface.
-    
+
     Defines an interface for converting a standalone model into an
     integrated modeling framework component.
     """
