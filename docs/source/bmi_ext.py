@@ -1,4 +1,3 @@
-
 import re
 
 from pygments.lexer import RegexLexer
@@ -6,7 +5,8 @@ from pygments.token import Text, Name, Comment, String, Generic
 from sphinx import addnodes
 from docutils import nodes
 
-class BmikLexer(RegexLexer):
+
+class BmiLexer(RegexLexer):
     name = 'bmilexer'
 
     tokens = {
@@ -18,7 +18,9 @@ class BmikLexer(RegexLexer):
                 ],
             }
 
+
 comment_re = re.compile(r'(\(\*.*?\*\))')
+
 
 def doctree_read(app, doctree):
     env = app.builder.env
@@ -37,7 +39,9 @@ def doctree_read(app, doctree):
                     new_nodes.append(nodes.Text(s))
             production += new_nodes
 
-def role_ftype(name, rawtext, text, lineno, inliner, options={}, content=[]):
+
+def role_ftype(name, rawtext, text, lineno, inliner, options=None, content=()):
+    options = options or {}
     node = nodes.strong(text, text)
     assert text.count('(') in (0, 1)
     assert text.count('(') == text.count(')')
@@ -46,11 +50,11 @@ def role_ftype(name, rawtext, text, lineno, inliner, options={}, content=[]):
     node['ids'] = [m.group(1) if m else text]
     return [node], []
 
+
 def setup(app):
     app.add_lexer('bmi', BmiLexer());
     app.connect('doctree-read', doctree_read)
     app.add_role('ftype', role_ftype)
-
 
 
 # this is hack is needed to use our layout.html on ReadTheDocs
