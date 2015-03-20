@@ -2,8 +2,12 @@
 
 
 class BmiGridStructuredQuad(object):
-    """Defines an interface for converting a standalone model into an
-    integrated modeling framework component.
+    """Methods that describe a structured grid of quadrilaterals.
+
+    .. figure:: _static/grid_structured_quad.png
+        :scale: 10%
+        :align: center
+        :alt: An example of a structured quad grid.
     """
 
     def get_grid_shape(self, grid_id):
