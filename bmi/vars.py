@@ -70,6 +70,29 @@ class BmiVars(object):
         """
         pass
 
+    def get_var_itemsize(self, var_name):
+        """Get memory use for each array element in bytes.
+
+        Parameters
+        ----------
+        var_name : str
+          An input or output variable name, a CSDMS Standard Name.
+
+        Returns
+        -------
+        int
+          Item size in bytes.
+
+        Notes
+        -----
+        .. code-block:: c
+
+            /* C */
+            int get_var_itemsize(void * self, const char * var_name,
+                                 int * itemsize);
+        """
+        pass
+
     def get_var_nbytes(self, var_name):
         """Get size, in bytes, of the given variable.
 
