@@ -1,8 +1,10 @@
 #! /usr/bin/env python
 """Interface that describes uniform rectilinear grids."""
 
+from .grid import BmiGrid
 
-class BmiGridUniformRectilinear(object):
+
+class BmiGridUniformRectilinear(BmiGrid):
 
     """Methods that describe a uniform rectilinear grid.
 

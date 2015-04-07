@@ -1,8 +1,10 @@
 #! /usr/bin/env python
 """Interface that describes rectilinear grids."""
 
+from .grid import BmiGrid
 
-class BmiGridRectilinear(object):
+
+class BmiGridRectilinear(BmiGrid):
 
     """Methods that describe a rectilinear grid.
 

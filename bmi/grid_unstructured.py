@@ -1,8 +1,10 @@
 #! /usr/bin/env python
 """Interface that describes unstructured grids."""
 
+from .grid import BmiGrid
 
-class BmiGridUnstructured(object):
+
+class BmiGridUnstructured(BmiGrid):
 
     """Methods that describe an unstructured grid.
 

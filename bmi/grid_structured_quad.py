@@ -1,8 +1,10 @@
 #! /usr/bin/env python
 """Interface that describes structured quadrilateral grids."""
 
+from .grid import BmiGrid
 
-class BmiGridStructuredQuad(object):
+
+class BmiGridStructuredQuad(BmiGrid):
 
     """Methods that describe a structured grid of quadrilaterals.
 
