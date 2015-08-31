@@ -5,6 +5,4 @@ package: heat
 class: BmiHeat
 
 build:
-  brew:
-    formula: csdms/tools/bmi-python
-    options: "--HEAD"
+  - python setup.py install
