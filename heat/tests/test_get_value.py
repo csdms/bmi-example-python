@@ -3,6 +3,7 @@ from nose.tools import assert_equal, assert_true, assert_is, assert_is_not
 from numpy.testing import assert_array_less, assert_array_almost_equal
 import numpy as np
 
+from six.moves import range
 from heat import BmiHeat
 
 
@@ -36,7 +37,7 @@ def test_get_value_reference():
     assert_is_not(z0, z1)
     assert_array_almost_equal(z0, z1)
 
-    for _ in xrange(10):
+    for _ in range(10):
         model.update()
 
     assert_is(z0, model.get_value_ref('plate_surface__temperature'))

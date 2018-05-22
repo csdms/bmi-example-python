@@ -1,8 +1,10 @@
 #! /usr/bin/env python
 """Basic Model Interface implementation for the 2D heat model."""
 
-import types
 import numpy as np
+
+import six
+from six.moves import range
 
 from bmi import Bmi
 from .heat import Heat
@@ -34,7 +36,7 @@ class BmiHeat(Bmi):
         """
         if filename is None:
             self._model = Heat()
-        elif isinstance(filename, types.StringTypes):
+        elif isinstance(filename, six.string_types):
             with open(filename, 'r') as file_obj:
                 self._model = Heat.from_file_like(file_obj.read())
         else:
@@ -80,7 +82,7 @@ class BmiHeat(Bmi):
         """
         n_steps = (then - self.get_current_time()) / self.get_time_step()
 
-        for _ in xrange(int(n_steps)):
+        for _ in range(int(n_steps)):
             self.update()
         self.update_frac(n_steps - int(n_steps))
 

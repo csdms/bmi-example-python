@@ -3,6 +3,7 @@ from nose.tools import assert_equal, assert_is
 from numpy.testing import assert_almost_equal, assert_array_less
 import numpy as np
 
+from six.moves import range
 from heat import BmiHeat
 
 
@@ -38,7 +39,7 @@ def test_initialize_defaults():
 
 
 def test_initialize_from_file_like():
-    from StringIO import StringIO
+    from six import StringIO
     import yaml
 
     config = StringIO(yaml.dump({'shape': (7, 5)}))
@@ -69,7 +70,7 @@ def test_update():
     model = BmiHeat()
     model.initialize()
 
-    for inc in xrange(10):
+    for inc in range(10):
         model.update()
         assert_almost_equal(model.get_current_time(),
                             (inc + 1) * model.get_time_step())
