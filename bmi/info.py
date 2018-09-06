@@ -43,8 +43,6 @@ class BmiInfo(object):
 
         Standard Names do not have to be used within the model.
 
-        Notes
-        -----
         .. code-block:: c
 
             /* C */
