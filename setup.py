@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 from setuptools import setup, find_packages
 
-
 setup(name='bmi-heat',
       version='0.1.0',
       author='Eric Hutton',
@@ -9,4 +8,11 @@ setup(name='bmi-heat',
       description='BMI Python example',
       long_description=open('README.md').read(),
       packages=find_packages(),
+      install_requires=['six'],
+      classifiers=[
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.5',
+      ]
 )
+
+
