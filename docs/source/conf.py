@@ -19,7 +19,7 @@ import os
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../..'))
-sys.path.insert(0, os.path.abspath('../sphinxext'))
+# sys.path.insert(0, os.path.abspath('../sphinxext'))
 sys.path.insert(0, os.path.abspath('.'))
 
 # -- General configuration ------------------------------------------------
@@ -32,14 +32,14 @@ sys.path.insert(0, os.path.abspath('.'))
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.mathjax',
+    # 'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
-    'numpydoc',
+    # 'numpydoc',
     'sphinx.ext.autosummary',
 ]
 
-if os.getenv('READTHEDOCS'):
-    template_bridge = 'bmi_ext.MyTemplateLoader'
+# if os.getenv('READTHEDOCS'):
+#     template_bridge = 'bmi_ext.MyTemplateLoader'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
