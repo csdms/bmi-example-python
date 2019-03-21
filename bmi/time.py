@@ -91,14 +91,12 @@ class BmiTime(object):
     def get_time_units(self):
         """Time units of the model.
 
+        CSDMS uses the UDUNITS standard from Unidata.
+
         Returns
         -------
         float
           The model time unit; e.g., `days` or `s`.
-
-        Notes
-        -----
-        CSDMS uses the UDUNITS standard from Unidata.
 
         Notes
         -----
