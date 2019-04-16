@@ -2,9 +2,11 @@
 """Basic Model Interface implementation for the 2D heat model."""
 
 import types
+
 import numpy as np
 
 from bmi import Bmi
+
 from .heat import Heat
 
 
@@ -12,9 +14,9 @@ class BmiHeat(Bmi):
 
     """Solve the heat equation for a 2D plate."""
 
-    _name = 'The 2D Heat Equation'
-    _input_var_names = ('plate_surface__temperature',)
-    _output_var_names = ('plate_surface__temperature',)
+    _name = "The 2D Heat Equation"
+    _input_var_names = ("plate_surface__temperature",)
+    _output_var_names = ("plate_surface__temperature",)
 
     def __init__(self):
         """Create a BmiHeat model that is ready for initialization."""
@@ -35,23 +37,15 @@ class BmiHeat(Bmi):
         if filename is None:
             self._model = Heat()
         elif isinstance(filename, types.StringTypes):
-            with open(filename, 'r') as file_obj:
+            with open(filename, "r") as file_obj:
                 self._model = Heat.from_file_like(file_obj.read())
         else:
             self._model = Heat.from_file_like(filename)
 
-        self._values = {
-            'plate_surface__temperature': self._model.temperature,
-        }
-        self._var_units = {
-            'plate_surface__temperature': 'K'
-        }
-        self._grids = {
-            0: ['plate_surface__temperature']
-        }
-        self._grid_type = {
-            0: 'uniform_rectilinear_grid'
-        }
+        self._values = {"plate_surface__temperature": self._model.temperature}
+        self._var_units = {"plate_surface__temperature": "K"}
+        self._grids = {0: ["plate_surface__temperature"]}
+        self._grid_type = {0: "uniform_rectilinear_grid"}
 
     def update(self):
         """Advance model by one time step."""
@@ -286,11 +280,11 @@ class BmiHeat(Bmi):
 
     def get_start_time(self):
         """Start time of model."""
-        return 0.
+        return 0.0
 
     def get_end_time(self):
         """End time of model."""
-        return np.finfo('d').max
+        return np.finfo("d").max
 
     def get_current_time(self):
         """Current time of model."""

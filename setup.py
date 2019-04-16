@@ -1,18 +1,20 @@
 #! /usr/bin/env python
 from ez_setup import use_setuptools
+
 use_setuptools()
 from setuptools import setup, find_packages
 
 import versioneer
 
 
-setup(name='bmi-heat',
-      version=versioneer.get_version(),
-      author='Eric Hutton',
-      author_email='eric.hutton@colorado.edu',
-      description='BMI Python example',
-      long_description=open('README.md').read(),
-      classifiers=[
+setup(
+    name="bmi-heat",
+    version=versioneer.get_version(),
+    author="Eric Hutton",
+    author_email="eric.hutton@colorado.edu",
+    description="BMI Python example",
+    long_description=open("README.md").read(),
+    classifiers=[
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
@@ -22,7 +24,7 @@ setup(name='bmi-heat',
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: Implementation :: CPython",
         "Topic :: Scientific/Engineering :: Physics",
-      ],
-      packages=find_packages(),
-      cmdclass=versioneer.get_cmdclass(),
+    ],
+    packages=find_packages(),
+    cmdclass=versioneer.get_cmdclass(),
 )
