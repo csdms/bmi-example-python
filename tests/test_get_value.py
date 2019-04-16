@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import numpy as np
-from nose.tools import assert_equal, assert_is, assert_is_not, assert_true
 from numpy.testing import assert_array_almost_equal, assert_array_less
 
 from heat import BmiHeat
@@ -22,7 +21,7 @@ def test_get_value_copy():
     z0 = model.get_value("plate_surface__temperature")
     z1 = model.get_value("plate_surface__temperature")
 
-    assert_is_not(z0, z1)
+    assert z0 is not z1
     assert_array_almost_equal(z0, z1)
 
 
@@ -33,13 +32,13 @@ def test_get_value_reference():
     z0 = model.get_value_ref("plate_surface__temperature")
     z1 = model.get_value("plate_surface__temperature")
 
-    assert_is_not(z0, z1)
+    assert z0 is not z1
     assert_array_almost_equal(z0, z1)
 
-    for _ in xrange(10):
+    for _ in range(10):
         model.update()
 
-    assert_is(z0, model.get_value_ref("plate_surface__temperature"))
+    assert z0 is model.get_value_ref("plate_surface__temperature")
 
 
 def test_get_value_at_indices():
@@ -57,7 +56,7 @@ def test_value_size():
     model.initialize()
 
     z = model.get_value_ref("plate_surface__temperature")
-    assert_equal(model.get_grid_size(0), z.size)
+    assert model.get_grid_size(0) == z.size
 
 
 def test_value_nbytes():
@@ -65,4 +64,4 @@ def test_value_nbytes():
     model.initialize()
 
     z = model.get_value_ref("plate_surface__temperature")
-    assert_equal(model.get_var_nbytes("plate_surface__temperature"), z.nbytes)
+    assert model.get_var_nbytes("plate_surface__temperature") == z.nbytes

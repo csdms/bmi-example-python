@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import numpy as np
-from nose.tools import assert_is, assert_is_not
 from numpy.testing import assert_array_almost_equal
 
 from heat import BmiHeat
@@ -17,8 +16,8 @@ def test_set_value():
 
     new_z = model.get_value_ref("plate_surface__temperature")
 
-    assert_is(new_z, z0)
-    assert_is_not(new_z, z1)
+    assert new_z is z0
+    assert new_z is not z1
     assert_array_almost_equal(new_z, z1)
 
 

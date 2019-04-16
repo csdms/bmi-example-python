@@ -1,17 +1,20 @@
 #!/usr/bin/env python
-import numpy as np
-from nose.tools import assert_equal, assert_is
+from io import StringIO
+
 from numpy.testing import assert_almost_equal, assert_array_less
+import numpy as np
+import yaml
 
 from heat import BmiHeat
+
 
 
 def test_component_name():
     model = BmiHeat()
 
     name = model.get_component_name()
-    assert_equal(name, "The 2D Heat Equation")
-    assert_is(model.get_component_name(), name)
+    assert name == "The 2D Heat Equation"
+    assert model.get_component_name() is name
 
 
 def test_start_time():
@@ -38,14 +41,11 @@ def test_initialize_defaults():
 
 
 def test_initialize_from_file_like():
-    from StringIO import StringIO
-    import yaml
-
     config = StringIO(yaml.dump({"shape": (7, 5)}))
     model = BmiHeat()
     model.initialize(config)
 
-    assert_equal(model.get_grid_shape(0), (7, 5))
+    assert model.get_grid_shape(0) == (7, 5)
 
 
 def test_initialize_from_file():
@@ -62,14 +62,14 @@ def test_initialize_from_file():
 
     os.remove(name)
 
-    assert_equal(model.get_grid_shape(0), (7, 5))
+    assert model.get_grid_shape(0) == (7, 5)
 
 
 def test_update():
     model = BmiHeat()
     model.initialize()
 
-    for inc in xrange(10):
+    for inc in range(10):
         model.update()
         assert_almost_equal(model.get_current_time(), (inc + 1) * model.get_time_step())
 
