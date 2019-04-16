@@ -95,7 +95,7 @@ class BmiHeat(Bmi):
         str
             Data type.
         """
-        return str(self.get_value_ref(var_name).dtype)
+        return str(self.get_value_ptr(var_name).dtype)
 
     def get_var_units(self, var_name):
         """Get units of variable.
@@ -125,7 +125,13 @@ class BmiHeat(Bmi):
         int
             Size of data array in bytes.
         """
-        return self.get_value_ref(var_name).nbytes
+        return self.get_value_ptr(var_name).nbytes
+
+    def get_var_itemsize(self, name):
+        return np.dtype(self.get_var_type(name)).itemsize
+
+    def get_var_location(self, name):
+        return "node"
 
     def get_var_grid(self, var_name):
         """Grid id for a variable.
@@ -174,7 +180,7 @@ class BmiHeat(Bmi):
         """
         return np.prod(self.get_grid_shape(grid_id))
 
-    def get_value_ref(self, var_name):
+    def get_value_ptr(self, var_name):
         """Reference to values.
 
         Parameters
@@ -202,7 +208,7 @@ class BmiHeat(Bmi):
         array_like
             Copy of values.
         """
-        return self.get_value_ref(var_name).copy()
+        return self.get_value_ptr(var_name).copy()
 
     def get_value_at_indices(self, var_name, indices):
         """Get values at particular indices.
@@ -219,7 +225,7 @@ class BmiHeat(Bmi):
         array_like
             Values at indices.
         """
-        return self.get_value_ref(var_name).take(indices)
+        return self.get_value_ptr(var_name).take(indices)
 
     def set_value(self, var_name, src):
         """Set model values.
@@ -231,7 +237,7 @@ class BmiHeat(Bmi):
         src : array_like
             Array of new values.
         """
-        val = self.get_value_ref(var_name)
+        val = self.get_value_ptr(var_name)
         val[:] = src
 
     def set_value_at_indices(self, var_name, src, indices):
@@ -246,7 +252,7 @@ class BmiHeat(Bmi):
         indices : array_like
             Array of indices.
         """
-        val = self.get_value_ref(var_name)
+        val = self.get_value_ptr(var_name)
         val.flat[indices] = src
 
     def get_component_name(self):
@@ -264,7 +270,7 @@ class BmiHeat(Bmi):
     def get_grid_shape(self, grid_id):
         """Number of rows and columns of uniform rectilinear grid."""
         var_name = self._grids[grid_id][0]
-        return self.get_value_ref(var_name).shape
+        return self.get_value_ptr(var_name).shape
 
     def get_grid_spacing(self, grid_id):
         """Spacing of rows and columns of uniform rectilinear grid."""
@@ -287,9 +293,37 @@ class BmiHeat(Bmi):
         return np.finfo("d").max
 
     def get_current_time(self):
-        """Current time of model."""
         return self._model.time
 
     def get_time_step(self):
-        """Time step of model."""
         return self._model.time_step
+
+    def get_time_units(self):
+        return "s"
+
+    def get_grid_edge_count(self, grid):
+        raise NotImplementedError("get_grid_edge_count")
+
+    def get_grid_edge_nodes(self, grid, edge_nodes):
+        raise NotImplementedError("get_grid_edge_nodes")
+
+    def get_grid_face_count(self, grid):
+        raise NotImplementedError("get_grid_face_count")
+
+    def get_grid_face_nodes(self, grid, face_nodes):
+        raise NotImplementedError("get_grid_face_nodes")
+
+    def get_grid_node_count(self, grid):
+        raise NotImplementedError("get_grid_node_count")
+
+    def get_grid_nodes_per_face(self, grid, nodes_per_face):
+        raise NotImplementedError("get_grid_nodes_per_face")
+
+    def get_grid_x(self, grid, x):
+        raise NotImplementedError("get_grid_x")
+
+    def get_grid_y(self, grid, y):
+        raise NotImplementedError("get_grid_y")
+
+    def get_grid_z(self, grid, z):
+        raise NotImplementedError("get_grid_z")
