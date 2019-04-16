@@ -32,9 +32,9 @@ def solve_2d(temp, spacing, out=None, alpha=1.0, time_step=1.0):
     >>> z0 = np.zeros((3, 3))
     >>> z0[1:-1, 1:-1] = 1.
     >>> solve_2d(z0, (1., 1.), alpha=.125)
-    array([[ 0. ,  0. ,  0. ],
-           [ 0. ,  0.5,  0. ],
-           [ 0. ,  0. ,  0. ]])
+    array([[0. , 0. , 0. ],
+           [0. , 0.5, 0. ],
+           [0. , 0. , 0. ]])
     """
     dy2, dx2 = spacing[0] ** 2, spacing[1] ** 2
     stencil = (
