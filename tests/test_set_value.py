@@ -9,12 +9,12 @@ def test_set_value():
     model = BmiHeat()
     model.initialize()
 
-    z0 = model.get_value_ref("plate_surface__temperature")
+    z0 = model.get_value_ptr("plate_surface__temperature")
     z1 = np.zeros_like(z0) - 1
 
     model.set_value("plate_surface__temperature", z1)
 
-    new_z = model.get_value_ref("plate_surface__temperature")
+    new_z = model.get_value_ptr("plate_surface__temperature")
 
     assert new_z is z0
     assert new_z is not z1
@@ -25,9 +25,9 @@ def test_set_value_at_indices():
     model = BmiHeat()
     model.initialize()
 
-    z0 = model.get_value_ref("plate_surface__temperature")
+    z0 = model.get_value_ptr("plate_surface__temperature")
 
     model.set_value_at_indices("plate_surface__temperature", [-1, -1, -1], [0, 2, 4])
 
-    new_z = model.get_value_ref("plate_surface__temperature")
+    new_z = model.get_value_ptr("plate_surface__temperature")
     assert_array_almost_equal(new_z.take((0, 2, 4)), -1.0)

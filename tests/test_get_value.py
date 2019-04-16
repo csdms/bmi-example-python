@@ -9,7 +9,7 @@ def test_get_initial_value():
     model = BmiHeat()
     model.initialize()
 
-    z0 = model.get_value_ref("plate_surface__temperature")
+    z0 = model.get_value_ptr("plate_surface__temperature")
     assert_array_less(z0, 1.0)
     assert_array_less(0.0, z0)
 
@@ -25,11 +25,11 @@ def test_get_value_copy():
     assert_array_almost_equal(z0, z1)
 
 
-def test_get_value_reference():
+def test_get_value_pointer():
     model = BmiHeat()
     model.initialize()
 
-    z0 = model.get_value_ref("plate_surface__temperature")
+    z0 = model.get_value_ptr("plate_surface__temperature")
     z1 = model.get_value("plate_surface__temperature")
 
     assert z0 is not z1
@@ -38,14 +38,14 @@ def test_get_value_reference():
     for _ in range(10):
         model.update()
 
-    assert z0 is model.get_value_ref("plate_surface__temperature")
+    assert z0 is model.get_value_ptr("plate_surface__temperature")
 
 
 def test_get_value_at_indices():
     model = BmiHeat()
     model.initialize()
 
-    z0 = model.get_value_ref("plate_surface__temperature")
+    z0 = model.get_value_ptr("plate_surface__temperature")
     z1 = model.get_value_at_indices("plate_surface__temperature", [0, 2, 4])
 
     assert_array_almost_equal(z0.take((0, 2, 4)), z1)
@@ -55,7 +55,7 @@ def test_value_size():
     model = BmiHeat()
     model.initialize()
 
-    z = model.get_value_ref("plate_surface__temperature")
+    z = model.get_value_ptr("plate_surface__temperature")
     assert model.get_grid_size(0) == z.size
 
 
@@ -63,5 +63,5 @@ def test_value_nbytes():
     model = BmiHeat()
     model.initialize()
 
-    z = model.get_value_ref("plate_surface__temperature")
+    z = model.get_value_ptr("plate_surface__temperature")
     assert model.get_var_nbytes("plate_surface__temperature") == z.nbytes
