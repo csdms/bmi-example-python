@@ -10,7 +10,7 @@ setup(
     author="Eric Hutton",
     author_email="eric.hutton@colorado.edu",
     description="BMI Python example",
-    long_description=open("README.md").read(),
+    long_description=open("README.rst").read(),
     classifiers=[
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
