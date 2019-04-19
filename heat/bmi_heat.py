@@ -5,7 +5,7 @@ import types
 
 import numpy as np
 
-from bmi import Bmi
+from bmipy import Bmi
 
 from .heat import Heat
 

@@ -8,7 +8,6 @@ import yaml
 from heat import BmiHeat
 
 
-
 def test_component_name():
     model = BmiHeat()
 
