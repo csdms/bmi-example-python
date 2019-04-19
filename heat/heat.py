@@ -1,11 +1,11 @@
 """The 2D heat model."""
 
 import numpy as np
-from scipy import ndimage, random
 import yaml
+from scipy import ndimage, random
 
 
-def solve_2d(temp, spacing, out=None, alpha=1., time_step=1.):
+def solve_2d(temp, spacing, out=None, alpha=1.0, time_step=1.0):
     """Solve the 2D Heat Equation on a uniform mesh.
 
     Parameters
@@ -37,16 +37,19 @@ def solve_2d(temp, spacing, out=None, alpha=1., time_step=1.):
            [0. , 0. , 0. ]])
     """
     dy2, dx2 = spacing[0] ** 2, spacing[1] ** 2
-    stencil = np.array([[0., dy2, 0.],
-                        [dx2, -2. * (dx2 + dy2), dx2],
-                        [0., dy2, 0.]]) * alpha * time_step / (dx2 * dy2)
+    stencil = (
+        np.array([[0.0, dy2, 0.0], [dx2, -2.0 * (dx2 + dy2), dx2], [0.0, dy2, 0.0]])
+        * alpha
+        * time_step
+        / (dx2 * dy2)
+    )
 
     if out is None:
         out = np.empty_like(temp)
 
     ndimage.convolve(temp, stencil, output=out)
-    out[(0, -1), :] = 0.
-    out[:, (0, -1)] = 0.
+    out[(0, -1), :] = 0.0
+    out[:, (0, -1)] = 0.0
     return np.add(temp, out, out=out)
 
 
@@ -78,8 +81,9 @@ class Heat(object):
     2.0
     """
 
-    def __init__(self, shape=(10, 20), spacing=(1., 1.), origin=(0., 0.),
-                 alpha=1.):
+    def __init__(
+        self, shape=(10, 20), spacing=(1.0, 1.0), origin=(0.0, 0.0), alpha=1.0
+    ):
         """Create a new heat model.
 
         Paramters
@@ -96,9 +100,9 @@ class Heat(object):
         self._shape = shape
         self._spacing = spacing
         self._origin = origin
-        self._time = 0.
+        self._time = 0.0
         self._alpha = alpha
-        self._time_step = min(spacing) ** 2 / (4. * self._alpha)
+        self._time_step = min(spacing) ** 2 / (4.0 * self._alpha)
 
         self._temperature = random.random(self._shape)
         self._next_temperature = np.empty_like(self._temperature)
@@ -158,13 +162,18 @@ class Heat(object):
         Heat
             A new instance of a Heat object.
         """
-        config = yaml.load(file_like)
+        config = yaml.safe_load(file_like)
         return cls(**config)
 
     def advance_in_time(self):
         """Calculate new temperatures for the next time step."""
-        solve_2d(self._temperature, self._spacing, out=self._next_temperature,
-                 alpha=self._alpha, time_step=self._time_step)
+        solve_2d(
+            self._temperature,
+            self._spacing,
+            out=self._next_temperature,
+            alpha=self._alpha,
+            time_step=self._time_step,
+        )
         np.copyto(self._temperature, self._next_temperature)
 
         self._time += self._time_step

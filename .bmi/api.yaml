@@ -1,8 +1,0 @@
-name: HeatPy
-language: python
-
-package: heat
-class: BmiHeat
-
-build:
-  - python setup.py install

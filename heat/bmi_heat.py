@@ -3,10 +3,8 @@
 
 import numpy as np
 
-import six
-from six.moves import range
+from bmipy import Bmi
 
-from bmi import Bmi
 from .heat import Heat
 
 
@@ -14,17 +12,22 @@ class BmiHeat(Bmi):
 
     """Solve the heat equation for a 2D plate."""
 
-    _name = 'The 2D Heat Equation'
-    _input_var_names = ('plate_surface__temperature',)
-    _output_var_names = ('plate_surface__temperature',)
+    _name = "The 2D Heat Equation"
+    _input_var_names = ("plate_surface__temperature",)
+    _output_var_names = ("plate_surface__temperature",)
 
     def __init__(self):
         """Create a BmiHeat model that is ready for initialization."""
         self._model = None
         self._values = {}
         self._var_units = {}
+        self._var_loc = {}
         self._grids = {}
         self._grid_type = {}
+
+        self._start_time = 0.0
+        self._end_time = np.finfo("d").max
+        self._time_units = "s"
 
     def initialize(self, filename=None):
         """Initialize the Heat model.
@@ -36,24 +39,17 @@ class BmiHeat(Bmi):
         """
         if filename is None:
             self._model = Heat()
-        elif isinstance(filename, six.string_types):
-            with open(filename, 'r') as file_obj:
+        elif isinstance(filename, str):
+            with open(filename, "r") as file_obj:
                 self._model = Heat.from_file_like(file_obj.read())
         else:
             self._model = Heat.from_file_like(filename)
 
-        self._values = {
-            'plate_surface__temperature': self._model.temperature,
-        }
-        self._var_units = {
-            'plate_surface__temperature': 'K'
-        }
-        self._grids = {
-            0: ['plate_surface__temperature']
-        }
-        self._grid_type = {
-            0: 'uniform_rectilinear_grid'
-        }
+        self._values = {"plate_surface__temperature": self._model.temperature}
+        self._var_units = {"plate_surface__temperature": "K"}
+        self._var_loc = {"plate_surface__temperature": "node"}
+        self._grids = {0: ["plate_surface__temperature"]}
+        self._grid_type = {0: "uniform_rectilinear_grid"}
 
     def update(self):
         """Advance model by one time step."""
@@ -103,7 +99,7 @@ class BmiHeat(Bmi):
         str
             Data type.
         """
-        return str(self.get_value_ref(var_name).dtype)
+        return str(self.get_value_ptr(var_name).dtype)
 
     def get_var_units(self, var_name):
         """Get units of variable.
@@ -133,7 +129,13 @@ class BmiHeat(Bmi):
         int
             Size of data array in bytes.
         """
-        return self.get_value_ref(var_name).nbytes
+        return self.get_value_ptr(var_name).nbytes
+
+    def get_var_itemsize(self, name):
+        return np.dtype(self.get_var_type(name)).itemsize
+
+    def get_var_location(self, name):
+        return self._var_loc[name]
 
     def get_var_grid(self, var_name):
         """Grid id for a variable.
@@ -182,7 +184,7 @@ class BmiHeat(Bmi):
         """
         return np.prod(self.get_grid_shape(grid_id))
 
-    def get_value_ref(self, var_name):
+    def get_value_ptr(self, var_name):
         """Reference to values.
 
         Parameters
@@ -210,7 +212,7 @@ class BmiHeat(Bmi):
         array_like
             Copy of values.
         """
-        return self.get_value_ref(var_name).copy()
+        return self.get_value_ptr(var_name).copy()
 
     def get_value_at_indices(self, var_name, indices):
         """Get values at particular indices.
@@ -227,7 +229,7 @@ class BmiHeat(Bmi):
         array_like
             Values at indices.
         """
-        return self.get_value_ref(var_name).take(indices)
+        return self.get_value_ptr(var_name).take(indices)
 
     def set_value(self, var_name, src):
         """Set model values.
@@ -239,10 +241,10 @@ class BmiHeat(Bmi):
         src : array_like
             Array of new values.
         """
-        val = self.get_value_ref(var_name)
+        val = self.get_value_ptr(var_name)
         val[:] = src
 
-    def set_value_at_indices(self, var_name, src, indices):
+    def set_value_at_indices(self, name, inds, src):
         """Set model values at particular indices.
 
         Parameters
@@ -254,8 +256,8 @@ class BmiHeat(Bmi):
         indices : array_like
             Array of indices.
         """
-        val = self.get_value_ref(var_name)
-        val.flat[indices] = src
+        val = self.get_value_ptr(name)
+        val.flat[inds] = src
 
     def get_component_name(self):
         """Name of the component."""
@@ -272,7 +274,7 @@ class BmiHeat(Bmi):
     def get_grid_shape(self, grid_id):
         """Number of rows and columns of uniform rectilinear grid."""
         var_name = self._grids[grid_id][0]
-        return self.get_value_ref(var_name).shape
+        return self.get_value_ptr(var_name).shape
 
     def get_grid_spacing(self, grid_id):
         """Spacing of rows and columns of uniform rectilinear grid."""
@@ -288,16 +290,44 @@ class BmiHeat(Bmi):
 
     def get_start_time(self):
         """Start time of model."""
-        return 0.
+        return self._start_time
 
     def get_end_time(self):
         """End time of model."""
-        return np.finfo('d').max
+        return self._end_time
 
     def get_current_time(self):
-        """Current time of model."""
         return self._model.time
 
     def get_time_step(self):
-        """Time step of model."""
         return self._model.time_step
+
+    def get_time_units(self):
+        return self._time_units
+
+    def get_grid_edge_count(self, grid):
+        raise NotImplementedError("get_grid_edge_count")
+
+    def get_grid_edge_nodes(self, grid, edge_nodes):
+        raise NotImplementedError("get_grid_edge_nodes")
+
+    def get_grid_face_count(self, grid):
+        raise NotImplementedError("get_grid_face_count")
+
+    def get_grid_face_nodes(self, grid, face_nodes):
+        raise NotImplementedError("get_grid_face_nodes")
+
+    def get_grid_node_count(self, grid):
+        raise NotImplementedError("get_grid_node_count")
+
+    def get_grid_nodes_per_face(self, grid, nodes_per_face):
+        raise NotImplementedError("get_grid_nodes_per_face")
+
+    def get_grid_x(self, grid, x):
+        raise NotImplementedError("get_grid_x")
+
+    def get_grid_y(self, grid, y):
+        raise NotImplementedError("get_grid_y")
+
+    def get_grid_z(self, grid, z):
+        raise NotImplementedError("get_grid_z")

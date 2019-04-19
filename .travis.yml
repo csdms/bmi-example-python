@@ -1,24 +1,58 @@
-language: python
-python:
-  - "2.7"
-  - "3.5"
-  - "3.6"
-
+language: generic
 os:
-  - linux
-
+- linux
+- osx
+env:
+  matrix:
+  - CONDA_ENV=3.7
+  - CONDA_ENV=3.6
+sudo: false
+jobs:
+  include:
+  - stage: lint
+    os: linux
+    script:
+    - make lint
+  - stage: docs
+    os: linux
+    install:
+    - conda env create --file docs/source/environment.yml
+    - conda activate heat_docs
+    script:
+    - sphinx-apidoc --force -o docs heat *tests
+    - make -C docs clean html
+  - stage: deploy
+    if: tag =~ v.*$
+    script: skip
+    os: linux
+    deploy:
+      on:
+        all_branches: true
+      provider: pypi
+      user: mcflugen
+      password:
+        secure: nCLTNxxwRBpvaeNosG+V1sQHeYPDd7zfcBvm5sGE6KVtGOfQtO0cNe1NwMKoVKH9Te9B2RJGs+s6tb4mMqJNuXpTyoFsAr+4gBxO9BSAdjm2wadcqyXexhU99L9oBhfrMAuGYEvV57LE57WaRQfmBnnKH9HE57fWmsx8VO50DEw3mMWKusZt4aFxNgpKwjUGJxtYDEIoOzfOdWAlRicPsZ21s/oMsrYKaYMG8mI8uM5/nVGc2jCb18HXflG9LnsmXlU8P/Jfa0Zu52MRgHuJnyflIDolgjkqPSgu8v/pGhjTCOS88tWSC09mIy1mdkZzJOOiIny+CLkEWxcQbikiVaXwq592+I6YcnW9TAls2hOChFaALYldZd5EopOmlc64DmQXMXCOPLbMM4wiUx63F/zJDZg1i0sMl0ucG5EpNPG18EerdygbvdcLLYKM70jSuqyYBOjk4pAO6Y1EvjffZMBu1XxuO/NvTZyAjoJTTb8xbO4s59Z7KB8sYi+9Gq1DATq1YXZ8k3GoU+KlOGJ73o+D87O95Q5qLWI30HvElKj72eEGMCsOTyvxmNZsEf9yCYbxzP9FEWrWV1uWUwWEV6tAATd7o3bcbp8+DzeglaLX8eOch8MwtxqR2aFvoiMQVTIXkfrn+emuZzhqQcTZSQMA9SztnQ8it4F7WeQWqH8=
+before_install:
+- |
+  if [[ $TRAVIS_OS_NAME == "osx" ]]; then
+    brew remove --force $(brew list)
+    brew cleanup -s
+    rm -rf $(brew --cache)
+  fi
+- |
+  if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh > $HOME/miniconda.sh
+  else
+    curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh > $HOME/miniconda.sh
+  fi
+- bash $HOME/miniconda.sh -b -p $HOME/anaconda
+- export PATH="$HOME/anaconda/bin:$PATH"
+- hash -r
+- conda config --set always_yes yes --set changeps1 no
+- conda create -n test_env python=$CONDA_ENV
+- source activate test_env
 install:
-  - echo "Build on $TRAVIS_OS_NAME for Python $TRAVIS_PYTHON_VERSION"
-  - bash .travis/install_python.sh
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  - source activate test-env
-  - pip install coveralls
-  - conda info
-  - conda list
-  - python setup.py install
-
+- pip install . -r requirements.txt
 script:
-  - nosetests --with-doctest --with-coverage --cover-package=heat
-
-after_success:
-  coveralls
+- pytest --cov=heat --cov-report=xml:$(pwd)/coverage.xml -vvv
+after_success: coveralls
