@@ -21,8 +21,13 @@ class BmiHeat(Bmi):
         self._model = None
         self._values = {}
         self._var_units = {}
+        self._var_loc = {}
         self._grids = {}
         self._grid_type = {}
+
+        self._start_time = 0.0
+        self._end_time = np.finfo("d").max
+        self._time_units = "s"
 
     def initialize(self, filename=None):
         """Initialize the Heat model.
@@ -42,6 +47,7 @@ class BmiHeat(Bmi):
 
         self._values = {"plate_surface__temperature": self._model.temperature}
         self._var_units = {"plate_surface__temperature": "K"}
+        self._var_loc = {"plate_surface__temperature": "node"}
         self._grids = {0: ["plate_surface__temperature"]}
         self._grid_type = {0: "uniform_rectilinear_grid"}
 
@@ -129,7 +135,7 @@ class BmiHeat(Bmi):
         return np.dtype(self.get_var_type(name)).itemsize
 
     def get_var_location(self, name):
-        return "node"
+        return self._var_loc[name]
 
     def get_var_grid(self, var_name):
         """Grid id for a variable.
@@ -284,11 +290,11 @@ class BmiHeat(Bmi):
 
     def get_start_time(self):
         """Start time of model."""
-        return 0.0
+        return self._start_time
 
     def get_end_time(self):
         """End time of model."""
-        return np.finfo("d").max
+        return self._end_time
 
     def get_current_time(self):
         return self._model.time
@@ -297,7 +303,7 @@ class BmiHeat(Bmi):
         return self._model.time_step
 
     def get_time_units(self):
-        return "s"
+        return self._time_units
 
     def get_grid_edge_count(self, grid):
         raise NotImplementedError("get_grid_edge_count")

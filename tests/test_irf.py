@@ -40,7 +40,7 @@ def test_initialize_defaults():
 
 
 def test_initialize_from_file_like():
-    config = StringIO(yaml.dump({"shape": (7, 5)}))
+    config = StringIO(yaml.dump({"shape": [7, 5]}))
     model = BmiHeat()
     model.initialize(config)
 
@@ -53,7 +53,7 @@ def test_initialize_from_file():
     import tempfile
 
     with tempfile.NamedTemporaryFile("w", delete=False) as fp:
-        fp.write(yaml.dump({"shape": (7, 5)}))
+        fp.write(yaml.dump({"shape": [7, 5]}))
         name = fp.name
 
     model = BmiHeat()
