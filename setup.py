@@ -22,6 +22,7 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython",
         "Topic :: Scientific/Engineering :: Physics",
     ],
+    install_requires=["bmipy", "pyyaml", "scipy"],
     packages=find_packages(),
     cmdclass=versioneer.get_cmdclass(),
 )

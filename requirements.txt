@@ -1,4 +1,2 @@
-numpy
-scipy
-PyYAML
-nose
+pytest
+pytest-cov
