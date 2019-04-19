@@ -238,7 +238,7 @@ class BmiHeat(Bmi):
         val = self.get_value_ptr(var_name)
         val[:] = src
 
-    def set_value_at_indices(self, var_name, src, indices):
+    def set_value_at_indices(self, name, inds, src):
         """Set model values at particular indices.
 
         Parameters
@@ -250,8 +250,8 @@ class BmiHeat(Bmi):
         indices : array_like
             Array of indices.
         """
-        val = self.get_value_ptr(var_name)
-        val.flat[indices] = src
+        val = self.get_value_ptr(name)
+        val.flat[inds] = src
 
     def get_component_name(self):
         """Name of the component."""

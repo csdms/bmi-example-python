@@ -25,7 +25,7 @@ def test_set_value_at_indices():
     model = BmiHeat()
     model.initialize()
 
-    model.set_value_at_indices("plate_surface__temperature", [-1, -1, -1], [0, 2, 4])
+    model.set_value_at_indices("plate_surface__temperature", [0, 2, 4], [-1, -1, -1])
 
     new_z = model.get_value_ptr("plate_surface__temperature")
     assert_array_almost_equal(new_z.take((0, 2, 4)), -1.0)
