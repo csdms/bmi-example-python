@@ -1,8 +1,6 @@
 #! /usr/bin/env python
 """Basic Model Interface implementation for the 2D heat model."""
 
-import types
-
 import numpy as np
 
 from bmipy import Bmi
