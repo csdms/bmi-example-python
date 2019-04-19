@@ -5,6 +5,7 @@ from numpy.testing import assert_almost_equal, assert_array_less
 import numpy as np
 import yaml
 
+from six.moves import range
 from heat import BmiHeat
 
 
