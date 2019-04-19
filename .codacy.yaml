@@ -1,6 +1,6 @@
 exclude_paths:
   - tests/**
-  - docs/conf.py
+  - docs/source/conf.py
   - setup.py
   - versioneer.py
   - heat/_version.py
