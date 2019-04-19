@@ -1,7 +1,7 @@
-bmi
-===
+heat
+====
 
 .. toctree::
    :maxdepth: 4
 
-   bmi
+   heat
