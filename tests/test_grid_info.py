@@ -18,6 +18,17 @@ def test_grid_var_names():
     assert names == ("plate_surface__temperature",)
 
 
+def test_grid_var_item_count():
+    model = BmiHeat()
+    model.initialize()
+
+    count = model.get_input_item_count()
+    assert count == 1
+
+    count = model.get_output_item_count()
+    assert count == 1
+
+
 def test_grid_var_units():
     model = BmiHeat()
     model.initialize()
