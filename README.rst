@@ -20,4 +20,54 @@
 bmi-example-python
 ==================
 
-An example BMI implementation written in Python
+An example of implementing the `Python bindings`_
+for the CSDMS `Basic Model Interface`_ (BMI).
+
+Overview
+--------
+
+This is an example of implementing a BMI for a simple model
+that solves the diffusion equation
+on a uniform rectangular plate
+with Dirichlet boundary conditions.
+The model and its BMI are written in Python 3.
+Tests of the BMI are provided.
+
+This repository is organized with the following directories:
+
+*heat*
+  Holds the model and the BMI for the model
+
+*tests*
+  Tests that cover the BMI of the model
+
+Build/Install
+-------------
+
+This example can be built and installed on Linux, macOS, and Windows.
+
+**Prerequisites:**
+
+* Python 3
+* The Python BMI bindings. Follow the build and install directions
+  given in the `README`_ in that repository. You can choose to install
+  them from source, or through pip, or conda.
+
+To build/install this example from source,
+using the current Python BMI version, run
+
+.. code-block:: bash
+
+  $ make install
+
+To run the tests,
+
+.. code-block:: bash
+
+  $ pip install -r requirements.txt
+  $ make test
+
+
+.. _Python bindings: https://github.com/csdms/bmi-python
+.. _Basic Model Interface: https://bmi-spec.readthedocs.io
+.. _README: https://github.com/csdms/bmi-python/blob/master/README.rst
