@@ -263,6 +263,14 @@ class BmiHeat(Bmi):
         """Name of the component."""
         return self._name
 
+    def get_input_item_count(self):
+        """Get names of input variables."""
+        return len(self._input_var_names)
+
+    def get_output_item_count(self):
+        """Get names of output variables."""
+        return len(self._output_var_names)
+
     def get_input_var_names(self):
         """Get names of input variables."""
         return self._input_var_names
@@ -322,6 +330,9 @@ class BmiHeat(Bmi):
 
     def get_grid_nodes_per_face(self, grid, nodes_per_face):
         raise NotImplementedError("get_grid_nodes_per_face")
+
+    def get_grid_face_edges(self, grid, face_edges):
+        raise NotImplementedError("get_grid_face_edges")
 
     def get_grid_x(self, grid, x):
         raise NotImplementedError("get_grid_x")
