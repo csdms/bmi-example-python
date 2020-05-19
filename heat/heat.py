@@ -31,7 +31,7 @@ def solve_2d(temp, spacing, out=None, alpha=1.0, time_step=1.0):
     >>> from heat import solve_2d
     >>> z0 = np.zeros((3, 3))
     >>> z0[1:-1, 1:-1] = 1.
-    >>> solve_2d(z0, (1., 1.), alpha=.125)
+    >>> solve_2d(z0, (1., 1.), alpha=.25)
     array([[0. , 0. , 0. ],
            [0. , 0.5, 0. ],
            [0. , 0. , 0. ]])
@@ -41,7 +41,7 @@ def solve_2d(temp, spacing, out=None, alpha=1.0, time_step=1.0):
         np.array([[0.0, dy2, 0.0], [dx2, -2.0 * (dx2 + dy2), dx2], [0.0, dy2, 0.0]])
         * alpha
         * time_step
-        / (dx2 * dy2)
+        / (2.0*(dx2 * dy2))
     )
 
     if out is None:
