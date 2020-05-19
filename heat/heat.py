@@ -41,7 +41,7 @@ def solve_2d(temp, spacing, out=None, alpha=1.0, time_step=1.0):
         np.array([[0.0, dy2, 0.0], [dx2, -2.0 * (dx2 + dy2), dx2], [0.0, dy2, 0.0]])
         * alpha
         * time_step
-        / (2.0*(dx2 * dy2))
+        / (2.0 * (dx2 * dy2))
     )
 
     if out is None:
