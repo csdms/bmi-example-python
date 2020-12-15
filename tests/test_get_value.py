@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from numpy.testing import assert_array_almost_equal, assert_array_less
+import numpy as np
 
 from heat import BmiHeat
 
@@ -17,8 +18,11 @@ def test_get_value_copy():
     model = BmiHeat()
     model.initialize()
 
-    z0 = model.get_value("plate_surface__temperature")
-    z1 = model.get_value("plate_surface__temperature")
+    dest0 = np.empty(model.get_grid_size(0), dtype=float)
+    dest1 = np.empty(model.get_grid_size(0), dtype=float)
+
+    z0 = model.get_value("plate_surface__temperature", dest0)
+    z1 = model.get_value("plate_surface__temperature", dest1)
 
     assert z0 is not z1
     assert_array_almost_equal(z0, z1)
@@ -28,11 +32,13 @@ def test_get_value_pointer():
     model = BmiHeat()
     model.initialize()
 
+    dest1 = np.empty(model.get_grid_size(0), dtype=float)
+
     z0 = model.get_value_ptr("plate_surface__temperature")
-    z1 = model.get_value("plate_surface__temperature")
+    z1 = model.get_value("plate_surface__temperature", dest1)
 
     assert z0 is not z1
-    assert_array_almost_equal(z0, z1)
+    assert_array_almost_equal(z0.flatten(), z1)
 
     for _ in range(10):
         model.update()
@@ -44,8 +50,10 @@ def test_get_value_at_indices():
     model = BmiHeat()
     model.initialize()
 
+    dest = np.empty(3, dtype=float)
+
     z0 = model.get_value_ptr("plate_surface__temperature")
-    z1 = model.get_value_at_indices("plate_surface__temperature", [0, 2, 4])
+    z1 = model.get_value_at_indices("plate_surface__temperature", dest, [0, 2, 4])
 
     assert_array_almost_equal(z0.take((0, 2, 4)), z1)
 
