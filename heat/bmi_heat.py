@@ -2,7 +2,6 @@
 """Basic Model Interface implementation for the 2D heat model."""
 
 import numpy as np
-
 from bmipy import Bmi
 
 from .heat import Heat

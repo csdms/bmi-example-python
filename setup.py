@@ -27,5 +27,3 @@ setup(
     packages=find_packages(),
     cmdclass=versioneer.get_cmdclass(),
 )
-
-
