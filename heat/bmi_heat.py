@@ -199,28 +199,33 @@ class BmiHeat(Bmi):
         """
         return self._values[var_name]
 
-    def get_value(self, var_name):
+    def get_value(self, var_name, dest):
         """Copy of values.
 
         Parameters
         ----------
         var_name : str
             Name of variable as CSDMS Standard Name.
+        dest : ndarray
+            A numpy array into which to place the values.
 
         Returns
         -------
         array_like
             Copy of values.
         """
-        return self.get_value_ptr(var_name).copy()
+        dest[:] = self.get_value_ptr(var_name).flatten()
+        return dest
 
-    def get_value_at_indices(self, var_name, indices):
+    def get_value_at_indices(self, var_name, dest, indices):
         """Get values at particular indices.
 
         Parameters
         ----------
         var_name : str
             Name of variable as CSDMS Standard Name.
+        dest : ndarray
+            A numpy array into which to place the values.
         indices : array_like
             Array of indices.
 
@@ -229,7 +234,8 @@ class BmiHeat(Bmi):
         array_like
             Values at indices.
         """
-        return self.get_value_ptr(var_name).take(indices)
+        dest[:] = self.get_value_ptr(var_name).take(indices)
+        return dest
 
     def set_value(self, var_name, src):
         """Set model values.
