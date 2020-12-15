@@ -49,7 +49,7 @@ class BmiHeat(Bmi):
         self._var_units = {"plate_surface__temperature": "K"}
         self._var_loc = {"plate_surface__temperature": "node"}
         self._grids = {0: ["plate_surface__temperature"]}
-        self._grid_type = {0: "uniform_rectilinear_grid"}
+        self._grid_type = {0: "uniform_rectilinear"}
 
     def update(self):
         """Advance model by one time step."""
