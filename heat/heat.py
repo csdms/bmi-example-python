@@ -86,7 +86,7 @@ class Heat(object):
     ):
         """Create a new heat model.
 
-        Paramters
+        Parameters
         ---------
         shape : array_like, optional
             The shape of the solution grid as (*rows*, *columns*).
