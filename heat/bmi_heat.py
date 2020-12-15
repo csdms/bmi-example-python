@@ -167,7 +167,7 @@ class BmiHeat(Bmi):
         int
             Rank of grid.
         """
-        return len(self.get_grid_shape(grid_id))
+        return len(self._model.shape)
 
     def get_grid_size(self, grid_id):
         """Size of grid.
@@ -182,7 +182,7 @@ class BmiHeat(Bmi):
         int
             Size of grid.
         """
-        return np.prod(self.get_grid_shape(grid_id))
+        return int(np.prod(self._model.shape))
 
     def get_value_ptr(self, var_name):
         """Reference to values.
