@@ -279,18 +279,21 @@ class BmiHeat(Bmi):
         """Get names of output variables."""
         return self._output_var_names
 
-    def get_grid_shape(self, grid_id):
+    def get_grid_shape(self, grid_id, shape):
         """Number of rows and columns of uniform rectilinear grid."""
         var_name = self._grids[grid_id][0]
-        return self.get_value_ptr(var_name).shape
+        shape[:] = self.get_value_ptr(var_name).shape
+        return shape
 
-    def get_grid_spacing(self, grid_id):
+    def get_grid_spacing(self, grid_id, spacing):
         """Spacing of rows and columns of uniform rectilinear grid."""
-        return self._model.spacing
+        spacing[:] = self._model.spacing
+        return spacing
 
-    def get_grid_origin(self, grid_id):
+    def get_grid_origin(self, grid_id, origin):
         """Origin of uniform rectilinear grid."""
-        return self._model.origin
+        origin[:] = self._model.origin
+        return origin
 
     def get_grid_type(self, grid_id):
         """Type of grid."""
