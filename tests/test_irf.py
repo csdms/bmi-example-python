@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from io import StringIO
 
-from numpy.testing import assert_almost_equal, assert_array_less
+from numpy.testing import assert_almost_equal, assert_array_less, assert_array_equal
 import numpy as np
 import yaml
 
@@ -36,8 +36,9 @@ def test_initialize_defaults():
     model.initialize()
 
     assert_almost_equal(model.get_current_time(), 0.0)
-    assert_array_less(model.get_value("plate_surface__temperature"), 1.0)
-    assert_array_less(0.0, model.get_value("plate_surface__temperature"))
+    z0 = model.get_value_ptr("plate_surface__temperature")
+    assert_array_less(z0, 1.0)
+    assert_array_less(0.0, z0)
 
 
 def test_initialize_from_file_like():
@@ -45,7 +46,10 @@ def test_initialize_from_file_like():
     model = BmiHeat()
     model.initialize(config)
 
-    assert model.get_grid_shape(0) == (7, 5)
+    ndim = model.get_grid_rank(0)
+    shape = np.empty(ndim, dtype=np.int32)
+
+    assert_array_equal(model.get_grid_shape(0, shape), (7, 5))
 
 
 def test_initialize_from_file():
@@ -62,7 +66,10 @@ def test_initialize_from_file():
 
     os.remove(name)
 
-    assert model.get_grid_shape(0) == (7, 5)
+    ndim = model.get_grid_rank(0)
+    shape = np.empty(ndim, dtype=np.int32)
+
+    assert_array_equal(model.get_grid_shape(0, shape), (7, 5))
 
 
 def test_update():

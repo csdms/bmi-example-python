@@ -86,7 +86,7 @@ class Heat(object):
     ):
         """Create a new heat model.
 
-        Paramters
+        Parameters
         ---------
         shape : array_like, optional
             The shape of the solution grid as (*rows*, *columns*).
@@ -139,8 +139,13 @@ class Heat(object):
         self._time_step = time_step
 
     @property
-    def spacing(self):
+    def shape(self):
         """Shape of the model grid."""
+        return self._shape
+
+    @property
+    def spacing(self):
+        """Spacing between nodes of the model grid."""
         return self._spacing
 
     @property

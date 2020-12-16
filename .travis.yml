@@ -4,8 +4,8 @@ os:
 - osx
 env:
   matrix:
-  - CONDA_ENV=3.7
-  - CONDA_ENV=3.6
+  - CONDA_ENV=3.8
+  - CONDA_ENV=3.9
 sudo: false
 jobs:
   include:
@@ -49,10 +49,13 @@ before_install:
 - export PATH="$HOME/anaconda/bin:$PATH"
 - hash -r
 - conda config --set always_yes yes --set changeps1 no
-- conda create -n test_env python=$CONDA_ENV
+- conda create -n test_env python=$CONDA_ENV --file=requirements.txt -c conda-forge
 - source activate test_env
 install:
-- pip install . -r requirements.txt
+- pip install .
+before_script:
+- conda install --file=requirements-testing.txt -c conda-forge
 script:
 - pytest --cov=heat --cov-report=xml:$(pwd)/coverage.xml -vvv
+- bmi-test heat:BmiHeat --config-file=./examples/heat.yaml --root-dir=./examples -vvv
 after_success: coveralls

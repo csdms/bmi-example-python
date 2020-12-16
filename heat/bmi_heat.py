@@ -2,7 +2,6 @@
 """Basic Model Interface implementation for the 2D heat model."""
 
 import numpy as np
-
 from bmipy import Bmi
 
 from .heat import Heat
@@ -49,7 +48,7 @@ class BmiHeat(Bmi):
         self._var_units = {"plate_surface__temperature": "K"}
         self._var_loc = {"plate_surface__temperature": "node"}
         self._grids = {0: ["plate_surface__temperature"]}
-        self._grid_type = {0: "uniform_rectilinear_grid"}
+        self._grid_type = {0: "uniform_rectilinear"}
 
     def update(self):
         """Advance model by one time step."""
@@ -167,7 +166,7 @@ class BmiHeat(Bmi):
         int
             Rank of grid.
         """
-        return len(self.get_grid_shape(grid_id))
+        return len(self._model.shape)
 
     def get_grid_size(self, grid_id):
         """Size of grid.
@@ -182,7 +181,7 @@ class BmiHeat(Bmi):
         int
             Size of grid.
         """
-        return np.prod(self.get_grid_shape(grid_id))
+        return int(np.prod(self._model.shape))
 
     def get_value_ptr(self, var_name):
         """Reference to values.
@@ -199,28 +198,33 @@ class BmiHeat(Bmi):
         """
         return self._values[var_name]
 
-    def get_value(self, var_name):
+    def get_value(self, var_name, dest):
         """Copy of values.
 
         Parameters
         ----------
         var_name : str
             Name of variable as CSDMS Standard Name.
+        dest : ndarray
+            A numpy array into which to place the values.
 
         Returns
         -------
         array_like
             Copy of values.
         """
-        return self.get_value_ptr(var_name).copy()
+        dest[:] = self.get_value_ptr(var_name).flatten()
+        return dest
 
-    def get_value_at_indices(self, var_name, indices):
+    def get_value_at_indices(self, var_name, dest, indices):
         """Get values at particular indices.
 
         Parameters
         ----------
         var_name : str
             Name of variable as CSDMS Standard Name.
+        dest : ndarray
+            A numpy array into which to place the values.
         indices : array_like
             Array of indices.
 
@@ -229,7 +233,8 @@ class BmiHeat(Bmi):
         array_like
             Values at indices.
         """
-        return self.get_value_ptr(var_name).take(indices)
+        dest[:] = self.get_value_ptr(var_name).take(indices)
+        return dest
 
     def set_value(self, var_name, src):
         """Set model values.
@@ -279,18 +284,21 @@ class BmiHeat(Bmi):
         """Get names of output variables."""
         return self._output_var_names
 
-    def get_grid_shape(self, grid_id):
+    def get_grid_shape(self, grid_id, shape):
         """Number of rows and columns of uniform rectilinear grid."""
         var_name = self._grids[grid_id][0]
-        return self.get_value_ptr(var_name).shape
+        shape[:] = self.get_value_ptr(var_name).shape
+        return shape
 
-    def get_grid_spacing(self, grid_id):
+    def get_grid_spacing(self, grid_id, spacing):
         """Spacing of rows and columns of uniform rectilinear grid."""
-        return self._model.spacing
+        spacing[:] = self._model.spacing
+        return spacing
 
-    def get_grid_origin(self, grid_id):
+    def get_grid_origin(self, grid_id, origin):
         """Origin of uniform rectilinear grid."""
-        return self._model.origin
+        origin[:] = self._model.origin
+        return origin
 
     def get_grid_type(self, grid_id):
         """Type of grid."""

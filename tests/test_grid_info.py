@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-import pytest
+import numpy as np
+from numpy.testing import assert_array_equal
 
 from heat import BmiHeat
 
@@ -47,49 +48,34 @@ def test_grid_var_rank():
     assert model.get_grid_rank(grid_id) == 2
 
 
-def test_grid_var_rank_fail():
-    model = BmiHeat()
-    model.initialize()
-    with pytest.raises(KeyError):
-        model.get_grid_rank(invalid_grid_id)
-
-
 def test_grid_var_size():
     model = BmiHeat()
     model.initialize()
     assert model.get_grid_size(grid_id) == 200
 
 
-def test_grid_var_size_fail():
-    model = BmiHeat()
-    model.initialize()
-    with pytest.raises(KeyError):
-        model.get_grid_size(invalid_grid_id)
-
-
 def test_grid_var_shape():
     model = BmiHeat()
     model.initialize()
-    assert model.get_grid_shape(grid_id) == (10, 20)
-
-
-def test_grid_var_shape_fail():
-    model = BmiHeat()
-    model.initialize()
-    with pytest.raises(KeyError):
-        model.get_grid_shape(invalid_grid_id)
+    ndim = model.get_grid_rank(0)
+    shape = np.empty(ndim, dtype=np.int32)
+    assert_array_equal(model.get_grid_shape(grid_id, shape), (10, 20))
 
 
 def test_grid_var_spacing():
     model = BmiHeat()
     model.initialize()
-    assert model.get_grid_spacing(grid_id) == (1.0, 1.0)
+    ndim = model.get_grid_rank(0)
+    spacing = np.empty(ndim, dtype=np.int32)
+    assert_array_equal(model.get_grid_spacing(grid_id, spacing), (1.0, 1.0))
 
 
 def test_grid_var_origin():
     model = BmiHeat()
     model.initialize()
-    assert model.get_grid_origin(grid_id) == (0.0, 0.0)
+    ndim = model.get_grid_rank(0)
+    origin = np.empty(ndim, dtype=np.int32)
+    assert_array_equal(model.get_grid_origin(grid_id, origin), (0.0, 0.0))
 
 
 def test_grid_var_type():
@@ -101,4 +87,4 @@ def test_grid_var_type():
 def test_grid_type():
     model = BmiHeat()
     model.initialize()
-    assert model.get_grid_type(grid_id) == "uniform_rectilinear_grid"
+    assert model.get_grid_type(grid_id) == "uniform_rectilinear"
