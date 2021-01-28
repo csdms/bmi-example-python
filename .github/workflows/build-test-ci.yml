@@ -45,9 +45,9 @@ jobs:
           bmi-test heat:BmiHeat --config-file=./examples/heat.yaml --root-dir=./examples -vvv
 
       - name: Coverage
+        uses: coverallsapp/github-action@master
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-        run: coveralls
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   lint:
     runs-on: ubuntu-latest
