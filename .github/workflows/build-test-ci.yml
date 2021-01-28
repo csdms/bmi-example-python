@@ -45,8 +45,8 @@ jobs:
           bmi-test heat:BmiHeat --config-file=./examples/heat.yaml --root-dir=./examples -vvv
 
       - name: Coveralls
-        uses: AndreMiras/coveralls-python-action@v20201129
         if: ${{ matrix.os }} == "ubuntu-latest" && ${{ matrix.python-version }} == "3.8"
+        uses: AndreMiras/coveralls-python-action@v20201129
 
   lint:
     runs-on: ubuntu-latest
