@@ -2,8 +2,8 @@
         :target: https://bmi.readthedocs.io/
         :alt: Basic Model Interface
 
-.. image:: https://travis-ci.org/csdms/bmi-example-python.svg?branch=master
-    :target: https://travis-ci.org/csdms/bmi-example-python
+.. image:: https://github.com/csdms/bmi-example-python/workflows/Build/Test%20CI/badge.svg
+    :target: https://github.com/csdms/bmi-example-python/actions?query=workflow%3A%22Build%2FTest+CI%22
 
 .. image:: https://coveralls.io/repos/csdms/bmi-example-python/badge.png?branch=master
     :target: https://coveralls.io/r/csdms/bmi-example-python?branch=master
