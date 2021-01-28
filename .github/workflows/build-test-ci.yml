@@ -3,7 +3,7 @@ name: Build/Test CI
 on: [push, pull_request]
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ${{ matrix.os }}
 
     defaults:
@@ -44,10 +44,8 @@ jobs:
           pytest --cov=heat --cov-report=xml:./coverage.xml -vvv
           bmi-test heat:BmiHeat --config-file=./examples/heat.yaml --root-dir=./examples -vvv
 
-      - name: Coverage
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Coveralls
+        uses: AndreMiras/coveralls-python-action@develop
 
   lint:
     runs-on: ubuntu-latest
