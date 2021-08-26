@@ -247,7 +247,7 @@ class BmiHeat(Bmi):
             Array of new values.
         """
         val = self.get_value_ptr(var_name)
-        val[:] = src
+        val[:] = src.reshape(val.shape)
 
     def set_value_at_indices(self, name, inds, src):
         """Set model values at particular indices.
