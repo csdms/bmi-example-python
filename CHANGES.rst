@@ -1,7 +1,7 @@
 Changelog for bmi-example-python
 ================================
 
-2.1 (unreleased)
+2.1 (2021-08-26)
 ----------------
 
 - Change weight of coefficient in heat equation (#11)
