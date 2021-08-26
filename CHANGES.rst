@@ -4,7 +4,7 @@ Changelog for bmi-example-python
 2.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Implement the *get_grid_node_count* function, needed by pymt (#20)
 
 
 2.1 (2021-08-26)
