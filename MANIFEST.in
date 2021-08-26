@@ -1,0 +1,6 @@
+recursive-include main_directory *
+include LICENSE
+include *.rst
+include *.txt
+include Makefile
+global-exclude *.pyc
