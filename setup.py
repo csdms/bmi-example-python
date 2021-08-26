@@ -1,12 +1,10 @@
 #! /usr/bin/env python
 from setuptools import setup, find_packages
 
-import versioneer
-
 
 setup(
     name="bmi-heat",
-    version=versioneer.get_version(),
+    version="2.1.dev0",
     author="Eric Hutton",
     author_email="eric.hutton@colorado.edu",
     description="BMI Python example",
@@ -25,5 +23,4 @@ setup(
     ],
     install_requires=["bmipy", "pyyaml", "scipy"],
     packages=find_packages(),
-    cmdclass=versioneer.get_cmdclass(),
 )

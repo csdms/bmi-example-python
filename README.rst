@@ -8,9 +8,6 @@
 .. image:: https://coveralls.io/repos/csdms/bmi-example-python/badge.png?branch=master
     :target: https://coveralls.io/r/csdms/bmi-example-python?branch=master
 
-.. image:: https://readthedocs.org/projects/bmi-forum/badge/?version=latest
-    :target: https://readthedocs.org/projects/bmi-forum/?badge=latest
-
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/csdms/bmi
 
