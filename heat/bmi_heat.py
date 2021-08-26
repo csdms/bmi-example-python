@@ -334,7 +334,19 @@ class BmiHeat(Bmi):
         raise NotImplementedError("get_grid_face_nodes")
 
     def get_grid_node_count(self, grid):
-        raise NotImplementedError("get_grid_node_count")
+        """Number of grid nodes.
+
+        Parameters
+        ----------
+        grid : int
+            Identifier of a grid.
+
+        Returns
+        -------
+        int
+            Size of grid.
+        """
+        return self.get_grid_size(grid)
 
     def get_grid_nodes_per_face(self, grid, nodes_per_face):
         raise NotImplementedError("get_grid_nodes_per_face")
