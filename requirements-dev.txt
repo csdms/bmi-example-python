@@ -1,0 +1,6 @@
+make
+build
+twine
+flake8
+black
+isort
