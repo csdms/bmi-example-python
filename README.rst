@@ -11,9 +11,6 @@
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/csdms/bmi
 
-.. image:: https://api.codacy.com/project/badge/Grade/e0252b85fefc402ea4cc5e7949219a94
-    :target: https://www.codacy.com/app/mcflugen/bmi-example-python?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=csdms/bmi-example-python&amp;utm_campaign=Badge_Grade
-
 bmi-example-python
 ==================
 
