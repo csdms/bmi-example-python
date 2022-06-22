@@ -4,3 +4,4 @@ include *.rst
 include *.txt
 include Makefile
 global-exclude *.pyc
+recursive-exclude examples *
