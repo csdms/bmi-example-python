@@ -48,7 +48,7 @@ This example can be built and installed on Linux, macOS, and Windows.
 * Python 3
 * The Python BMI bindings. Follow the build and install directions
   given in the `README`_ in that repository. You can choose to install
-  them from source, or through `pip`` or `conda`.
+  them from source, or through `pip` or `conda`.
 
 To build/install this example from source,
 using the current Python BMI version, run
@@ -61,7 +61,7 @@ To run the tests,
 
 .. code-block:: bash
 
-  $ pip install -r requirements-dev.txt -r requirements-testing.txt
+  $ pip install -r requirements-testing.txt
   $ make test
 
 
