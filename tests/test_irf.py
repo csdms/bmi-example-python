@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 from io import StringIO
 
-from numpy.testing import assert_almost_equal, assert_array_less, assert_array_equal
 import numpy as np
 import yaml
-
+from numpy.testing import assert_almost_equal, assert_array_equal, assert_array_less
 from six.moves import range
+
 from heat import BmiHeat
 
 
@@ -54,8 +54,9 @@ def test_initialize_from_file_like():
 
 def test_initialize_from_file():
     import os
-    import yaml
     import tempfile
+
+    import yaml
 
     with tempfile.NamedTemporaryFile("w", delete=False) as fp:
         fp.write(yaml.dump({"shape": [7, 5]}))
