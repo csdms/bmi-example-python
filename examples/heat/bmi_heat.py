@@ -2,6 +2,7 @@
 """Basic Model Interface implementation for the 2D heat model."""
 
 import numpy as np
+import json
 from bmipy import Bmi
 
 from .heat import Heat
@@ -14,6 +15,7 @@ class BmiHeat(Bmi):
     _name = "The 2D Heat Equation"
     _input_var_names = ("plate_surface__temperature",)
     _output_var_names = ("plate_surface__temperature",)
+    _state_var_names = ("plate_surface__temperature",)
 
     def __init__(self):
         """Create a BmiHeat model that is ready for initialization."""
@@ -236,6 +238,19 @@ class BmiHeat(Bmi):
         dest[:] = self.get_value_ptr(var_name).take(indices)
         return dest
 
+    def get_state(self):
+        outDict = {'time' : self.get_current_time()}
+        for var in self._state_var_names:
+            varValue = []
+            self.get_value(var, varValue)
+            outDict[var] = varValue
+        
+        return json.dumps(outDict, indent = 4)
+
+    def get_state_ptr(self, state_ptr):
+        return "not implemented"
+
+        
     def set_value(self, var_name, src):
         """Set model values.
 
@@ -263,6 +278,18 @@ class BmiHeat(Bmi):
         """
         val = self.get_value_ptr(name)
         val.flat[inds] = src
+
+    def set_state(self, state):
+        inDict = json.loads(state)
+        for key in inDict:
+            if key == 'time':
+                self._time = inDict[key]
+            else:
+                self.set_value(key,inDict[key])
+        
+    
+    def set_state_ptr(self, state_ptr):
+        return "not implemented"
 
     def get_component_name(self):
         """Name of the component."""
