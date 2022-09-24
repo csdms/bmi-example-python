@@ -285,7 +285,7 @@ class BmiHeat(Bmi):
             if key == 'time':
                 self._time = inDict[key]
             else:
-                self.set_value(key,inDict[key])
+                self.set_value(key,np.array(inDict[key]))
         
     
     def set_state_ptr(self, state_ptr):
