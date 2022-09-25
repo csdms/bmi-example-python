@@ -242,8 +242,14 @@ class BmiHeat(Bmi):
         outDict = {'time' : self.get_current_time()}
         for var in self._state_var_names:
             varValue = []
+            varType = []
+            varSize = []
             self.get_value(var, varValue)
-            outDict[var] = varValue
+            outDict[var] = {'value': varValue, 
+                            'type': self.get_var_type(var),
+                            'itemsize': self.get_var_itemsize(var),
+                            'nbytes': self.get_var_nbytes(var)}
+
         
         return json.dumps(outDict, indent = 4)
 
@@ -285,7 +291,9 @@ class BmiHeat(Bmi):
             if key == 'time':
                 self._time = inDict[key]
             else:
-                self.set_value(key,np.array(inDict[key]))
+                # we don't have to check for type, since values are 
+                # always numpy arrays in BMI-Python
+                self.set_value(key,np.array(inDict[key]['value']))
         
     
     def set_state_ptr(self, state_ptr):
