@@ -289,7 +289,7 @@ class BmiHeat(Bmi):
         inDict = json.loads(state)
         for key in inDict:
             if key == 'time':
-                self._time = inDict[key]
+                self._model._time = inDict[key]
             else:
                 # we don't have to check for type, since values are 
                 # always numpy arrays in BMI-Python
