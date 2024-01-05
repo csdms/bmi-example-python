@@ -1,4 +1,4 @@
-name: Build/Test CI
+name: Test
 
 on: [push, pull_request]
 
@@ -20,17 +20,16 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
-          auto-update-conda: true
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
           python-version: ${{ matrix.python-version }}
-          channels: conda-forge
-          channel-priority: true
 
       - name: Show conda installation info
         run: |
@@ -39,15 +38,10 @@ jobs:
 
       - name: Install requirements
         run: |
-          conda install mamba
-          mamba install --file=requirements.txt
-          mamba list
+          mamba install --file=requirements.txt --file=requirements-testing.txt
 
       - name: Build and install package
         run: pip install -e .
-
-      - name: Install testing dependencies
-        run: mamba install --file=requirements-testing.txt
 
       - name: Test
         run: |
@@ -55,5 +49,5 @@ jobs:
           bmi-test heat:BmiHeat --config-file=./examples/heat.yaml --root-dir=./examples -vvv
 
       - name: Coveralls
-        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.8'
-        uses: AndreMiras/coveralls-python-action@v20201129
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+        uses: AndreMiras/coveralls-python-action@develop

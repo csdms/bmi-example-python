@@ -4,7 +4,12 @@ Changelog for bmi-example-python
 2.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Build and test with Python 3.12 (#29)
+- Use random subpackage from numpy instead of scipy (#26)
+- Add example notebooks (#25)
+- Move static project metadata to pyproject.toml (#23)
+- Bundle maintenance tasks (#22)
+- Use declarative setuptools configuration setup.cfg (#21)
 
 
 2.1.1 (2021-08-26)
