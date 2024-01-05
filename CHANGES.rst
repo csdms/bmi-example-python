@@ -1,6 +1,12 @@
 Changelog for bmi-example-python
 ================================
 
+2.1.3 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
 2.1.2 (2024-01-05)
 ------------------
 
