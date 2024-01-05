@@ -54,7 +54,6 @@ testing = [
     "flake8",
     "pytest",
     "pytest-cov",
-    "six",
     "bmi-tester",
 ]
 

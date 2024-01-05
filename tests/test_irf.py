@@ -4,7 +4,6 @@ from io import StringIO
 import numpy as np
 import yaml
 from numpy.testing import assert_almost_equal, assert_array_equal, assert_array_less
-from six.moves import range
 
 from heat import BmiHeat
 
