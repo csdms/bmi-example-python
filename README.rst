@@ -69,5 +69,5 @@ To run the tests,
 
 
 .. _Python bindings: https://github.com/csdms/bmi-python
-.. _Basic Model Interface: https://bmi-spec.readthedocs.io
+.. _Basic Model Interface: https://bmi.readthedocs.io
 .. _README: https://github.com/csdms/bmi-python/blob/master/README.rst
