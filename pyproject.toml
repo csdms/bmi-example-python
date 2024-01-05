@@ -51,9 +51,11 @@ Changelog = "https://github.com/csdms/bmi-example-python/blob/master/CHANGES.rst
 [project.optional-dependencies]
 testing = [
     "coveralls",
-    "ruff",
     "pytest",
     "pytest-cov",
+    "black",
+    "isort",
+    "ruff",
     "bmi-tester",
 ]
 
