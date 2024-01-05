@@ -2,14 +2,17 @@
         :target: https://bmi.readthedocs.io/
         :alt: Basic Model Interface
 
-.. image:: https://github.com/csdms/bmi-example-python/workflows/Build/Test%20CI/badge.svg
-    :target: https://github.com/csdms/bmi-example-python/actions?query=workflow%3A%22Build%2FTest+CI%22
+.. image:: https://github.com/csdms/bmi-example-python/actions/workflows/test.yml/badge.svg
+    :target: https://github.com/csdms/bmi-example-python/actions/workflows/test.yml
+    :alt: CI status
 
 .. image:: https://coveralls.io/repos/csdms/bmi-example-python/badge.png?branch=master
     :target: https://coveralls.io/r/csdms/bmi-example-python?branch=master
+    :alt: Coverage status
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/csdms/bmi
+    :alt: Black
 
 bmi-example-python
 ==================
