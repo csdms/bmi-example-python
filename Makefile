@@ -51,8 +51,8 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
 
-lint: ## check style with flake8
-	flake8 heat tests
+lint: ## check style with ruff
+	ruff check . --fix
 
 pretty:
 	find heat -name '*.py' | xargs isort
