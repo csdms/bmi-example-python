@@ -32,11 +32,12 @@ jobs:
 
       - name: Show conda installation info
         run: |
+          const install --file=requirements-testing.txt
           conda info
           conda list
 
       - name: Build and install package
-        run: pip install -e .[testing]
+        run: pip install .
 
       - name: Test
         run: |
