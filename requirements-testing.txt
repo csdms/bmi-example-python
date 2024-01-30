@@ -4,4 +4,3 @@ coveralls
 isort
 pytest
 pytest-cov
-ruff
