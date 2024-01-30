@@ -4,7 +4,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 from heat.bmi_geo import BmiGeo
-from heat.heat import Heat
+from heat.bmi_heat import BmiHeat
 
 
 class BmiHeatGeo(BmiGeo):
