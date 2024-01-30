@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
@@ -36,12 +36,8 @@ jobs:
           conda info
           conda list
 
-      - name: Install requirements
-        run: |
-          mamba install --file=requirements.txt --file=requirements-testing.txt
-
       - name: Build and install package
-        run: pip install -e .
+        run: pip install -e .[testing]
 
       - name: Test
         run: |
