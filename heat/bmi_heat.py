@@ -15,6 +15,9 @@ class BmiHeat(Bmi):
     _input_var_names = ("plate_surface__temperature",)
     _output_var_names = ("plate_surface__temperature",)
 
+    def get_extensions(self):
+        return ("bmi_geospatial@heat.bmi_heat_geo:BmiHeatGeo",)
+
     def __init__(self):
         """Create a BmiHeat model that is ready for initialization."""
         self._model = None
