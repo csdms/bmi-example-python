@@ -44,7 +44,8 @@ jobs:
       - name: Run bmi-test
         run: |
           pip install model-metadata
-          conda install gimli.units pymt_hydrotrend -c conda-forge
+          conda install gimli.units -c conda-forge
+          pip install bmi-tester
           pip install .
           bmi-test heat:BmiHeat --config-file=${GITHUB_WORKSPACE}/examples/heat.yaml --root-dir=examples -vvv
 
