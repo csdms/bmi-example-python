@@ -39,7 +39,7 @@ jobs:
       - name: Test
         run: |
           pip install nox
-          nox -s test --force-pythons="${{ matrix.python-version }}"
+          nox -s test
 
       - name: Run bmi-test
         run: |
