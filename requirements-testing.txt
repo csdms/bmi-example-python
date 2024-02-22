@@ -1,7 +1,4 @@
+bmi-tester>=0.5.7
 coveralls
 pytest
 pytest-cov
-black
-isort
-ruff
-bmi-tester
