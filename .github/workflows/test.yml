@@ -25,16 +25,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - uses: conda-incubator/setup-miniconda@v3
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          miniforge-version: latest
           python-version: ${{ matrix.python-version }}
-
-      - name: Show conda installation info
-        run: |
-          conda info
-          conda list
 
       - name: Test
         run: |
