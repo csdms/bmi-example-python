@@ -54,7 +54,6 @@ def solve_2d(temp, spacing, out=None, alpha=1.0, time_step=1.0):
 
 
 class Heat(object):
-
     """Solve the Heat equation on a grid.
 
     Examples
