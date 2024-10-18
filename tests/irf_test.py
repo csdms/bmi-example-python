@@ -3,8 +3,9 @@ from io import StringIO
 
 import numpy as np
 import yaml
-from numpy.testing import (assert_almost_equal, assert_array_equal,
-                           assert_array_less)
+from numpy.testing import assert_almost_equal
+from numpy.testing import assert_array_equal
+from numpy.testing import assert_array_less
 
 from heat import BmiHeat
 
