@@ -59,4 +59,6 @@ repos:
   hooks:
   - id: mypy
     language_version: python3.12
-    files: src/.*\.py$
+    files: heat/.*\.py$
+    additional_dependencies:
+      - types-PyYAML
