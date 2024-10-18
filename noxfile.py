@@ -83,7 +83,7 @@ def clean(session):
 
             shutil.rmtree("build", ignore_errors=True)
             shutil.rmtree("dist", ignore_errors=True)
-            shutil.rmtree(f"src/{PROJECT}.egg-info", ignore_errors=True)
+            shutil.rmtree(f"{PROJECT}.egg-info", ignore_errors=True)
             shutil.rmtree(".pytest_cache", ignore_errors=True)
             shutil.rmtree(".venv", ignore_errors=True)
 
