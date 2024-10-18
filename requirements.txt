@@ -1,4 +1,4 @@
-numpy
-scipy
-pyyaml
 bmipy
+numpy
+pyyaml
+scipy
