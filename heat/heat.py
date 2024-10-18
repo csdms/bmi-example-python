@@ -10,12 +10,12 @@ from scipy import ndimage
 
 
 def solve_2d(
-    temp: NDArray[np.float_],
+    temp: NDArray[np.float64],
     spacing: tuple[float, ...],
-    out: NDArray[np.float_] | None = None,
+    out: NDArray[np.float64] | None = None,
     alpha: float = 1.0,
     time_step: float = 1.0,
-) -> NDArray[np.float_]:
+) -> NDArray[np.float64]:
     """Solve the 2D Heat Equation on a uniform mesh.
 
     Parameters
@@ -127,7 +127,7 @@ class Heat:
         return self._time
 
     @property
-    def temperature(self) -> NDArray[np.float_]:
+    def temperature(self) -> NDArray[np.float64]:
         """Temperature of the plate."""
         return self._temperature
 

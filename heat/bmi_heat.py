@@ -300,15 +300,15 @@ class BmiHeat(Bmi):
         return shape
 
     def get_grid_spacing(
-        self, grid_id: int, spacing: NDArray[np.float_]
-    ) -> NDArray[np.float_]:
+        self, grid_id: int, spacing: NDArray[np.float64]
+    ) -> NDArray[np.float64]:
         """Spacing of rows and columns of uniform rectilinear grid."""
         spacing[:] = self._model.spacing
         return spacing
 
     def get_grid_origin(
-        self, grid_id: int, origin: NDArray[np.float_]
-    ) -> NDArray[np.float_]:
+        self, grid_id: int, origin: NDArray[np.float64]
+    ) -> NDArray[np.float64]:
         """Origin of uniform rectilinear grid."""
         origin[:] = self._model.origin
         return origin
@@ -369,11 +369,11 @@ class BmiHeat(Bmi):
     def get_grid_face_edges(self, grid: int, face_edges: NDArray[np.int_]) -> None:
         raise NotImplementedError("get_grid_face_edges")
 
-    def get_grid_x(self, grid: int, x: NDArray[np.float_]) -> None:
+    def get_grid_x(self, grid: int, x: NDArray[np.float64]) -> None:
         raise NotImplementedError("get_grid_x")
 
-    def get_grid_y(self, grid: int, y: NDArray[np.float_]) -> None:
+    def get_grid_y(self, grid: int, y: NDArray[np.float64]) -> None:
         raise NotImplementedError("get_grid_y")
 
-    def get_grid_z(self, grid: int, z: NDArray[np.float_]) -> None:
+    def get_grid_z(self, grid: int, z: NDArray[np.float64]) -> None:
         raise NotImplementedError("get_grid_z")
