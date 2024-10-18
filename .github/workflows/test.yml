@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
@@ -36,17 +36,13 @@ jobs:
           conda info
           conda list
 
-      - name: Install requirements
-        run: |
-          mamba install --file=requirements.txt --file=requirements-testing.txt
-
       - name: Build and install package
-        run: pip install -e .
+        run: pip install -e .[testing]
 
       - name: Test
         run: |
           pytest --cov=heat --cov-report=xml:./coverage.xml -vvv
-          bmi-test heat:BmiHeat --config-file=./examples/heat.yaml --root-dir=./examples -vvv
+          bmi-test heat:BmiHeat --config-file=${GITHUB_WORKSPACE}/examples/heat.yaml --root-dir=examples -vvv
 
       - name: Coveralls
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'

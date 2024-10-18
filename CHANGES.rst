@@ -31,7 +31,7 @@ Changelog for bmi-example-python
 - Match bmipy (#12)
 - Use GitHub Actions for continuous integration (#15)
 - Dimensionalize flattened values passed into set_value (#17)
-- Update CI (#18) 
+- Update CI (#18)
 - Switch from versioneer to zest.releaser
 - Remove obsolete docs directory
 
@@ -46,4 +46,3 @@ Changelog for bmi-example-python
 ------------------
 
 - Initial release
-
