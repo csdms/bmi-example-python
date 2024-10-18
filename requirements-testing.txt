@@ -1,7 +1,7 @@
+black
+bmi-tester
 coveralls
+isort
 pytest
 pytest-cov
-black
-isort
 ruff
-bmi-tester
