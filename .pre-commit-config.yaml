@@ -46,10 +46,20 @@ repos:
     - id: forbid-new-submodules
     - id: mixed-line-ending
     - id: trailing-whitespace
+    - id: name-tests-test
+    - id: file-contents-sorter
+      files: |
+        (?x)^(
+          .*requirements(-\w+)?.(in|txt)|
+          requirements/.*\.txt|
+          .gitignore
+        )
 
 - repo: https://github.com/pre-commit/mirrors-mypy
   rev: v1.8.0
   hooks:
   - id: mypy
     language_version: python3.12
-    files: src/.*\.py$
+    files: heat/.*\.py$
+    additional_dependencies:
+      - types-PyYAML
