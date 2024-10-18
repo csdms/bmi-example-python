@@ -39,7 +39,7 @@ class BmiHeat(Bmi):
         if filename is None:
             self._model = Heat()
         elif isinstance(filename, str):
-            with open(filename, "r") as file_obj:
+            with open(filename) as file_obj:
                 self._model = Heat.from_file_like(file_obj.read())
         else:
             self._model = Heat.from_file_like(filename)
