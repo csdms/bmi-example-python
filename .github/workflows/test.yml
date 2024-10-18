@@ -35,12 +35,8 @@ jobs:
           conda info
           conda list
 
-      - name: Install requirements
-        run: |
-          conda install --file=requirements.txt --file=requirements-testing.txt
-
       - name: Build and install package
-        run: pip install -e .
+        run: pip install -e .[testing]
 
       - name: Test
         run: |

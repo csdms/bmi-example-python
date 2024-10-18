@@ -1,0 +1,65 @@
+repos:
+- repo: https://github.com/psf/black
+  rev: 23.12.1
+  hooks:
+  - id: black
+    name: black
+    description: "Black: The uncompromising Python code formatter"
+    entry: black
+    language: python
+    language_version: python3
+    minimum_pre_commit_version: 2.9.2
+    require_serial: true
+    types_or: [python, pyi]
+
+- repo: https://github.com/pycqa/flake8
+  rev: 7.0.0
+  hooks:
+  - id: flake8
+    additional_dependencies:
+    - flake8-bugbear
+    - flake8-comprehensions
+    - flake8-simplify
+    args: [--max-line-length=88]
+
+- repo: https://github.com/asottile/pyupgrade
+  rev: v3.15.0
+  hooks:
+  - id: pyupgrade
+    args: [--py310-plus]
+
+- repo: https://github.com/pycqa/isort
+  rev: 5.13.2
+  hooks:
+  - id: isort
+
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.5.0
+  hooks:
+    - id: check-builtin-literals
+    - id: check-added-large-files
+    - id: check-case-conflict
+    - id: check-toml
+    - id: check-yaml
+    - id: debug-statements
+    - id: end-of-file-fixer
+    - id: forbid-new-submodules
+    - id: mixed-line-ending
+    - id: trailing-whitespace
+    - id: name-tests-test
+    - id: file-contents-sorter
+      files: |
+        (?x)^(
+          .*requirements(-\w+)?.(in|txt)|
+          requirements/.*\.txt|
+          .gitignore
+        )
+
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v1.8.0
+  hooks:
+  - id: mypy
+    language_version: python3.12
+    files: heat/.*\.py$
+    additional_dependencies:
+      - types-PyYAML
