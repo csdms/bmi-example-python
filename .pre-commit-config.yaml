@@ -46,7 +46,6 @@ repos:
     - id: forbid-new-submodules
     - id: mixed-line-ending
     - id: trailing-whitespace
-    - id: name-tests-test
     - id: file-contents-sorter
       files: |
         (?x)^(
