@@ -37,8 +37,7 @@ jobs:
 
       - name: Run bmi-test
         run: |
-          pip install model-metadata gimli.units bmi-tester
-          pip install .
+          pip install .[testing] gimli.units
           bmi-test heat:BmiHeat --config-file=${GITHUB_WORKSPACE}/examples/heat.yaml --root-dir=examples -vvv
 
       - name: Coveralls
