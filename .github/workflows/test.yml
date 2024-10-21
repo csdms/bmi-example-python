@@ -31,7 +31,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Build and install package
-        run: pip install -e .[testing]
+        run: |
+          pip install setuptools==75.1.0
+          pip install -e .[testing]
 
       - name: Test
         run: |
