@@ -1,4 +1,5 @@
 """The 2D heat model."""
+
 from __future__ import annotations
 
 from io import TextIOBase
@@ -64,7 +65,6 @@ def solve_2d(
 
 
 class Heat:
-
     """Solve the Heat equation on a grid.
 
     Examples
