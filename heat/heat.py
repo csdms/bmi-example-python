@@ -1,11 +1,21 @@
 """The 2D heat model."""
+from __future__ import annotations
+
+from io import TextIOBase
 
 import numpy as np
 import yaml
+from numpy.typing import NDArray
 from scipy import ndimage
 
 
-def solve_2d(temp, spacing, out=None, alpha=1.0, time_step=1.0):
+def solve_2d(
+    temp: NDArray[np.float64],
+    spacing: tuple[float, ...],
+    out: NDArray[np.float64] | None = None,
+    alpha: float = 1.0,
+    time_step: float = 1.0,
+) -> NDArray[np.float64]:
     """Solve the 2D Heat Equation on a uniform mesh.
 
     Parameters
@@ -82,8 +92,12 @@ class Heat:
     """
 
     def __init__(
-        self, shape=(10, 20), spacing=(1.0, 1.0), origin=(0.0, 0.0), alpha=1.0
-    ):
+        self,
+        shape: tuple[int, int] = (10, 20),
+        spacing: tuple[float, float] = (1.0, 1.0),
+        origin: tuple[float, float] = (0.0, 0.0),
+        alpha: float = 1.0,
+    ) -> None:
         """Create a new heat model.
 
         Parameters
@@ -108,17 +122,17 @@ class Heat:
         self._next_temperature = np.empty_like(self._temperature)
 
     @property
-    def time(self):
+    def time(self) -> float:
         """Current model time."""
         return self._time
 
     @property
-    def temperature(self):
+    def temperature(self) -> NDArray[np.float64]:
         """Temperature of the plate."""
         return self._temperature
 
     @temperature.setter
-    def temperature(self, new_temp):
+    def temperature(self, new_temp: float) -> None:
         """Set the temperature of the plate.
 
         Parameters
@@ -129,32 +143,32 @@ class Heat:
         self._temperature[:] = new_temp
 
     @property
-    def time_step(self):
+    def time_step(self) -> float:
         """Model time step."""
         return self._time_step
 
     @time_step.setter
-    def time_step(self, time_step):
+    def time_step(self, time_step: float) -> None:
         """Set model time step."""
         self._time_step = time_step
 
     @property
-    def shape(self):
+    def shape(self) -> tuple[int, int]:
         """Shape of the model grid."""
         return self._shape
 
     @property
-    def spacing(self):
+    def spacing(self) -> tuple[float, float]:
         """Spacing between nodes of the model grid."""
         return self._spacing
 
     @property
-    def origin(self):
+    def origin(self) -> tuple[float, float]:
         """Origin coordinates of the model grid."""
         return self._origin
 
     @classmethod
-    def from_file_like(cls, file_like):
+    def from_file_like(cls: type[Heat], file_like: TextIOBase) -> Heat:
         """Create a Heat object from a file-like object.
 
         Parameters
@@ -170,7 +184,7 @@ class Heat:
         config = yaml.safe_load(file_like)
         return cls(**config)
 
-    def advance_in_time(self):
+    def advance_in_time(self) -> None:
         """Calculate new temperatures for the next time step."""
         solve_2d(
             self._temperature,
