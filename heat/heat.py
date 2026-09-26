@@ -11,23 +11,23 @@ from scipy import ndimage
 
 
 def solve_2d(
-    temp: NDArray[np.float64],
+    temperature: NDArray[np.float64],
     spacing: tuple[float, ...],
     out: NDArray[np.float64] | None = None,
-    alpha: float = 1.0,
+    thermal_diffusivity: float = 1.0,
     time_step: float = 1.0,
 ) -> NDArray[np.float64]:
     """Solve the 2D Heat Equation on a uniform mesh.
 
     Parameters
     ----------
-    temp : ndarray
+    temperature : ndarray
         Temperature.
     spacing : array_like
         Grid spacing in the row and column directions.
     out : ndarray (optional)
         Output array.
-    alpha : float (optional)
+    thermal_diffusivity : float (optional)
         Thermal diffusivity.
     time_step : float (optional)
         Time step.
@@ -42,7 +42,7 @@ def solve_2d(
     >>> from heat import solve_2d
     >>> z0 = np.zeros((3, 3))
     >>> z0[1:-1, 1:-1] = 1.
-    >>> solve_2d(z0, (1., 1.), alpha=.25)
+    >>> solve_2d(z0, (1., 1.), thermal_diffusivity=.25)
     array([[0. , 0. , 0. ],
            [0. , 0.5, 0. ],
            [0. , 0. , 0. ]])
@@ -50,18 +50,18 @@ def solve_2d(
     dy2, dx2 = spacing[0] ** 2, spacing[1] ** 2
     stencil = (
         np.array([[0.0, dy2, 0.0], [dx2, -2.0 * (dx2 + dy2), dx2], [0.0, dy2, 0.0]])
-        * alpha
+        * thermal_diffusivity
         * time_step
         / (2.0 * (dx2 * dy2))
     )
 
     if out is None:
-        out = np.empty_like(temp)
+        out = np.empty_like(temperature)
 
-    ndimage.convolve(temp, stencil, output=out)
+    ndimage.convolve(temperature, stencil, output=out)
     out[(0, -1), :] = 0.0
     out[:, (0, -1)] = 0.0
-    return np.add(temp, out, out=out)
+    return np.add(temperature, out, out=out)
 
 
 class Heat:
@@ -83,10 +83,10 @@ class Heat:
     >>> heat.temperature[2, 2] = 1.
     >>> heat.advance_in_time()
 
-    >>> heat = Heat(alpha=.5)
+    >>> heat = Heat(thermal_diffusivity=.5)
     >>> heat.time_step
     0.5
-    >>> heat = Heat(alpha=.5, spacing=(2., 3.))
+    >>> heat = Heat(thermal_diffusivity=.5, spacing=(2., 3.))
     >>> heat.time_step
     2.0
     """
@@ -96,7 +96,7 @@ class Heat:
         shape: tuple[int, int] = (10, 20),
         spacing: tuple[float, float] = (1.0, 1.0),
         origin: tuple[float, float] = (0.0, 0.0),
-        alpha: float = 1.0,
+        thermal_diffusivity: float = 1.0,
     ) -> None:
         """Create a new heat model.
 
@@ -108,15 +108,15 @@ class Heat:
             Spacing of grid rows and columns.
         origin : array_like, optional
             Coordinates of lower left corner of grid.
-        alpha : float
-            Alpha parameter in the heat equation.
+        thermal_diffusivity : float
+            Alpha parameter in the heat equation (thermal diffusivity).
         """
         self._shape = shape
         self._spacing = spacing
         self._origin = origin
         self._time = 0.0
-        self._alpha = alpha
-        self._time_step = min(spacing) ** 2 / (4.0 * self._alpha)
+        self._thermal_diffusivity = thermal_diffusivity
+        self._time_step = min(spacing) ** 2 / (4.0 * self._thermal_diffusivity)
 
         self._temperature = np.random.random(self._shape)
         self._next_temperature = np.empty_like(self._temperature)
@@ -132,15 +132,15 @@ class Heat:
         return self._temperature
 
     @temperature.setter
-    def temperature(self, new_temp: float) -> None:
+    def temperature(self, new_temperature: float) -> None:
         """Set the temperature of the plate.
 
         Parameters
         ----------
-        new_temp : array_like
+        new_temperature : array_like
             The new temperatures.
         """
-        self._temperature[:] = new_temp
+        self._temperature[:] = new_temperature
 
     @property
     def time_step(self) -> float:
@@ -190,7 +190,7 @@ class Heat:
             self._temperature,
             self._spacing,
             out=self._next_temperature,
-            alpha=self._alpha,
+            thermal_diffusivity=self._thermal_diffusivity,
             time_step=self._time_step,
         )
         np.copyto(self._temperature, self._next_temperature)
