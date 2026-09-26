@@ -8,4 +8,4 @@ spacing:
 origin:
   - 0.0
   - 0.0
-alpha: 1.0
+thermal_diffusivity: 1.0
