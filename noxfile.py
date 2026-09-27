@@ -25,6 +25,23 @@ def test(session: nox.Session) -> None:
         session.run("coverage", "report", "--ignore-errors", "--show-missing")
 
 
+@nox.session(name="test-examples")
+def test_examples(session: nox.Session) -> None:
+    """Run the example notebooks."""
+    session.install(".[testing]")
+
+    session.run(
+        "pytest",
+        "examples",
+        "--nbmake",
+        "--nbmake-timeout",
+        "3000",
+        "--nbmake-kernel",
+        "python3",
+        "-v",
+    )
+
+
 @nox.session
 def lint(session: nox.Session) -> None:
     """Look for lint."""
