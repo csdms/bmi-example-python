@@ -57,6 +57,7 @@ testing = [
     "isort",
     "ruff",
     "bmi-tester",
+    "nbmake",
 ]
 
 [tool.setuptools.dynamic]
