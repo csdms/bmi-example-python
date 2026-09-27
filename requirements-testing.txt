@@ -2,6 +2,7 @@ black
 bmi-tester
 coveralls
 isort
+nbmake
 pytest
 pytest-cov
 ruff
