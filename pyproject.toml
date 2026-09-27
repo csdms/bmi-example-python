@@ -120,13 +120,6 @@ doctest_optionflags = [
     "ALLOW_UNICODE",
 ]
 
-[tool.ruff]
-line-length = 88
-ignore = [
-    "E203",
-    "E501",
-]
-
 [tool.zest-releaser]
 tag-format = "v{version}"
 python-file-with-version = "heat/_version.py"
