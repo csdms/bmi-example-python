@@ -2,5 +2,6 @@ black
 bmi-tester>=0.5.7
 coveralls
 isort
+nbmake
 pytest
 pytest-cov

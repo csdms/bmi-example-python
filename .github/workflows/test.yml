@@ -39,6 +39,7 @@ jobs:
         run: |
           pip install .[testing] gimli.units
           bmi-test heat:BmiHeat --config-file=${GITHUB_WORKSPACE}/examples/heat.yaml --root-dir=examples -vvv
+          pytest examples --nbmake --nbmake-timeout=3000 --nbmake-kernel=python3 -v
 
       - name: Coveralls
         if: matrix.os == 'ubuntu-latest'

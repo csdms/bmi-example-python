@@ -58,6 +58,7 @@ testing = [
     "coveralls",
     "pytest",
     "pytest-cov",
+    "nbmake",
 ]
 
 [build-system]
