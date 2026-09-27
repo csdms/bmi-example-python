@@ -64,8 +64,8 @@ To run the tests,
 
 .. code-block:: bash
 
-  $ pip install -r requirements-testing.txt
-  $ make test
+  $ pip install nox
+  $ nox -s test
 
 
 .. _Python mappings: https://github.com/csdms/bmi-python
