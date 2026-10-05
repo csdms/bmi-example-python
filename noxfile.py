@@ -19,7 +19,7 @@ def test(session: nox.Session) -> None:
 
     if "CI" in os.environ:
         args.append(f"--cov-report=xml:{ROOT.absolute()!s}/coverage.xml")
-    session.run("pytest", *args)
+    session.run("pytest<7.4", *args)
 
     if "CI" not in os.environ:
         session.run("coverage", "report", "--ignore-errors", "--show-missing")
@@ -100,7 +100,7 @@ def clean(session):
 
             shutil.rmtree("build", ignore_errors=True)
             shutil.rmtree("dist", ignore_errors=True)
-            shutil.rmtree(f"src/{PROJECT}.egg-info", ignore_errors=True)
+            shutil.rmtree(f"{PROJECT}.egg-info", ignore_errors=True)
             shutil.rmtree(".pytest_cache", ignore_errors=True)
             shutil.rmtree(".venv", ignore_errors=True)
 
