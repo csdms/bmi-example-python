@@ -19,7 +19,7 @@ def test(session: nox.Session) -> None:
 
     if "CI" in os.environ:
         args.append(f"--cov-report=xml:{ROOT.absolute()!s}/coverage.xml")
-    session.run("pytest", *args)
+    session.run("pytest<7.4", *args)
 
     if "CI" not in os.environ:
         session.run("coverage", "report", "--ignore-errors", "--show-missing")

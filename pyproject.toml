@@ -57,7 +57,7 @@ testing = [
     "bmi-tester",
     "coveralls",
     "nbmake",
-    "pytest",
+    "pytest<7.4",
     "pytest-cov",
 ]
 
