@@ -1,7 +1,4 @@
 """The 2D heat model."""
-from __future__ import annotations
-
-from io import TextIOBase
 
 from __future__ import annotations
 
