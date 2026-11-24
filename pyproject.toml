@@ -11,8 +11,7 @@ keywords = [
     "earth science",
 ]
 authors = [
-    { email = "eric.hutton@colorado.edu" },
-    { name = "Eric Hutton" },
+    { name = "Eric Hutton", email = "eric.hutton@colorado.edu" },
 ]
 maintainers = [
     { name = "Mark Piper", email = "mark.piper@colorado.edu" },
