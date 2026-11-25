@@ -17,7 +17,7 @@
 bmi-example-python
 ==================
 
-An example of implementing the `Python bindings`_
+An example of implementing the `Python mappings`_
 for the CSDMS `Basic Model Interface`_ (BMI).
 
 Overview
@@ -49,7 +49,7 @@ This example can be built and installed on Linux, macOS, and Windows.
 **Prerequisites:**
 
 * Python 3
-* The Python BMI bindings. Follow the build and install directions
+* The Python BMI mappings. Follow the build and install directions
   given in the `README`_ in that repository. You can choose to install
   them from source, or through `pip` or `conda`.
 
@@ -64,10 +64,10 @@ To run the tests,
 
 .. code-block:: bash
 
-  $ pip install -r requirements-testing.txt
-  $ make test
+  $ pip install nox
+  $ nox -s test
 
 
-.. _Python bindings: https://github.com/csdms/bmi-python
+.. _Python mappings: https://github.com/csdms/bmi-python
 .. _Basic Model Interface: https://bmi.readthedocs.io
 .. _README: https://github.com/csdms/bmi-python/blob/master/README.rst
